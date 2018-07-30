@@ -1,6 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
 import numpy as np
 import pandas as pd
 
@@ -19,7 +20,7 @@ def get_recommendations(df,item_id, index_of_item_id, index, cosine_sim,num=5):
         print("Recommended: " + df['product_title'].iloc[item_indices[i]] + "\nPrice: $" + str(df['sale_price'].iloc[item_indices[i]]) + "\n(score:" + str(sim_scores[i][1]) + ")")
 
 def make_tfidf_matrix(df,col,indices):
-    tfidf = TfidfVectorizer(analyzer = 'word', lowercase=True, stop_words='english')
+    tfidf = TfidfVectorizer(analyzer = 'word', lowercase=True, stop_words=stopwords.words('english'))
     tfidf_matrix = tfidf.fit_transform(df[col].iloc[indices])
     cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
     return tfidf, tfidf_matrix, indices, cosine_sim

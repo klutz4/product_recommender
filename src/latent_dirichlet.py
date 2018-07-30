@@ -3,6 +3,7 @@ from src.recommender import make_tfidf_matrix, get_recommendations
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 from sklearn.metrics.pairwise import cosine_similarity, linear_kernel
+from nltk.corpus import stopwords
 import numpy as np
 np.random.seed(2018)
 
@@ -24,7 +25,7 @@ def print_top_words(model, feature_names, n_top_words=10):
 
 def run_lda(df):
     '''Perform LDA on a given dataframe'''
-    tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2, stop_words='english')
+    tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2, stop_words=stopwords.words('english'))
     tf = tf_vectorizer.fit_transform(df)
     lda = LatentDirichletAllocation(batch_size=1000, n_jobs=-1, max_iter=5, learning_method='online', random_state=0)
     lda_matrix = lda.fit_transform(tf)
