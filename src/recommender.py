@@ -30,11 +30,8 @@ if __name__ == '__main__':
     products = pd.read_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_wo_na.csv')
     products.drop('Unnamed: 0',axis=1, inplace=True)
     indices = np.random.choice(292225, 20000)
-    indices1, cosine_sim1 = make_tfidf_matrix(products,'product_title', indices)
 
-    # idx = np.random.choice(10000)
-    # get_recommendations(products['vendor_variant_id'].iloc[idx],indices, cosine_sim)
     index = pd.Series(df.index, index=df['vendor_variant_id']).drop_duplicates()
-    indices2, cosine_sim2 = make_tfidf_matrix(products,'combo', indices)[2], make_tfidf_matrix(products,'combo', indices)[3]
-    idx = np.random.choice(10000)
+    indices1, cosine_sim2 = make_tfidf_matrix(products,'combo', indices)[2], make_tfidf_matrix(products,'combo', indices)[3]
+    idx = np.random.choice(20000)
     get_recommendations(products['vendor_variant_id'].iloc[idx],idx,index, cosine_sim2)

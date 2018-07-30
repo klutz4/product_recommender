@@ -42,14 +42,14 @@ if __name__ == '__main__':
     # indices = np.random.choice(292225, 10000)
     idx = np.random.choice(292225,1)
     vectorizer, tfidf_model, kmeans = cluster_text(products['combo'])
-    get_kmeans_rec(kmeans,idx)
+    # get_kmeans_rec(kmeans,idx)
 
     #products from first cluster
     # products['taxonomy_name'].iloc[indices][kmeans.labels_ == 0]
 
-    #hierarchical clustering
+    #hierarchical clustering - only works with subset
     # sim = pdist(tfidf_model.toarray())
     # sim_matrix = squareform(sim)
-    # hierarchies = linkage(sim,'complete')
+    # hierarchies = linkage(sim,'complete','cosine')
     # dendro = dendrogram(hierarchies)
     # plt.show()

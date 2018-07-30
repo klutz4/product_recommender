@@ -79,6 +79,9 @@ products_wo_na = products.copy()
 products_wo_na.drop(['brand_id','sku','upc','size','dimensions','image_url'],axis=1, inplace=True)
 
 def combine_columns(x):
+    '''
+    Combine all columns with strings into one string for NLP.
+    '''
     return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['taxonomy_name']) + ' ' + ''.join(x['color']) + ' ' + ''.join(x['material']) + ' ' + ''.join(x['pattern'])
 
 products_combo = products_wo_na.copy()
