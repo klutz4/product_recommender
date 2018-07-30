@@ -1,8 +1,7 @@
 import pandas as pd
+from unidecode import unidecode
 
-def get_data():
-    products = pd.read_csv('data/updated_product_sample.csv')
-    return products
+products = pd.read_csv('data/updated_product_sample.csv')
 
 #null values per column out of 300,000:
 # vendor_variant_id                    0
@@ -55,7 +54,7 @@ for col in ['last_feed_sync','outer_depth','outer_width','outer_height','weight'
 #drop rows without a price (7775)
 products = products[products.price.isnull() == False]
 
-#replace " in color, dimension and size columns
+#replace " in color
 products['color'] = products['color'].replace('"','',inplace=True)
 
 #fill in sales price with price if not on sale
@@ -64,9 +63,6 @@ products['price_diff'] = products.price - products.sale_price
 products.price_diff.fillna(0,inplace=True)
 products.sale_price = products.price - products.price_diff
 products.drop('price_diff',axis=1, inplace=True)
-
-#replaces erraneous " in color col
-products.color.replace('"','', inplace=True)
 
 #fill na with other
 for col in ['product_description','color','taxonomy_name','material','pattern','division','category']:
@@ -82,5 +78,12 @@ products_w_na = products[['brand_id','sku','upc','size','dimensions','image_url'
 products_wo_na = products.copy()
 products_wo_na.drop(['brand_id','sku','upc','size','dimensions','image_url'],axis=1, inplace=True)
 
+def combine_columns(x):
+    return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['taxonomy_name']) + ' ' + ''.join(x['color']) + ' ' + ''.join(x['material']) + ' ' + ''.join(x['pattern'])
+
+products_combo = products_wo_na.copy()
+products_combo['combo'] = products_combo.apply(combine_columns,axis=1)
+
 products_w_na.to_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_w_na.csv')
 products_wo_na.to_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_wo_na.csv')
+products_combo.to_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_combo.csv')
