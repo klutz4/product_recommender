@@ -1,19 +1,10 @@
 import pandas as pd
-from src.recommender import make_tfidf_matrix, get_recommendations
+from recommender import make_tfidf_matrix, get_recommendations
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.decomposition import NMF, LatentDirichletAllocation
+from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.metrics.pairwise import cosine_similarity, linear_kernel
 from nltk.corpus import stopwords
 import numpy as np
-np.random.seed(2018)
-
-def run_nmf(indices):
-    tfidf_vectorizer, tfidf_matrix = make_tfidf_matrix(products,'product_title',indices)[0],make_tfidf_matrix(products,'product_title',indices)[1]
-    nmf = NMF(max_iter = 5).fit(tfidf_matrix)
-    print("\nTopics in NMF model (Frobenius norm):")
-    tfidf_feature_names = tfidf_vectorizer.get_feature_names()
-    print_top_words(nmf, tfidf_feature_names, n_top_words)
-    return nmf.fit_transform(tfidf_matrix)
 
 def print_top_words(model, feature_names, n_top_words=10):
     for topic_idx, topic in enumerate(model.components_):

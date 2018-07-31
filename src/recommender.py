@@ -34,4 +34,4 @@ if __name__ == '__main__':
     index = pd.Series(df.index, index=df['vendor_variant_id']).drop_duplicates()
     indices1, cosine_sim2 = make_tfidf_matrix(products,'combo', indices)[2], make_tfidf_matrix(products,'combo', indices)[3]
     idx = np.random.choice(20000)
-    get_recommendations(products['vendor_variant_id'].iloc[idx],idx,index, cosine_sim2)
+    get_recommendations(products,products['vendor_variant_id'].iloc[idx],idx,index, cosine_sim2)
