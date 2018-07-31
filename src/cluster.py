@@ -8,9 +8,11 @@ from scipy.cluster.hierarchy import linkage, dendrogram
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import fcluster
 from scipy.spatial.distance import cdist
+from src.recommender import get_indices
 
 
-def cluster_text(data):
+def cluster_text(df,row_indices):
+    data = df['combo'].iloc[row_indices]
     vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), lowercase=True, max_features=200)
     tfidf_model = vectorizer.fit_transform(data)
 
@@ -27,17 +29,20 @@ def cluster_text(data):
         # print(names)
     return vectorizer, tfidf_model, kmeans
 
-def get_kmeans_rec(kmeans, item_id_idx):
-    cluster_label = kmeans.labels_[item_id_idx]
-    cluster_members = products[kmeans.labels_ == cluster_label]
-    recs = np.random.choice(cluster_members.index, 10, replace = False)
-    print("Ten recommendations for " + products['product_title'].iloc[item_id_idx] + ":")
+def get_kmeans_rec(df, kmeans, index_of_item, num=5):
+    cluster_label = kmeans.labels_[index_of_item]
+    cluster_members = df[kmeans.labels_ == cluster_label]
+    recs = np.random.choice(cluster_members.index, num, replace = False)
+    print('Mini Batch KMeans:\n')
+    print("Recommending " + str(num) + " products similar to " + df['product_title'].iloc[index_of_item] + "...")
+    print("-------")
     for rec in recs:
-        print("Recommended: " + products['product_title'].iloc[rec] + "\nPrice: $" + str(products['sale_price'].iloc[rec]) + "\nWeb link: " + products['weblink'].iloc[rec])
+        print("Recommended: " + df['product_title'].iloc[rec] + "\nPrice: $" + str(df['sale_price'].iloc[rec]))
+        # + "\nWeb link: " + df['weblink'].iloc[rec]
 
 def plot_elbow(tfidf_model,filename):
         distortions = []
-        K = range(1,200)
+        K = range(1,50)
         for k in K:
             kmeans = MiniBatchKMeans(n_clusters=k)
             kmeans.fit(tfidf_model)
@@ -70,9 +75,8 @@ if __name__ == '__main__':
     pd.set_option('display.max_columns', 500)
     products = pd.read_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_combo.csv')
     products.drop('Unnamed: 0',axis=1, inplace=True)
-    indices = np.random.choice(292225, 20000)
-    idx = np.random.choice(292225,1)
-    vectorizer, tfidf_model, kmeans = cluster_text(products['combo'].iloc[indices])
-    # get_kmeans_rec(kmeans,idx)
+    row_indices, index_of_item, index_df = get_indices(products)
+    vectorizer, tfidf_model, kmeans = cluster_text(products, row_indices)
+    # get_kmeans_rec(products, kmeans,index_of_item,num=10)
     # plot_elbow(tfidf_model,'images/elbow.png')
     # plot_dendro_and_clusters(tfidf_model,'images/dendro.png')

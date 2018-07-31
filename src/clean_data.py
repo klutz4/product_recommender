@@ -1,7 +1,7 @@
 import pandas as pd
 from unidecode import unidecode
 
-products = pd.read_csv('data/updated_product_sample.csv')
+products = pd.read_csv('../data/updated_product_sample.csv')
 
 #null values per column out of 300,000:
 # vendor_variant_id                    0
@@ -80,9 +80,9 @@ products_wo_na.drop(['brand_id','sku','upc','size','dimensions','image_url'],axi
 
 def combine_columns(x):
     '''
-    Combine all columns with strings into one string for NLP.
+    Combine all columns with strings into one string for NLP. Removed material and pattern to see if recommendations improved.
     '''
-    return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['taxonomy_name']) + ' ' + ''.join(x['color']) + ' ' + ''.join(x['material']) + ' ' + ''.join(x['pattern'])
+    return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['taxonomy_name']) + ' ' + ''.join(x['color'])
 
 products_combo = products_wo_na.copy()
 products_combo['combo'] = products_combo.apply(combine_columns,axis=1)
