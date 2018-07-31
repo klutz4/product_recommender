@@ -8,7 +8,7 @@ from scipy.cluster.hierarchy import linkage, dendrogram
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import fcluster
 from scipy.spatial.distance import cdist
-from src.recommender import get_indices, show_products
+# from src.nlp_rec import get_indices, show_products
 
 
 def cluster_text(df,row_indices):

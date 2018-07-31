@@ -1,7 +1,4 @@
 import pandas as pd
-from src.recommender import make_tfidf_matrix, get_recommendations, get_indices, get_cos_sim_recs, show_products
-from src.latent_dirichlet import print_top_words, run_lda, get_lda_recs
-from src.cluster import cluster_text, get_kmeans_rec, plot_elbow, plot_dendro_and_clusters, show_products
 import numpy as np
 
 def split_prices(df):

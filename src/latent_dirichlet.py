@@ -5,7 +5,7 @@ from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.metrics.pairwise import cosine_similarity, linear_kernel
 from nltk.corpus import stopwords
 import numpy as np
-from src.recommender import get_indices
+# from src.nlp_rec import get_indices
 
 def print_top_words(model, feature_names, n_top_words=10):
     for topic_idx, topic in enumerate(model.components_):
