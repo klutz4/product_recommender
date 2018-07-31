@@ -34,7 +34,7 @@ def get_lda_recs(df,col,row_indices, index_of_item,index_df,num=5):
     print('LDA:\n')
     print("Recommending " + str(num) + " products similar to " + df['product_title'].iloc[index_of_item] + "...")
     print("-------")
-    return get_recommendations(df,item,index_of_item,index_df, cos_sim)
+    return get_recommendations(df,item,index_of_item,index_df, cos_sim,num)
 
 if __name__ == '__main__':
     pd.set_option('display.max_columns', 500)
