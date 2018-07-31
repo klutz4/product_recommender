@@ -50,7 +50,7 @@ Once I had my methods, I had to find a way to incorporate the price restraints w
 
 Split the data into price ranges:
 
-|Price Ranges
+|Price Ranges| | |
 |---------|-------|-------|
 |$0 - $50 |$50 - $150|$100 - $500|
 |$400 - $900|$750 - $1500|$1000 - $2500|
