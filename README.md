@@ -17,7 +17,7 @@ For this project, I worked with a sample of the product data from Havenly, which
  ```
 My first task was seeing how many null values were in the data and figuring out how I wanted to deal with them.
 
-<img src = 'images/nullplot.png'>
+<img src = 'images/nullplot.png' width=1000>
 The yellow represents the null values.
 
 
@@ -40,8 +40,8 @@ I chose 4 initial clustering methods to try:
 * MiniBatchKMeans
 * Hierarchical clustering
 
-The hierarchical clustering made for some interesting plots...
-<img src = 'images/dendrogram.png'>
+The hierarchical clustering made for some cool looking plots...
+<img src = 'images/dendrogram.png' width=1000>
 But didn't prove to be much help.
 
 I decided to limit my clustering comparison to the other three methods.
@@ -50,7 +50,7 @@ Once I had my methods, I had to find a way to incorporate the price restraints w
 
 Split the data into price ranges:
 
-|Price Ranges 
+|Price Ranges
 |---------|-------|-------|
 |$0 - $50 |$50 - $150|$100 - $500|
 |$400 - $900|$750 - $1500|$1000 - $2500|
