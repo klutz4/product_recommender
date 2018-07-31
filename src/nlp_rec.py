@@ -27,7 +27,7 @@ def make_tfidf_matrix(df,col,indices):
 
 def get_indices(df,sample_size):
     '''Get the max of a random sample of 20,000 rows of the dataframe or all rows and one random index for an item.'''
-    if len(df) > sample_size:
+    if len(df) < sample_size:
         row_indices = np.random.choice(len(df), sample_size,replace=False)
         index_of_item = np.random.choice(sample_size)
         index_df = pd.Series(np.arange(len(df)), index=df['vendor_variant_id']).drop_duplicates()
