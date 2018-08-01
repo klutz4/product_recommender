@@ -159,6 +159,11 @@ KMeans Recommendations Run #3:
 <img src ='https://secure.img1-fg.wfcdn.com/im/52986386/resize-h400-w400%5Ecompr-r85/5540/55403404/%27Portrait+Style+53%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/85121847/resize-h400-w400%5Ecompr-r85/5185/51851839/%27Blury+Style%27+Photographic+Print+on+Wrapped+Canvas.jpg' width=275>
 
+KMeans Recommendations Run #4:  
+<img src = 'https://secure.img1-fg.wfcdn.com/im/08212142/resize-h490-w490%5Ecompr-r85/5494/54945705/%27Foggy+Days+%28116%29%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/70143729/resize-h400-w400%5Ecompr-r85/5540/55403953/%27Portrait+Style+Photography+%28163%29%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/16622218/resize-h400-w400%5Ecompr-r85/5249/52490069/%27Appetizing+Food+%2899%29%27+Photographic+Print+on+Canvas.jpg' width=275>
+
 Have these adjustments improved the recommender?
 
 ### Future Work
