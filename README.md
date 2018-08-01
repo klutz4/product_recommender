@@ -116,26 +116,6 @@ KMeans Recommendations:
 <img src ='https://secure.img1-fg.wfcdn.com/im/44105171/resize-h400-w400%5Ecompr-r85/5779/57799777/%27Abstract+Point+of+View+%28127%29%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
 
 
-Another one!   
-Chosen item:  
-<img src ='https://secure.img1-fg.wfcdn.com/im/22355347/resize-h400-w400%5Ecompr-r85/3980/39804222/%27Richmond+Virginia+Skyline%27+Graphic+Art+Print+on+Canvas.jpg'>
-
-Cosine Sim Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/32724270/resize-h400-w400%5Ecompr-r85/5432/54328898/%27Moonlit+River%27+Print+on+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/22985970/resize-h490-w490%5Ecompr-r85/5522/55224045/%27Amundsen+%28Blimp%29%27+Photographic+Print.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/76126119/resize-h400-w400%5Ecompr-r85/5145/51457011/%27Shades+of+Nature%27+Photographic+Print.jpg' width=275>
-
-LDA Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/26705351/resize-h400-w400%5Ecompr-r85/5649/56496228/%27Gold+Dust+I%27+Acrylic+Painting+Print+on+Wrapped+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/13445777/resize-h400-w400%5Ecompr-r85/3923/39238056/%27Bird.+Tit%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/10867532/resize-h400-w400%5Ecompr-r85/4994/49940047/%27Lights+in+Soho%27+Photographic+Print.jpg' width=275>
-
-KMeans Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/30935436/resize-h400-w400%5Ecompr-r85/5672/56721495/%27St+Johns%27+Photographic+Print+on+Wrapped+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/04221352/resize-h400-w400%5Ecompr-r85/5102/51025806/%27Bold+III+Crop+Graphic+Art+Print+on+Wrapped+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/79348202/resize-h400-w400%5Ecompr-r85/5422/54229410/%27The+Artists+Son+Paul%27+by+Paul+Cezanne+Oil+Painting+Print+on+Wrapped+Canvas.jpg' width=275>
-
-
 Testing on the other categories:  
 Chosen item:  
 <img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0537/img82c.jpg' width=275>
@@ -154,6 +134,22 @@ KMeans Recommendations:
 <img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0416/img3c.jpg' width=275>
 <img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0458/img98c.jpg' width=275>
 <img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0656/img41c.jpg' width=275>
+
+It appears that the clustering works well on the non-art categories, but keep in mind that our dataframe was reduced to 55,519 samples, and then further reduced with the specified price range.
+
+### The Improvements?
+
+I played around with some of the KMeans parameters to see if I could improve the recommendations. I added the WordNetLemmatizer and decreased the batch size to 20.
+
+Back to our first item...  
+![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
+
+KMeans Recommendations:  
+<img src = 'https://secure.img1-fg.wfcdn.com/im/07445968/resize-h400-w400%5Ecompr-r85/5779/57795561/%27Blurred+out+%28145%29%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/56692273/resize-h400-w400%5Ecompr-r85/5498/54980165/%27Appetizing+Food+%2820%29%27+Photographic+Print+on+Canvas.jpgg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/80519151/resize-h400-w400%5Ecompr-r85/5767/57671240/%27Blurred+out+%287%29%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
+
+Is this recommender better than before? Or did we just get lucky with our random choices from the cluster?
 
 ### Future Work
 

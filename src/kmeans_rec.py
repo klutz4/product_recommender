@@ -8,16 +8,17 @@ from scipy.cluster.hierarchy import linkage, dendrogram
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import fcluster
 from scipy.spatial.distance import cdist
+from nltk.stem import WordNetLemmatizer, SnowballStemmer, PorterStemmer
 from src.nlp_rec import get_indices, show_products
 import autoreload
 
 
 def cluster_text(df,row_indices):
     data = df['combo'].iloc[row_indices]
-    vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), lowercase=True)
+    vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), tokenizer=WordNetLemmatizer().lemmatize, lowercase=True)
     tfidf_model = vectorizer.fit_transform(data)
 
-    kmeans = MiniBatchKMeans(n_clusters=50).fit(tfidf_model)
+    kmeans = MiniBatchKMeans(n_clusters=50, batch_size = 20).fit(tfidf_model)
     centroids = kmeans.cluster_centers_
 
     for cluster in centroids:
