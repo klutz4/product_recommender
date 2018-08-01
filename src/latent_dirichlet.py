@@ -20,7 +20,7 @@ def run_lda(df):
     '''Perform LDA on a given dataframe'''
     tf_vectorizer = CountVectorizer(analyzer = 'word', min_df=2, stop_words=stopwords.words('english'))
     tf = tf_vectorizer.fit_transform(df)
-    lda = LatentDirichletAllocation(batch_size=500, n_jobs=-1,max_iter=10, learning_method='online', random_state=0)
+    lda = LatentDirichletAllocation(batch_size=100, n_jobs=-1,max_iter=10, learning_method='online', random_state=0)
     lda_matrix = lda.fit_transform(tf)
     # print("\nTopics in LDA model:")
     tf_feature_names = tf_vectorizer.get_feature_names()
