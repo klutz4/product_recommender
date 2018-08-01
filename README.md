@@ -133,7 +133,7 @@ LDA Recommendations:
 ![alt text]()
 
 KMeans Recommendations:  
-![alt text](https://secure.img1-fg.wfcdn.com/im/13197713/resize-h400-w400%5Ecompr-r85/5259/52594267/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
+<img src = 'https://secure.img1-fg.wfcdn.com/im/13197713/resize-h400-w400%5Ecompr-r85/5259/52594267/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg' width=300>
 ![alt text](https://secure.img1-fg.wfcdn.com/im/67962037/resize-h400-w400%5Ecompr-r85/5166/51669942/%27Abstract+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
 ![alt text](https://secure.img1-fg.wfcdn.com/im/98825325/resize-h400-w400%5Ecompr-r85/5914/59147794/%27Street+Life+184%27+Photographic+Print+on+Canvas.jpg)
 
