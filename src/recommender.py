@@ -29,19 +29,19 @@ df = products[products['sale_price'] > min]
 df = df[df['sale_price'] < max]
 df.reset_index(inplace=True,drop=True)
 
-row_indices, item_index, index_df = get_indices(df,20000)
+row_indices, item_index, index_df = get_indices(df,50000)
 item = df['product_title'].iloc[item_index]
 item_id = df['vendor_variant_id'].iloc[item_index]
 
 # item_index = df[df['vendor_variant_id'] == item_id].index.item()
 # subset_item_index = index_df[item_id]
 
-cos_item_indices = get_cos_sim_recs(df, row_indices, item_index, index_df, num = 5)
-# show_products(df,item_index,cos_item_indices)
+cos_item_indices = get_cos_sim_recs(df, row_indices, item_index, index_df, num = 1)
+show_products(df,item_index,cos_item_indices)
 
-lda_item_indices = get_lda_recs(df,'combo', row_indices, item_index ,index_df, num = 5)
-# show_products(df,item_index,lda_item_indices)
+lda_item_indices = get_lda_recs(df,'combo', row_indices, item_index ,index_df, num = 1)
+show_products(df,item_index,lda_item_indices)
 
 vectorizer, tfidf_model, kmeans = cluster_text(df, row_indices)
-recs = get_kmeans_rec(df,row_indices, item_index, item_index, kmeans, num=5)
-# show_products(df,item_index,recs)
+recs = get_kmeans_rec(df,row_indices, item_index, item_index, kmeans, num=1)
+show_products(df,item_index,recs)

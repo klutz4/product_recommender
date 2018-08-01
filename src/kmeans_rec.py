@@ -14,7 +14,7 @@ import autoreload
 
 def cluster_text(df,row_indices):
     data = df['combo'].iloc[row_indices]
-    vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), lowercase=True, max_features=1000)
+    vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), lowercase=True)
     tfidf_model = vectorizer.fit_transform(data)
 
     kmeans = MiniBatchKMeans(n_clusters=50).fit(tfidf_model)

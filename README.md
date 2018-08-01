@@ -88,11 +88,63 @@ batch size (LDA and Kmeans)
 
 ### The Results
 
+Comparing the three methods:
+
+``` python
+Please enter the index of your item (up to 236706): 90490
+Your chosen item is 'Theodore Roosevelt, Secretary of Navy' by Forbes Litho. Mfg. Co. Memorabilia, which costs $559.99
+
+
+What is your price range?
+ (Please enter your range as min-max): 500-800
+Would you like to use Cosine Sim, LDA, or Kmeans? Cosine Sim
+How many recommendations would you like? 5
+NLP and Cosine Similarity:
+
+Recommending 5 products similar to 'Theodore Roosevelt, Secretary of Navy' by Forbes Litho. Mfg. Co. Memorabilia...
+-------
+Recommended: 'Will You Supply Eyes for the Navy?' by Gordon Grant Vintage Advertisement
+Price: $536.99
+(Cosine similarity: 0.2508)
+Recommended: 'Navy Shorts' Framed Graphic Art Print
+Price: $529.99
+(Cosine similarity: 0.1818)
+Recommended: 'Bikini' Framed Graphic Art Print in Navy Blue
+Price: $789.99
+(Cosine similarity: 0.1699)
+Recommended: 'Thurston: the Great Magician' by Strobridge Litho. Co Vintage Advertisement
+Price: $559.99
+(Cosine similarity: 0.1363)
+Recommended: 'Newmann's Wonderful Spirit Mysteries' by Donaldson Litho. Co Vintage Advertisement
+Price: $569.99
+(Cosine similarity: 0.1325)
+```
+Our chosen item:  
+![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
+
+Cosine Sim Recommendations:  
+![alt text]()
+![alt text]()
+![alt text]()
+
+LDA Recommendations:  
+![alt text]()
+![alt text]()
+![alt text]()
+
+KMeans Recommendations:  
+![alt text](https://secure.img1-fg.wfcdn.com/im/13197713/resize-h400-w400%5Ecompr-r85/5259/52594267/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
+![alt text](https://secure.img1-fg.wfcdn.com/im/67962037/resize-h400-w400%5Ecompr-r85/5166/51669942/%27Abstract+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
+![alt text](https://secure.img1-fg.wfcdn.com/im/98825325/resize-h400-w400%5Ecompr-r85/5914/59147794/%27Street+Life+184%27+Photographic+Print+on+Canvas.jpg)
+
 
 ### Future Work
 
 * Try to cluster and label the 'unmapped - misclassified' products.
+* Obtain a dataset with more of the unrepresented categories.
 * Use neural networks to incorporate image processing to improve the labels and recommendations.
 
 
 ### References
+
+Special thanks to Bill Sherby and the people at Havenly for allowing me to work with their data.
