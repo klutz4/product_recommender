@@ -114,19 +114,19 @@ Our chosen item:
 ![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
 
 Cosine Sim Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/42344136/resize-h400-w400%5Ecompr-r85/2340/23405252/%27Waxwings+by+Dmitry+Dubikovskiy+Graphic+Art+Print.jpg' width=300>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/95491154/resize-h400-w400%5Ecompr-r85/5358/53581353/%27California+Living%27+Photographic+Print+on+Canvas.jpg' width=300>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/79227590/resize-h400-w400%5Ecompr-r85/5189/51895085/%27Bords+Gris%27+Framed+Watercolor+Painting+Print.jpg' width=300>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/42344136/resize-h400-w400%5Ecompr-r85/2340/23405252/%27Waxwings+by+Dmitry+Dubikovskiy+Graphic+Art+Print.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/95491154/resize-h400-w400%5Ecompr-r85/5358/53581353/%27California+Living%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/79227590/resize-h400-w400%5Ecompr-r85/5189/51895085/%27Bords+Gris%27+Framed+Watercolor+Painting+Print.jpg' width=275>
 
 LDA Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/89100010/resize-h400-w400%5Ecompr-r85/2927/29270827/%22W.D.+Clark+Plane+C%22+by+Cole+Borders+Graphic+Art+on+Wrapped+Canvas.jpg' width=300>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/23434750/resize-h400-w400%5Ecompr-r85/4728/47282237/Diligence+Graphic+Art+on+Wrapped+Canvas.jpg' width=300>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/91596251/resize-h400-w400%5Ecompr-r85/3183/31838960/%27Gem%27+Graphic+Art+on+Plaque.jpg' width=300>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/89100010/resize-h400-w400%5Ecompr-r85/2927/29270827/%22W.D.+Clark+Plane+C%22+by+Cole+Borders+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/23434750/resize-h400-w400%5Ecompr-r85/4728/47282237/Diligence+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/91596251/resize-h400-w400%5Ecompr-r85/3183/31838960/%27Gem%27+Graphic+Art+on+Plaque.jpg' width=275>
 
 KMeans Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/19903027/resize-h400-w400%5Ecompr-r85/5867/58672286/%27Sharp+Colors+%2853%29%27+Photographic+Print+on+Canvas.jpg' width=300>
-<img src ='https://secure.img1-fg.wfcdn.com/im/84126982/resize-h400-w400%5Ecompr-r85/5494/54947178/%27Meditation+and+Calming+%2869%29%27+Photographic+Print+on+Canvas.jpg' width=300>
-<img src ='https://secure.img1-fg.wfcdn.com/im/51885733/resize-h400-w400%5Ecompr-r85/5917/59174587/%27Street+Life+%2817%29%27+Photographic+Print+on+Canvas.jpg' width=300>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/19903027/resize-h400-w400%5Ecompr-r85/5867/58672286/%27Sharp+Colors+%2853%29%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/84126982/resize-h400-w400%5Ecompr-r85/5494/54947178/%27Meditation+and+Calming+%2869%29%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/51885733/resize-h400-w400%5Ecompr-r85/5917/59174587/%27Street+Life+%2817%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 
 
 ### Future Work
