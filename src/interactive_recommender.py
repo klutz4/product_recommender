@@ -28,15 +28,15 @@ df = df[df['sale_price'] < max]
 df.reset_index(inplace=True,drop=True)
 item_index = df[df['vendor_variant_id'] == item_id].index.item()
 
-if len(df) > 50000:
-    row_indices = np.random.choice(len(df), 50000,replace=False)
+if len(df) > 35000:
+    row_indices = np.random.choice(len(df), 35000,replace=False)
     extra = row_indices[0]
     row_indices = row_indices[1:]
     if item_index not in row_indices:
         row_indices = np.append(row_indices,item_index)
     else:
         row_indices = np.append(row_indices, extra)
-    index_df = pd.Series(np.arange(50000), index=df['vendor_variant_id'].iloc[row_indices]).drop_duplicates()
+    index_df = pd.Series(np.arange(35000), index=df['vendor_variant_id'].iloc[row_indices]).drop_duplicates()
 else:
     row_indices= np.arange(len(df))
     index_of_item = np.random.choice(len(df))
@@ -58,6 +58,3 @@ elif method == 'Kmeans':
     show_products(df,item_index,recs)
 else:
     print("That's not an option. Goodbye.")
-
-
-#test : 36587
