@@ -3,7 +3,7 @@ import numpy as np
 from src.nlp_rec import make_tfidf_matrix, get_indices, get_cos_sim_recs, show_products
 from src.latent_dirichlet import get_lda_recs
 from src.kmeans_rec import cluster_text, get_kmeans_rec
-from src.split_price import split_prices
+import autoreload
 
 pd.set_option('display.max_columns', 500)
 products = pd.read_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_combo.csv')

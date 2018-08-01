@@ -20,7 +20,6 @@ My first task was seeing how many null values were in the data and figuring out 
 <img src = 'images/nullplot.png' width=1000>
 The yellow represents the null values.
 
-
  Steps taken to clean the data:
  * Drop any columns comprised entirely of NaNs
  * Drop columns that wouldn't be used for clustering
@@ -28,6 +27,35 @@ The yellow represents the null values.
  * Fill the null values of the sale_price columns with the item's price (i.e. this item is not on sale)
  * Fill any null values with 'other' in categorical columns
  * Drop any remaining columns that still have null values ('brand_id','sku','upc','size','dimensions','image_url')
+
+ <img src = 'images/category_prop.png'>
+
+|Category|      Proportion|
+|----|----|
+|art  |.810013
+|unmapped - mis-classified |  0.034453
+|occassional seating  |0.022277
+|sofas & sectionals  |0.021371
+|lighting | 0.020269
+|unmapped - low priority category | 0.020056
+|bedroom furniture | 0.019625
+|decorative accessories | 0.013058
+|rugs|  0.007279|
+|dining furniture | 0.006498
+|windows | 0.005171
+|bedding | 0.004743
+|pillows | 0.003313
+|outdoor furniture | 0.003015
+|accent furniture | 0.001971
+|bath | 0.001605
+|office furniture | 0.001530
+|mirrors | 0.001485
+|media furniture | 0.000808
+|storage furniture | 0.000797
+|wallpaper | 0.000517
+|other | 0.000147
+
+ As shown above, my sample is primarily art, which makes recommending for products outside of that category difficult. I performed the clustering and recommending using all categories to start and then restricted to only those in the 'art' category.
 
 ### The Clustering
 
@@ -46,7 +74,7 @@ But didn't prove to be much help.
 
 I decided to limit my clustering comparison to the other three methods.
 
-Once I had my methods, I had to find a way to incorporate the price restraints with my clusters. After all, you wouldn't want to plan on spending $100 on a chair and have a $1000 chair recommended to you.
+Once I had my methods, I had to find a way to incorporate the price restraints with my clusters. After all, you wouldn't want to plan on spending $100 on a chair and have a $1000 chair recommended to you. For this, I added a user input to specify the desired price range.
 
 Fun fact: the most expensive product in my sample is a crystal chandelier for a whopping $19,045.00.
 
@@ -63,6 +91,8 @@ batch size (LDA and Kmeans)
 
 ### Future Work
 
-Figure out how to take price into account without manually splitting the data.
+* Try to cluster and label the 'unmapped - misclassified' products.
+* Use neural networks to incorporate image processing to improve the labels and recommendations.
+
 
 ### References

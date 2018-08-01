@@ -39,3 +39,20 @@ def plot_dendro_and_clusters(tfidf_model,filename):
         plt.figure(figsize=(10, 8))
         plt.scatter(hierarchies[:,0], hierarchies [:,1], c=clusters[:len(clusters)-1], cmap='prism')  # plot points with cluster dependent colors
         plt.show()
+
+def plot_categories(df,filename):
+    fig = plt.figure(figsize = (15,15))
+    ax = fig.add_subplot(111)
+    ax.set_title('Proportions of Product Categories')
+    ax.set_xlabel('Categories')
+    ax.set_ylabel('Prop')
+    ax.gcf().subplots_adjust(bottom=0.15)
+    df.plot('index','prop', kind='bar'. ax=ax)
+    plt.savefig(filename)
+
+def make_prop_df(df):
+     prop_df = (df['category']
+                .value_counts(normalize=True)
+                .rename('prop')
+                .reset_index())
+    return prop_df
