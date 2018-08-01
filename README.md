@@ -83,40 +83,40 @@ Your chosen item is 'Blury Style' Graphic Art Print on Wrapped Canvas, which cos
 
 
 What is your price range?
- (Please enter your range as min-max): 50-200
+ (Please enter your range as min-max): 50-300
 Would you like to use Cosine Sim, LDA, or Kmeans? Kmeans
 How many recommendations would you like? 3
 Mini Batch KMeans:
 
 Recommending 3 products similar to 'Blury Style' Graphic Art Print on Wrapped Canvas...
 -------
-Recommended: 'Foggy Days (254)' Photographic Print on Canvas
-Price: $136.99
-Recommended: 'Winter Feeling (27)' Photographic Print on Canvas
-Price: $82.99
-Recommended: 'Stone(21)' Photographic Print on Canvas
+Recommended: 'Meditation and Calming (64)' Photographic Print on Canvas
 Price: $157.99
+Recommended: 'Portrait Style Photography (599)' Photographic Print on Canvas
+Price: $99.99
+Recommended: 'Abstract Point of View (127)' Graphic Art Print on Canvas
+Price: $82.99
 ```
 Our chosen item:  
 ![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
 
 Cosine Sim Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/42344136/resize-h400-w400%5Ecompr-r85/2340/23405252/%27Waxwings+by+Dmitry+Dubikovskiy+Graphic+Art+Print.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/95491154/resize-h400-w400%5Ecompr-r85/5358/53581353/%27California+Living%27+Photographic+Print+on+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/79227590/resize-h400-w400%5Ecompr-r85/5189/51895085/%27Bords+Gris%27+Framed+Watercolor+Painting+Print.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/36333681/resize-h400-w400%5Ecompr-r85/4799/47991790/%27City+of+Baltimore%27+Grapphic+Art+Print.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/80869927/resize-h400-w400%5Ecompr-r85/4887/48879938/%27Sweeping+Choreography%27+Photographic+Print+On+Wrapped+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/95572433/resize-h400-w400%5Ecompr-r85/2392/23921434/%27Portolan+or+Navigational+Map+of+the+Black+Sea%27+by+Battista+Agnese+Graphic+Art.jpg' width=275>
 
 LDA Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/89100010/resize-h400-w400%5Ecompr-r85/2927/29270827/%22W.D.+Clark+Plane+C%22+by+Cole+Borders+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/23434750/resize-h400-w400%5Ecompr-r85/4728/47282237/Diligence+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/91596251/resize-h400-w400%5Ecompr-r85/3183/31838960/%27Gem%27+Graphic+Art+on+Plaque.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/16694666/resize-h400-w400%5Ecompr-r85/4074/40743586/%27Summer+Solstice%27+Graphic+Art+Print.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/46510900/resize-h400-w400%5Ecompr-r85/2387/23870795/%27Cragstan+Robot%27+Vintage+Advertisement.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/98795788/resize-h400-w400%5Ecompr-r85/3221/32216652/Event+Horizon+by+Philippe+Sainte-Laudy+Framed+Photographic+Print.jpg' width=275>
 
 KMeans Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/50416156/resize-h400-w400%5Ecompr-r85/5778/57786729/%27Foggy+Days+%28254%29%27+Photographic+Print+on+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/17872227/resize-h400-w400%5Ecompr-r85/5917/59172587/%27Winter+Feeling+%2827%29%27+Photographic+Print+on+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/36562174/resize-h400-w400%5Ecompr-r85/5867/58671817/%27Stone%2821%29%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/14340569/resize-h400-w400%5Ecompr-r85/5494/54947146/%27Meditation+and+Calming+%2864%29%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/17280529/resize-h400-w400%5Ecompr-r85/5540/55405975/%27Portrait+Style+Photography+%28599%29%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/44105171/resize-h400-w400%5Ecompr-r85/5779/57799777/%27Abstract+Point+of+View+%28127%29%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
 
 
-Another one!
+Another one!    
 Chosen item:
 <img src ='https://secure.img1-fg.wfcdn.com/im/22355347/resize-h400-w400%5Ecompr-r85/3980/39804222/%27Richmond+Virginia+Skyline%27+Graphic+Art+Print+on+Canvas.jpg'>
 
@@ -131,10 +131,29 @@ LDA Recommendations:
 <img src = 'https://secure.img1-fg.wfcdn.com/im/91596251/resize-h400-w400%5Ecompr-r85/3183/31838960/%27Gem%27+Graphic+Art+on+Plaque.jpg' width=275>
 
 KMeans Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/48090541/resize-h400-w400%5Ecompr-r85/3980/39801890/%27Travel+Poster+17%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/07227074/resize-h400-w400%5Ecompr-r85/4063/40635151/%27Foggy+Morning+at+Sea%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/06698891/resize-h490-w490%5Ecompr-r85/5748/57482275/%27The+Balloon+Man%27+Photographic+Print+on+Wrapped+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/30935436/resize-h400-w400%5Ecompr-r85/5672/56721495/%27St+Johns%27+Photographic+Print+on+Wrapped+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/04221352/resize-h400-w400%5Ecompr-r85/5102/51025806/%27Bold+III+Crop+Graphic+Art+Print+on+Wrapped+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/79348202/resize-h400-w400%5Ecompr-r85/5422/54229410/%27The+Artists+Son+Paul%27+by+Paul+Cezanne+Oil+Painting+Print+on+Wrapped+Canvas.jpg' width=275>
 
+
+Testing on the other categories:  
+Chosen item:  
+<img src ='https://secure.img1-fg.wfcdn.com/im/22355347/resize-h400-w400%5Ecompr-r85/3980/39804222/%27Richmond+Virginia+Skyline%27+Graphic+Art+Print+on+Canvas.jpg'>
+
+Cosine Sim Recommendations:  
+<img src = 'https://secure.img1-fg.wfcdn.com/im/42344136/resize-h400-w400%5Ecompr-r85/2340/23405252/%27Waxwings+by+Dmitry+Dubikovskiy+Graphic+Art+Print.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/95491154/resize-h400-w400%5Ecompr-r85/5358/53581353/%27California+Living%27+Photographic+Print+on+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/79227590/resize-h400-w400%5Ecompr-r85/5189/51895085/%27Bords+Gris%27+Framed+Watercolor+Painting+Print.jpg' width=275>
+
+LDA Recommendations:  
+<img src = 'https://secure.img1-fg.wfcdn.com/im/89100010/resize-h400-w400%5Ecompr-r85/2927/29270827/%22W.D.+Clark+Plane+C%22+by+Cole+Borders+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/23434750/resize-h400-w400%5Ecompr-r85/4728/47282237/Diligence+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/91596251/resize-h400-w400%5Ecompr-r85/3183/31838960/%27Gem%27+Graphic+Art+on+Plaque.jpg' width=275>
+
+KMeans Recommendations:  
+<img src = 'https://secure.img1-fg.wfcdn.com/im/30935436/resize-h400-w400%5Ecompr-r85/5672/56721495/%27St+Johns%27+Photographic+Print+on+Wrapped+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/04221352/resize-h400-w400%5Ecompr-r85/5102/51025806/%27Bold+III+Crop+Graphic+Art+Print+on+Wrapped+Canvas.jpg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/79348202/resize-h400-w400%5Ecompr-r85/5422/54229410/%27The+Artists+Son+Paul%27+by+Paul+Cezanne+Oil+Painting+Print+on+Wrapped+Canvas.jpg' width=275>
 
 ### Future Work
 
