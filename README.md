@@ -138,7 +138,7 @@ KMeans Recommendations:
 
 Testing on the other categories:  
 Chosen item:  
-<img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0537/img82c.jpg'>
+<img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0537/img82c.jpg' width=275>
 
 Cosine Sim Recommendations:  
 <img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0305/img60c.jpg' width=275>
