@@ -138,22 +138,22 @@ KMeans Recommendations:
 
 Testing on the other categories:  
 Chosen item:  
-<img src ='https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/1331/img70c.jpg'>
+<img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0537/img82c.jpg'>
 
 Cosine Sim Recommendations:  
-<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2407/img34c.jpg' width=275>
-<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/1230/img30c.jpg' width=275>
-<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2470/img5c.jpg' width=275>
+<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0305/img60c.jpg' width=275>
+<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0653/img27c.jpg' width=275>
+<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0316/img69c.jpg' width=275>
 
 LDA Recommendations:  
-<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2470/img5c.jpg' width=275>
-<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0320/img67c.jpg' width=275>
-<img src = 'https://images.lampsplus.com/is/image/b9gt8/24a94?qlt=70&wid=480&hei=480&fmt=jpeg&resMode=sharp2&op_usm=2,0.3,3' width=275>
+<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0493/img56c.jpg' width=275>
+<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0438/img99c.jpg' width=275>
+<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0492/img85c.jpg' width=275>
 
 KMeans Recommendations:  
-<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2156/img43o.jpg' width=275>
-<img src ='https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2031/img22c.jpg' width=275>
-<img src ='https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2407/img34c.jpg' width=275>
+<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0416/img3c.jpg' width=275>
+<img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0458/img98c.jpg' width=275>
+<img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0656/img41c.jpg' width=275>
 
 ### Future Work
 
