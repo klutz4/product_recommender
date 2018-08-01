@@ -121,14 +121,14 @@ Chosen item:
 <img src ='https://secure.img1-fg.wfcdn.com/im/22355347/resize-h400-w400%5Ecompr-r85/3980/39804222/%27Richmond+Virginia+Skyline%27+Graphic+Art+Print+on+Canvas.jpg'>
 
 Cosine Sim Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/42344136/resize-h400-w400%5Ecompr-r85/2340/23405252/%27Waxwings+by+Dmitry+Dubikovskiy+Graphic+Art+Print.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/95491154/resize-h400-w400%5Ecompr-r85/5358/53581353/%27California+Living%27+Photographic+Print+on+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/79227590/resize-h400-w400%5Ecompr-r85/5189/51895085/%27Bords+Gris%27+Framed+Watercolor+Painting+Print.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/32724270/resize-h400-w400%5Ecompr-r85/5432/54328898/%27Moonlit+River%27+Print+on+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/22985970/resize-h490-w490%5Ecompr-r85/5522/55224045/%27Amundsen+%28Blimp%29%27+Photographic+Print.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/76126119/resize-h400-w400%5Ecompr-r85/5145/51457011/%27Shades+of+Nature%27+Photographic+Print.jpg' width=275>
 
 LDA Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/89100010/resize-h400-w400%5Ecompr-r85/2927/29270827/%22W.D.+Clark+Plane+C%22+by+Cole+Borders+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/23434750/resize-h400-w400%5Ecompr-r85/4728/47282237/Diligence+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/91596251/resize-h400-w400%5Ecompr-r85/3183/31838960/%27Gem%27+Graphic+Art+on+Plaque.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/26705351/resize-h400-w400%5Ecompr-r85/5649/56496228/%27Gold+Dust+I%27+Acrylic+Painting+Print+on+Wrapped+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/13445777/resize-h400-w400%5Ecompr-r85/3923/39238056/%27Bird.+Tit%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
+<img src = 'https://secure.img1-fg.wfcdn.com/im/10867532/resize-h400-w400%5Ecompr-r85/4994/49940047/%27Lights+in+Soho%27+Photographic+Print.jpg' width=275>
 
 KMeans Recommendations:  
 <img src = 'https://secure.img1-fg.wfcdn.com/im/30935436/resize-h400-w400%5Ecompr-r85/5672/56721495/%27St+Johns%27+Photographic+Print+on+Wrapped+Canvas.jpg' width=275>
