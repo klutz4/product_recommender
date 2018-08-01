@@ -146,7 +146,7 @@ Back to our first item...
 
 KMeans Recommendations:  
 <img src = 'https://secure.img1-fg.wfcdn.com/im/07445968/resize-h400-w400%5Ecompr-r85/5779/57795561/%27Blurred+out+%28145%29%27+Photographic+Print+on+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/56692273/resize-h400-w400%5Ecompr-r85/5498/54980165/%27Appetizing+Food+%2820%29%27+Photographic+Print+on+Canvas.jpgg' width=275>
+<img src ='https://secure.img1-fg.wfcdn.com/im/56692273/resize-h400-w400%5Ecompr-r85/5498/54980165/%27Appetizing+Food+%2820%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/80519151/resize-h400-w400%5Ecompr-r85/5767/57671240/%27Blurred+out+%287%29%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
 
 Is this recommender better than before? Or did we just get lucky with our random choices from the cluster?
