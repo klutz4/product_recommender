@@ -116,8 +116,8 @@ KMeans Recommendations:
 <img src ='https://secure.img1-fg.wfcdn.com/im/44105171/resize-h400-w400%5Ecompr-r85/5779/57799777/%27Abstract+Point+of+View+%28127%29%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
 
 
-Another one!    
-Chosen item:
+Another one!   
+Chosen item:  
 <img src ='https://secure.img1-fg.wfcdn.com/im/22355347/resize-h400-w400%5Ecompr-r85/3980/39804222/%27Richmond+Virginia+Skyline%27+Graphic+Art+Print+on+Canvas.jpg'>
 
 Cosine Sim Recommendations:  
@@ -138,22 +138,22 @@ KMeans Recommendations:
 
 Testing on the other categories:  
 Chosen item:  
-<img src ='https://secure.img1-fg.wfcdn.com/im/22355347/resize-h400-w400%5Ecompr-r85/3980/39804222/%27Richmond+Virginia+Skyline%27+Graphic+Art+Print+on+Canvas.jpg'>
+<img src ='https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/1331/img70c.jpg'>
 
 Cosine Sim Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/42344136/resize-h400-w400%5Ecompr-r85/2340/23405252/%27Waxwings+by+Dmitry+Dubikovskiy+Graphic+Art+Print.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/95491154/resize-h400-w400%5Ecompr-r85/5358/53581353/%27California+Living%27+Photographic+Print+on+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/79227590/resize-h400-w400%5Ecompr-r85/5189/51895085/%27Bords+Gris%27+Framed+Watercolor+Painting+Print.jpg' width=275>
+<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2407/img34c.jpg' width=275>
+<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/1230/img30c.jpg' width=275>
+<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2470/img5c.jpg' width=275>
 
 LDA Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/89100010/resize-h400-w400%5Ecompr-r85/2927/29270827/%22W.D.+Clark+Plane+C%22+by+Cole+Borders+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/23434750/resize-h400-w400%5Ecompr-r85/4728/47282237/Diligence+Graphic+Art+on+Wrapped+Canvas.jpg' width=275>
-<img src = 'https://secure.img1-fg.wfcdn.com/im/91596251/resize-h400-w400%5Ecompr-r85/3183/31838960/%27Gem%27+Graphic+Art+on+Plaque.jpg' width=275>
+<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2470/img5c.jpg' width=275>
+<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0320/img67c.jpg' width=275>
+<img src = 'https://images.lampsplus.com/is/image/b9gt8/24a94?qlt=70&wid=480&hei=480&fmt=jpeg&resMode=sharp2&op_usm=2,0.3,3' width=275>
 
 KMeans Recommendations:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/30935436/resize-h400-w400%5Ecompr-r85/5672/56721495/%27St+Johns%27+Photographic+Print+on+Wrapped+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/04221352/resize-h400-w400%5Ecompr-r85/5102/51025806/%27Bold+III+Crop+Graphic+Art+Print+on+Wrapped+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/79348202/resize-h400-w400%5Ecompr-r85/5422/54229410/%27The+Artists+Son+Paul%27+by+Paul+Cezanne+Oil+Painting+Print+on+Wrapped+Canvas.jpg' width=275>
+<img src = 'https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2156/img43o.jpg' width=275>
+<img src ='https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2031/img22c.jpg' width=275>
+<img src ='https://www.potterybarn.com/pbimgs/ab/images/dp/wcm/201824/2407/img34c.jpg' width=275>
 
 ### Future Work
 
