@@ -8,12 +8,12 @@ from scipy.cluster.hierarchy import linkage, dendrogram
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import fcluster
 from scipy.spatial.distance import cdist
-# from src.nlp_rec import get_indices, show_products
+from src.nlp_rec import get_indices, show_products
 
 
 def cluster_text(df,row_indices):
     data = df['combo'].iloc[row_indices]
-    vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), lowercase=True, max_features=200)
+    vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), lowercase=True, max_features=500)
     tfidf_model = vectorizer.fit_transform(data)
 
     kmeans = MiniBatchKMeans(n_clusters=20).fit(tfidf_model)
@@ -29,8 +29,8 @@ def cluster_text(df,row_indices):
         # print(names)
     return vectorizer, tfidf_model, kmeans
 
-def get_kmeans_rec(df, row_indices, index_of_item, kmeans, num=5):
-    cluster_label = kmeans.labels_[index_of_item]
+def get_kmeans_rec(df, row_indices, index_of_item, sub_index_of_item, kmeans, num=5):
+    cluster_label = kmeans.labels_[sub_index_of_item]
     cluster_members = df.iloc[row_indices][kmeans.labels_ == cluster_label]
     recs = np.random.choice(cluster_members.index, num, replace = False)
     print('Mini Batch KMeans:\n')
@@ -41,43 +41,10 @@ def get_kmeans_rec(df, row_indices, index_of_item, kmeans, num=5):
 
     return recs
 
-def plot_elbow(tfidf_model,filename):
-        distortions = []
-        K = range(1,50)
-        for k in K:
-            kmeans = MiniBatchKMeans(n_clusters=k)
-            kmeans.fit(tfidf_model)
-            distortions.append(kmeans.inertia_)
-
-        # Plot the elbow
-        plt.plot(K, distortions)
-        plt.grid(True)
-        plt.xlabel('k')
-        plt.ylabel('Distortion')
-        plt.title('The Elbow Method showing the optimal k')
-        plt.savefig(filename)
-
-def plot_dendro_and_clusters(tfidf_model,filename):
-        # hierarchical clustering - only works with subset
-        plt.figure(figsize=(35, 10))
-        plt.title('Hierarchical Clustering Dendrogram')
-        sim = pdist(tfidf_model.toarray())
-        sim_matrix = squareform(sim)
-        hierarchies = linkage(sim,'complete')
-        dendro = dendrogram(hierarchies,leaf_rotation=90.,leaf_font_size=8.)
-        plt.savefig(filename)
-        k=15
-        clusters =fcluster(hierarchies,k, depth=10, criterion='maxclust')
-        plt.figure(figsize=(10, 8))
-        plt.scatter(hierarchies[:,0], hierarchies [:,1], c=clusters[:len(clusters)-1], cmap='prism')  # plot points with cluster dependent colors
-        plt.show()
-
 if __name__ == '__main__':
     pd.set_option('display.max_columns', 500)
     products = pd.read_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_combo.csv')
     products.drop('Unnamed: 0',axis=1, inplace=True)
-    row_indices, index_of_item, index_df = get_indices(products,20000)
+    row_indices, item_index, index_df = get_indices(products,20000)
     vectorizer, tfidf_model, kmeans = cluster_text(products, row_indices)
-    recs = get_kmeans_rec(products, row_indices, index_of_item,  kmeans, num=5)
-    # plot_elbow(tfidf_model,'images/elbow.png')
-    # plot_dendro_and_clusters(tfidf_model,'images/dendro.png')
+    recs = get_kmeans_rec(df, row_indices, item_index, item_index,  kmeans, num=5)

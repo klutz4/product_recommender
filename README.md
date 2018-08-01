@@ -48,21 +48,15 @@ I decided to limit my clustering comparison to the other three methods.
 
 Once I had my methods, I had to find a way to incorporate the price restraints with my clusters. After all, you wouldn't want to plan on spending $100 on a chair and have a $1000 chair recommended to you.
 
-Split the data into price ranges:
-
-|Price Ranges| | |
-|---------|-------|-------|
-|$0 - $50 |$50 - $150|$100 - $500|
-|$400 - $900|$750 - $1500|$1000 - $2500|
-|$2000 - $3500|$3000 - $4500|$4000 - $5500|
-|$5000 - $6500|$6000 - $7500|$7000 - $8500|
-|$8000 - $9500|$9000 - $10500|$10000 - $20000|
-
 Fun fact: the most expensive product in my sample is a crystal chandelier for a whopping $19,045.00.
 
 ![alt text](https://static.havenly.com/product/production/php_5953ec1775e65.jpg)
 
-
+Tuning the parameters:
+max_iter
+tokenizer
+max_features (Kmeans)
+batch size (LDA and Kmeans)
 
 ### The Results
 
