@@ -3,6 +3,7 @@ import numpy as np
 from src.nlp_rec import make_tfidf_matrix, get_indices, get_cos_sim_recs, show_products
 from src.latent_dirichlet import get_lda_recs
 from src.kmeans_rec import cluster_text, get_kmeans_rec
+import webbrowser
 import autoreload
 
 pd.set_option('display.max_columns', 500)
@@ -24,6 +25,7 @@ item_id = products['vendor_variant_id'].iloc[index_of_our_item]
 price = products['sale_price'].iloc[index_of_our_item]
 print('Your chosen item is {}, which costs ${}'.format(item,price))
 print('\n')
+webbrowser.open(products['weblink'].iloc[index_of_our_item], new=1)
 
 price_range = input('What is your price range?\n (Please enter your range as min-max): ')
 
@@ -33,6 +35,8 @@ max = int(nums[1])
 df = products.copy()
 df = products[products['sale_price'] >= min]
 df = df[df['sale_price'] < max]
+if (price < min) or (price > max):
+    df = df.append(products.iloc[index_of_our_item],ignore_index=True)
 
 df.reset_index(inplace=True,drop=True)
 item_index = df[df['vendor_variant_id'] == item_id].index.item()
@@ -57,15 +61,36 @@ method = input('Would you like to use Cosine Sim, LDA, or Kmeans? ')
 rec_num = int(input('How many recommendations would you like? '))
 print("This'll take a second...")
 
-if method == 'Cosine Sim':
-    cos_item_indices = get_cos_sim_recs(df, row_indices, item_index, index_df, rec_num)
-    show_products(df,item_index,cos_item_indices)
-elif method == 'LDA':
-    lda_item_indices = get_lda_recs(df,'combo', row_indices, item_index,index_df, rec_num)
-    show_products(df,item_index,lda_item_indices)
-elif method == 'Kmeans':
-    vectorizer, tfidf_model, kmeans = cluster_text(df, row_indices)
-    recs = get_kmeans_rec(df,row_indices, item_index, subset_item_index, kmeans, rec_num)
-    show_products(df,item_index,recs)
+def run_recommendations(method,starting_point=1):
+    if method.lower() == 'cosine sim':
+        cos_item_indices = get_cos_sim_recs(df, row_indices, item_index, index_df, starting_point, rec_num)
+        show_products(df,item_index,cos_item_indices)
+    elif method.lower() == 'lda':
+        lda_item_indices = get_lda_recs(df,'combo', row_indices, item_index,index_df, starting_point,rec_num)
+        show_products(df,item_index,lda_item_indices)
+    elif method.lower() == 'kmeans':
+        vectorizer, tfidf_model, kmeans = cluster_text(df, row_indices)
+        recs = get_kmeans_rec(df,row_indices, item_index, subset_item_index, kmeans, rec_num)
+        show_products(df,item_index,recs)
+    else:
+        print("That's not an option. Goodbye.")
+
+def rerun_recommendations(rating,starting_point):
+    if rating.lower() == 'no':
+        print("Let's see if I can get some better options...")
+        run_recommendations(method,starting_point)
+    elif rating.lower() == 'yes':
+        print('Enjoy!')
+    else:
+        print("I'm sorry. I didn't understand that response.")
+        rating = input('Did you like those recommendations? ')
+        rerun_recommendations(rating, starting_point)
+
+run_recommendations(method)
+methods = ['cosine sim', 'lda', 'kmeans']
+if method.lower() not in methods:
+    pass
 else:
-    print("That's not an option. Goodbye.")
+    rating = input('Did you like those recommendations? ')
+    starting_point = 1 + rec_num
+    rerun_recommendations(rating, starting_point)

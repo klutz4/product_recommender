@@ -7,15 +7,21 @@ import pandas as pd
 import webbrowser
 import autoreload
 
-def get_recommendations(df,item, index_df, cosine_sim,num=5):
+def get_recommendations(df,item, index_df, cosine_sim,starting_point=1,num=5):
     ''' Return the titles and price of top items with the closest cosine similarity.'''
     idx = index_df[item]
     # Get the pairwsie similarity scores
     sim_scores = list(enumerate(cosine_sim[idx]))
     # Sort the items based on the similarity scores
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    # Get the scores of the 10 most similar items
-    sim_scores = sim_scores[3:num+3]
+    # Get the scores of the n most similar items
+    if starting_point > len(sim_scores):
+        print("Looks like your item is unique! Nothing is similar!")
+        break
+    elif num+starting_point > len(sim_scores):
+        sim_scores = sim_scores[starting_point:num+starting_point]
+    else:
+        sim_scores = sim_scores[starting_point:len(sim_scores)]
     item_indices = [i[0] for i in sim_scores]
     for i in range(num):
         print("Recommended: " + df['product_title'].iloc[item_indices[i]] + "\nPrice: $" + str(df['sale_price'].iloc[item_indices[i]]) + "\n(Cosine similarity: {:.4f})".format(sim_scores[i][1]))
@@ -41,17 +47,17 @@ def get_indices(df,sample_size):
 
     return row_indices, item_index, index_df
 
-def get_cos_sim_recs(df,row_indices,item_index,index_df,num=5):
+def get_cos_sim_recs(df,row_indices,item_index,index_df,starting_point=3,num=5):
     '''Get recommendations using NLP and cosine similarity (no clustering).'''
     tfidf_model, tfidf_matrix, cosine_sim = make_tfidf_matrix(df,'combo', row_indices)
     item = df['vendor_variant_id'].iloc[item_index]
     print('Cosine Similarity:\n')
     print("Recommending " + str(num) + " products similar to " + df['product_title'].iloc[item_index] + "...")
     print("-------")
-    return get_recommendations(df, item, index_df, cosine_sim, num)
+    return get_recommendations(df, item, index_df, cosine_sim, starting_point,num)
 
 def show_products(df, index_of_item, item_indices):
-    webbrowser.open(df['weblink'].iloc[index_of_item], new=1)
+    # webbrowser.open(df['weblink'].iloc[index_of_item], new=1)
     for idx in item_indices:
         webbrowser.open(df['weblink'].iloc[idx], new=1)
 

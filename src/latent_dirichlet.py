@@ -27,7 +27,7 @@ def run_lda(df):
     # print_top_words(lda, tf_feature_names)
     return lda_matrix
 
-def get_lda_recs(df,col,row_indices, item_index,index_df,num=5):
+def get_lda_recs(df,col,row_indices, item_index,index_df,starting_point=1, num=5):
     '''Get recommendations based on the LDA clustering'''
     matrix = run_lda(df[col].iloc[row_indices])
     cos_sim = cosine_similarity(matrix)
@@ -35,7 +35,7 @@ def get_lda_recs(df,col,row_indices, item_index,index_df,num=5):
     print('LDA:\n')
     print("Recommending " + str(num) + " products similar to " + df['product_title'].iloc[item_index] + "...")
     print("-------")
-    return get_recommendations(df, item, index_df, cos_sim,num)
+    return get_recommendations(df, item, index_df, cos_sim,starting_point,num)
 
 if __name__ == '__main__':
     pd.set_option('display.max_columns', 500)

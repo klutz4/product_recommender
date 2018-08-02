@@ -24,6 +24,7 @@ item_id = products['vendor_variant_id'].iloc[index_of_our_item]
 price = products['sale_price'].iloc[index_of_our_item]
 print('Your chosen item is {}, which costs ${}'.format(item,price))
 print('\n')
+webbrowser.open(products['weblink'].iloc[index_of_our_item], new=1)
 
 price_range = input('What is your price range?\n (Please enter your range as min-max): ')
 
@@ -33,6 +34,8 @@ max = int(nums[1])
 df = products.copy()
 df = products[products['sale_price'] > min]
 df = df[df['sale_price'] < max]
+if (price < min) or (price > max):
+    df = df.append(products.iloc[index_of_our_item],ignore_index=True)
 
 df.reset_index(inplace=True,drop=True)
 item_index = df[df['vendor_variant_id'] == item_id].index.item()
@@ -57,13 +60,13 @@ method = input('Would you like to use Cosine Sim, LDA, or Kmeans? ')
 rec_num = int(input('How many recommendations would you like? '))
 print("This'll take a second...")
 
-if method == 'Cosine Sim':
+if method.lower() == 'cosine sim':
     cos_item_indices = get_cos_sim_recs(df, row_indices, item_index, index_df, rec_num)
     show_products(df,item_index,cos_item_indices)
-elif method == 'LDA':
+elif method.lower() == 'lda':
     lda_item_indices = get_lda_recs(df,'combo', row_indices, item_index,index_df, rec_num)
     show_products(df,item_index,lda_item_indices)
-elif method == 'Kmeans':
+elif method.lower() == 'kmeans':
     vectorizer, tfidf_model, kmeans = cluster_text(df, row_indices)
     recs = get_kmeans_rec(df,row_indices, item_index, subset_item_index, kmeans, rec_num)
     show_products(df,item_index,recs)

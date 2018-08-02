@@ -164,7 +164,7 @@ KMeans Recommendations Run #4:
 <img src ='https://secure.img1-fg.wfcdn.com/im/70143729/resize-h400-w400%5Ecompr-r85/5540/55403953/%27Portrait+Style+Photography+%28163%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/16622218/resize-h400-w400%5Ecompr-r85/5249/52490069/%27Appetizing+Food+%2899%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 
-Have these adjustments improved the recommender?
+Have these adjustments improved the recommender? You tell me.
 
 ### Future Work
 
