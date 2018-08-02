@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from src.recommender_functions import get_indices, show_products,cluster_text, get_kmeans_rec, get_lda_recs, make_tfidf_matrix, get_cos_sim_recs
+from src.recommender_functions import get_indices, show_products,cluster_text, get_kmeans_rec, get_lda_recs, get_cos_sim_recs
 import autoreload
 
 pd.set_option('display.max_columns', 500)

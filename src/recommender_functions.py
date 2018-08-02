@@ -14,15 +14,6 @@ from nltk.stem import WordNetLemmatizer, SnowballStemmer, PorterStemmer
 import autoreload
 import webbrowser
 
-def make_tfidf_matrix(df,col,indices):
-    '''
-    Returns a TfIdf matrix using the subsetted data entered.
-    '''
-    tfidf = TfidfVectorizer(analyzer = 'word', lowercase=True, stop_words=stopwords.words('english'))
-    tfidf_matrix = tfidf.fit_transform(df[col].iloc[indices])
-    cosine_sim = linear_kernel(tfidf_matrix)
-    return tfidf, tfidf_matrix, cosine_sim
-
 def get_indices(df,sample_size):
     '''
     Input:
@@ -56,7 +47,9 @@ def get_cos_sim_recs(df,row_indices,item_index,index_df,starting_point=1,num=5):
     Output:
         recommendations from the get_recommendations function
     '''
-    tfidf_model, tfidf_matrix, cosine_sim = make_tfidf_matrix(df,'combo', row_indices)
+    tfidf = TfidfVectorizer(analyzer = 'word', lowercase=True, stop_words=stopwords.words('english'))
+    tfidf_matrix = tfidf.fit_transform(df['combo'].iloc[row_indices])
+    cosine_sim = linear_kernel(tfidf_matrix)
     item = df['vendor_variant_id'].iloc[item_index]
     print('Cosine Similarity:\n')
     print("Recommending " + str(num) + " products similar to " + df['product_title'].iloc[item_index] + "...")

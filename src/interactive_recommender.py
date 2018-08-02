@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from src.recommender_functions import make_tfidf_matrix, get_indices, get_cos_sim_recs, show_products, get_lda_recs, cluster_text, get_kmeans_rec
+from src.recommender_functions import get_indices, get_cos_sim_recs, show_products, get_lda_recs, cluster_text, get_kmeans_rec
 import webbrowser
 import autoreload
 
