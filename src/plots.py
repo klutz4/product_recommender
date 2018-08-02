@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import seaborn as sns
 from sklearn.cluster import MiniBatchKMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
@@ -56,3 +57,10 @@ def make_prop_df(df):
                 .rename('prop')
                 .reset_index())
     return prop_df
+
+def plot_nulls():
+    sns.heatmap(products.isnull(),yticklabels=False,cbar=False,cmap='viridis')
+    plt.title('Null Values of Product Dataset')
+    plt.xticks()
+    plt.tight_layout()
+    plt.savefig('images/nullplot.png')

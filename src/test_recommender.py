@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
-from src.nlp_rec import make_tfidf_matrix, get_indices, get_cos_sim_recs, show_products
-from src.latent_dirichlet import get_lda_recs
-from src.kmeans_rec import cluster_text, get_kmeans_rec
+from src.recommender_functions import get_indices, show_products,cluster_text, get_kmeans_rec, get_lda_recs, make_tfidf_matrix, get_cos_sim_recs
 import autoreload
 
 pd.set_option('display.max_columns', 500)
