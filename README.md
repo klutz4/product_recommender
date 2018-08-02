@@ -1,8 +1,10 @@
-# Havenly
+# Recommending Similar Products.... Easy right?  
+
+<img src = 'https://media.giphy.com/media/ceeN6U57leAhi/giphy.gif'>  
 
 ### The Goal
 
-* Build a recommender that will take one product and recommend similar products, in type, style and price
+* Build a recommender that will take one product and recommend similar products, in type, style and price.
 
 ### The Data and Feature Engineering
 
@@ -18,7 +20,7 @@ For this project, I worked with a sample of the product data from Havenly, which
 My first task was seeing how many null values were in the data and figuring out how I wanted to deal with them.
 
 <img src = 'images/nullplot.png' width=1000>
-The yellow represents the null values.
+The yellow represents the null values.  
 
  Steps taken to clean the data:
  * Drop any columns comprised entirely of NaNs
@@ -173,6 +175,6 @@ Have these adjustments improved the recommender? You tell me.
 * Use neural networks to incorporate image processing to improve the labels and recommendations.
 
 
-### References
+## References
 
 Special thanks to Bill Sherby and the people at Havenly for allowing me to work with their data.
