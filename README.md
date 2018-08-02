@@ -1,10 +1,12 @@
-# Recommending Similar Products.... Harder Than It Sounds
+# Recommending Similar Products.... Easy right?  
 
-## The Goal
+<img src = 'https://media.giphy.com/media/ceeN6U57leAhi/giphy.gif'>  
 
-* Build a recommender that will take one product and recommend similar products, in type, style and price
+### The Goal
 
-## The Data and Feature Engineering
+* Build a recommender that will take one product and recommend similar products, in type, style and price.
+
+### The Data and Feature Engineering
 
 For this project, I worked with a sample of the product data from Havenly, which consisted of ~300,000 rows with the following columns:
 
@@ -32,7 +34,7 @@ The yellow represents the null values.
 
  As shown above, my sample is primarily art, which makes recommending for products outside of that category difficult. I performed the clustering and recommending using all categories to start and then restricted to only those in the 'art' category.
 
-## The Clustering
+### The Clustering
 
 Since my data contains product titles, product descriptions and certain product features, I combined all columns with string values into one column, named 'combo', in order to use NLP for clustering.
 
@@ -73,7 +75,7 @@ Parameters used for MiniBatchKMeans:
 * batch_size = 100 (default)
 
 
-## The Results
+### The Results
 
 Comparing the three methods with the dataset restricted to the 'art' category:
 
@@ -137,7 +139,7 @@ KMeans Recommendations:
 
 It appears that the clustering works well on the non-art categories, but keep in mind that our dataframe was reduced to 55,519 samples, and then further reduced with the specified price range.
 
-## The Improvements?
+### The Improvements?
 
 I played around with some of the KMeans parameters to see if I could improve the recommendations. I added the WordNetLemmatizer and decreased the batch size to 20.
 
@@ -166,7 +168,7 @@ KMeans Recommendations Run #4:
 
 Have these adjustments improved the recommender? You tell me.
 
-## Future Work
+### Future Work
 
 * Try to cluster and label the 'unmapped - misclassified' products.
 * Obtain a dataset with more of the unrepresented categories.
