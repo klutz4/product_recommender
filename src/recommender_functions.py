@@ -134,9 +134,9 @@ def run_lda(df):
     tf = tf_vectorizer.fit_transform(df)
     lda = LatentDirichletAllocation(batch_size=100, n_jobs=-1,max_iter=10, learning_method='online', random_state=0)
     lda_matrix = lda.fit_transform(tf)
-    # print("\nTopics in LDA model:")
+    print("\nTopics in LDA model:")
     tf_feature_names = tf_vectorizer.get_feature_names()
-    # print_top_words(lda, tf_feature_names)
+    print_top_words(lda, tf_feature_names)
     return lda_matrix
 
 def get_lda_recs(df,row_indices, item_index,index_df,starting_point=1, num=5):
