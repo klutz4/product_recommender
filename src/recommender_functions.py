@@ -15,14 +15,23 @@ import autoreload
 import webbrowser
 
 def make_tfidf_matrix(df,col,indices):
-    '''Returns a TfIdf matrix using the subsetted data entered.'''
+    '''
+    Returns a TfIdf matrix using the subsetted data entered.
+    '''
     tfidf = TfidfVectorizer(analyzer = 'word', lowercase=True, stop_words=stopwords.words('english'))
     tfidf_matrix = tfidf.fit_transform(df[col].iloc[indices])
     cosine_sim = linear_kernel(tfidf_matrix)
     return tfidf, tfidf_matrix, cosine_sim
 
 def get_indices(df,sample_size):
-    '''Get the max of a random sample of 20,000 rows of the dataframe or all rows and one random index for an item.'''
+    '''
+    Input:
+        df = original dataframe
+        sample_size = desired sample size
+    Output:
+        row_indices = indices for subset of the df
+        item_index = index of the item for which we want similar items
+        index_df = dataframe containing the updated index from the subsetted df and vendor_variant_id.'''
     if len(df) > sample_size:
         row_indices = np.random.choice(len(df), sample_size,replace=False)
         item_index = np.random.choice(sample_size)
@@ -35,7 +44,18 @@ def get_indices(df,sample_size):
 
 #functions for cosine similarity
 def get_cos_sim_recs(df,row_indices,item_index,index_df,starting_point=1,num=5):
-    '''Get recommendations using NLP and cosine similarity (no clustering).'''
+    '''Get recommendations using NLP and cosine similarity.
+    Input:
+        df = original dataframe
+        row_indices = indices for subset of the df
+        item_index = index of the item for which we want similar items
+        index_df = dataframe containing the updated index from the subsetted df and vendor_variant_id
+        starting_point = where to start choosing similar scores (default = 1)
+        num = number of recommendations
+
+    Output:
+        recommendations from the get_recommendations function
+    '''
     tfidf_model, tfidf_matrix, cosine_sim = make_tfidf_matrix(df,'combo', row_indices)
     item = df['vendor_variant_id'].iloc[item_index]
     print('Cosine Similarity:\n')
@@ -45,6 +65,16 @@ def get_cos_sim_recs(df,row_indices,item_index,index_df,starting_point=1,num=5):
 
 #functions for Kmeans clustering
 def cluster_text(df,row_indices):
+    '''Use MiniBatchKMeans clustering on the data.
+    Input:
+    df = original dataframe
+    row_indices = indices for subset of the df
+
+    Output:
+    vectorizer = tfidf vectorizer
+    tfidf_model = fit tfidf model
+    kmeans = MiniBatchKMeans model
+    '''
     data = df['combo'].iloc[row_indices]
     vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), tokenizer=WordNetLemmatizer().lemmatize, lowercase=True)
     tfidf_model = vectorizer.fit_transform(data)
@@ -62,12 +92,26 @@ def cluster_text(df,row_indices):
         # print(names)
     return vectorizer, tfidf_model, kmeans
 
-def get_kmeans_rec(df, row_indices, index_of_item, sub_index_of_item, kmeans, num=5):
-    cluster_label = kmeans.labels_[sub_index_of_item]
+def get_kmeans_rec(df, row_indices, item_index, index_df, kmeans, num=5):
+    '''
+    Input:
+        df = original dataframe
+        row_indices = indices for subset of the df
+        item_index = index of the item for which we want similar items
+        index_df = dataframe containing the updated index from the subsetted df and vendor_variant_id
+        index_df = dataframe containing the updated index from the subsetted df and vendor_variant_id
+        num = number of recommendations
+
+    Output:
+        recs = indices of n recommendations from the same cluster
+    '''
+    item_id = df['vendor_variant_id'].iloc[item_index]
+    subset_index = index_df[item_id]
+    cluster_label = kmeans.labels_[subset_index]
     cluster_members = df.iloc[row_indices][kmeans.labels_ == cluster_label]
     recs = np.random.choice(cluster_members.index, num, replace = False)
     print('Mini Batch KMeans:\n')
-    print("Recommending " + str(num) + " products similar to " + df['product_title'].iloc[index_of_item] + "...")
+    print("Recommending " + str(num) + " products similar to " + df['product_title'].iloc[item_index] + "...")
     print("-------")
     for rec in recs:
         print("Recommended: " + df['product_title'].iloc[rec] + "\nPrice: $" + str(df['sale_price'].iloc[rec]))
@@ -76,6 +120,9 @@ def get_kmeans_rec(df, row_indices, index_of_item, sub_index_of_item, kmeans, nu
 
 #functions for LDA clustering
 def print_top_words(model, feature_names, n_top_words=10):
+    '''
+    Prints the top words for each LDA topic.
+    '''
     for topic_idx, topic in enumerate(model.components_):
         message = "Topic #%d: " % topic_idx
         message += " ".join([feature_names[i]
@@ -84,7 +131,12 @@ def print_top_words(model, feature_names, n_top_words=10):
     print()
 
 def run_lda(df):
-    '''Perform LDA on a given dataframe'''
+    '''
+    Perform LDA on a given dataframe. Returns the fit LDA matrix.
+    Input:
+        df = subsetted dataframe
+    Output:
+        lda_matrix = fit LDA matrix'''
     tf_vectorizer = CountVectorizer(analyzer = 'word', stop_words=stopwords.words('english'))
     tf = tf_vectorizer.fit_transform(df)
     lda = LatentDirichletAllocation(batch_size=100, n_jobs=-1,max_iter=10, learning_method='online', random_state=0)
@@ -94,9 +146,20 @@ def run_lda(df):
     # print_top_words(lda, tf_feature_names)
     return lda_matrix
 
-def get_lda_recs(df,col,row_indices, item_index,index_df,starting_point=1, num=5):
-    '''Get recommendations based on the LDA clustering'''
-    matrix = run_lda(df[col].iloc[row_indices])
+def get_lda_recs(df,row_indices, item_index,index_df,starting_point=1, num=5):
+    '''Get recommendations based on the LDA clustering.
+    Input:
+        df = original dataframe
+        row_indices = indices for subset of the df
+        item_index = index of the item for which we want similar items
+        index_df = dataframe containing the updated index from the subsetted df and vendor_variant_id
+        starting_point = where to start choosing similar scores (default = 1)
+        num = number of recommendations
+
+    Output:
+        recommendations from the get_recommendations function
+    '''
+    matrix = run_lda(df['combo'].iloc[row_indices])
     cos_sim = cosine_similarity(matrix)
     item = df['vendor_variant_id'].iloc[item_index]
     print('LDA:\n')
@@ -105,9 +168,20 @@ def get_lda_recs(df,col,row_indices, item_index,index_df,starting_point=1, num=5
     return get_recommendations(df, item, index_df, cos_sim,starting_point,num)
 
 #recommendation functions
-def get_recommendations(df,item, index_df, cosine_sim,starting_point=1,num=5):
-    ''' Return the titles and price of top items with the closest cosine similarity.'''
-    idx = index_df[item]
+def get_recommendations(df,item_id, index_df, cosine_sim,starting_point=1,num=5):
+    ''' Return the titles and price of top items with the closest cosine similarity.
+    Input:
+        df = original dataframe
+        item_id - vendor_variant_id for desired item
+        index_df = dataframe containing the updated index from the subsetted df and vendor_variant_id
+        cosine_sim = cosine similarity matrix
+        starting_point = where to start choosing similar scores (default = 1)
+        num = number of recommendations
+
+    Output:
+        item_indices = indices of the closest items
+        '''
+    idx = index_df[item_id]
     # Get the pairwsie similarity scores
     sim_scores = list(enumerate(cosine_sim[idx]))
     # Sort the items based on the similarity scores
@@ -129,8 +203,15 @@ def get_recommendations(df,item, index_df, cosine_sim,starting_point=1,num=5):
             print('\n')
     return item_indices
 
-def show_products(df, index_of_item, item_indices):
-    # webbrowser.open(df['weblink'].iloc[index_of_item], new=1)
+def show_products(df, item_index, item_indices):
+    '''Opens the weblinks for the specified products.
+    Input:
+        df = original dataframe
+        item_index = index of the item for which we want similar items
+        item_indices = indices of the recommended products.
+    Output:
+        None
+        '''
     if len(item_indices) == 0:
         print("Looks like your item is unique! Nothing is similar!")
     else:

@@ -53,8 +53,6 @@ else:
     index_of_item = np.random.choice(len(df))
     index_df = pd.Series(df.index, index=df['vendor_variant_id']).drop_duplicates()
 
-subset_item_index = index_df[item_id]
-
 method = input('Would you like to use Cosine Sim, LDA, or Kmeans? ')
 rec_num = int(input('How many recommendations would you like? '))
 print("This'll take a second...")
@@ -64,11 +62,11 @@ def run_recommendations(method,starting_point=1):
         cos_item_indices = get_cos_sim_recs(df, row_indices, item_index, index_df, starting_point, rec_num)
         show_products(df,item_index,cos_item_indices)
     elif method.lower() == 'lda':
-        lda_item_indices = get_lda_recs(df,'combo', row_indices, item_index,index_df, starting_point,rec_num)
+        lda_item_indices = get_lda_recs(df, row_indices, item_index,index_df, starting_point,rec_num)
         show_products(df,item_index,lda_item_indices)
     elif method.lower() == 'kmeans':
         vectorizer, tfidf_model, kmeans = cluster_text(df, row_indices)
-        recs = get_kmeans_rec(df,row_indices, item_index, subset_item_index, kmeans, rec_num)
+        recs = get_kmeans_rec(df,row_indices, item_index, index_df, kmeans, rec_num)
         show_products(df,item_index,recs)
     else:
         print("That's not an option. Goodbye.")

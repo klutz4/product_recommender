@@ -10,7 +10,7 @@ products = products[products['category'] == 'art']
 
 def combine_columns(x):
     '''
-    Combine certain columns with strings into one string for NLP.
+    Combine certain columns with strings into one combined string for NLP.
     '''
     return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['taxonomy_name']) + ' ' + ''.join(x['vendor_name']) + ' ' + ''.join(x['category']) + ' ' + ''.join(x['color']) + ' ' + ''.join(x['material']) + ' ' + ''.join(x['pattern'])
 
@@ -31,15 +31,12 @@ row_indices, item_index, index_df = get_indices(df,50000)
 item = df['product_title'].iloc[item_index]
 item_id = df['vendor_variant_id'].iloc[item_index]
 
-# item_index = df[df['vendor_variant_id'] == item_id].index.item()
-# subset_item_index = index_df[item_id]
-
 cos_item_indices = get_cos_sim_recs(df, row_indices, item_index, index_df, num = 1)
 show_products(df,item_index,cos_item_indices)
 
-lda_item_indices = get_lda_recs(df,'combo', row_indices, item_index ,index_df, num = 1)
+lda_item_indices = get_lda_recs(df, row_indices, item_index ,index_df, num = 1)
 show_products(df,item_index,lda_item_indices)
 
 vectorizer, tfidf_model, kmeans = cluster_text(df, row_indices)
-recs = get_kmeans_rec(df,row_indices, item_index, item_index, kmeans, num=1)
+recs = get_kmeans_rec(df,row_indices, item_index, index_df, kmeans, num=1)
 show_products(df,item_index,recs)
