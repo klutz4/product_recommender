@@ -17,15 +17,17 @@ def get_recommendations(df,item, index_df, cosine_sim,starting_point=1,num=5):
     # Get the scores of the n most similar items
     if starting_point > len(sim_scores):
         print("Looks like your item is unique! Nothing is similar!")
-        break
     elif num+starting_point > len(sim_scores):
         sim_scores = sim_scores[starting_point:num+starting_point]
     else:
         sim_scores = sim_scores[starting_point:len(sim_scores)]
     item_indices = [i[0] for i in sim_scores]
-    for i in range(num):
-        print("Recommended: " + df['product_title'].iloc[item_indices[i]] + "\nPrice: $" + str(df['sale_price'].iloc[item_indices[i]]) + "\n(Cosine similarity: {:.4f})".format(sim_scores[i][1]))
-    print('\n')
+    if len(item_indices) == 0:
+        print("Looks like your item is unique! Nothing is similar!")
+    else:
+        for i in range(min(len(item_indices),num)):
+            print("Recommended: " + df['product_title'].iloc[item_indices[i]] + "\nPrice: $" + str(df['sale_price'].iloc[item_indices[i]]) + "\n(Cosine similarity: {:.4f})".format(sim_scores[i][1]))
+            print('\n')
     return item_indices
 
 def make_tfidf_matrix(df,col,indices):
@@ -58,8 +60,11 @@ def get_cos_sim_recs(df,row_indices,item_index,index_df,starting_point=3,num=5):
 
 def show_products(df, index_of_item, item_indices):
     # webbrowser.open(df['weblink'].iloc[index_of_item], new=1)
-    for idx in item_indices:
-        webbrowser.open(df['weblink'].iloc[idx], new=1)
+    if len(item_indices) == 0:
+        print("Looks like your item is unique! Nothing is similar!")
+    else:
+        for idx in item_indices:
+            webbrowser.open(df['weblink'].iloc[idx], new=1)
 
 if __name__ == '__main__':
     pd.set_option('display.max_columns', 500)

@@ -18,7 +18,7 @@ def print_top_words(model, feature_names, n_top_words=10):
 
 def run_lda(df):
     '''Perform LDA on a given dataframe'''
-    tf_vectorizer = CountVectorizer(analyzer = 'word', min_df=2, stop_words=stopwords.words('english'))
+    tf_vectorizer = CountVectorizer(analyzer = 'word', stop_words=stopwords.words('english'))
     tf = tf_vectorizer.fit_transform(df)
     lda = LatentDirichletAllocation(batch_size=100, n_jobs=-1,max_iter=10, learning_method='online', random_state=0)
     lda_matrix = lda.fit_transform(tf)
