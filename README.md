@@ -89,6 +89,7 @@ What is your price range?
  (Please enter your range as min-max): 50-300
 Would you like to use Cosine Sim, LDA, or Kmeans? Kmeans
 How many recommendations would you like? 3
+This'll take a second...
 Mini Batch KMeans:
 
 Recommending 3 products similar to 'Blury Style' Graphic Art Print on Wrapped Canvas...
@@ -101,7 +102,12 @@ Recommended: 'Abstract Point of View (127)' Graphic Art Print on Canvas
 Price: $82.99
 ```
 Our chosen item:  
-![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
+![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)  
+
+Combo string: 
+"'Blury Style' Graphic Art Print on Wrapped Canvas  
+Gallery wrapped canvas prints feature a poly cotton blend. A chemistry perfect protects against moisture and harmful UV rays.   Posters, Prints, & Visual Artwork  
+other"
 
 Cosine Sim Recommendations:  
 <img src = 'https://secure.img1-fg.wfcdn.com/im/36333681/resize-h400-w400%5Ecompr-r85/4799/47991790/%27City+of+Baltimore%27+Grapphic+Art+Print.jpg' width=275>
@@ -142,7 +148,7 @@ It appears that the clustering works well on the non-art categories, but keep in
 
 ### The Improvements?
 
-KMeans clustering seemed to produce the "best" recommendations over cosine similarity and LDA, so I played around with some of the KMeans parameters to see if I could improve the recommendations. I added the WordNetLemmatizer, decreased the batch size to 20, and added the column names, art, print, graphic, wall and canvas to the stop words..
+KMeans clustering seemed to produce the "best" recommendations over cosine similarity and LDA, so I played around with some of the KMeans parameters to see if I could improve the recommendations. Since all of the art pieces had the same category, taxonomy name and color (other), I only used product title, product description and material in the combo column. I also added the WordNetLemmatizer, decreased the batch size to 20, and added the column names, art, print, graphic, wall and canvas to the stop words.
 
 Back to our first item...  
 ![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
@@ -174,7 +180,7 @@ Have these adjustments improved the recommender? You tell me.
 * Add to the stop words to see if that improves clustering.
 * Try to cluster and label the 'unmapped - misclassified' products.
 * Obtain a dataset with more of the unrepresented categories.
-* Use neural networks to incorporate image processing to improve the labels and recommendations.
+* Use neural networks to incorporate image processing to improve the labels and recommendations, especially for the art category.
 
 
 ## References
