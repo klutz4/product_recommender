@@ -142,7 +142,7 @@ It appears that the clustering works well on the non-art categories, but keep in
 
 ### The Improvements?
 
-I played around with some of the KMeans parameters to see if I could improve the recommendations. I added the WordNetLemmatizer, decreased the batch size to 20, and added the column names, art, print, graphic, wall and canvas to the stop words..
+KMeans clustering seemed to produce the "best" recommendations over cosine similarity and LDA, so I played around with some of the KMeans parameters to see if I could improve the recommendations. I added the WordNetLemmatizer, decreased the batch size to 20, and added the column names, art, print, graphic, wall and canvas to the stop words..
 
 Back to our first item...  
 ![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
