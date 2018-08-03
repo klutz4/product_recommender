@@ -181,6 +181,7 @@ Have these adjustments improved the recommender? You tell me.
 * Try to cluster and label the 'unmapped - misclassified' products.
 * Obtain a dataset with more of the unrepresented categories.
 * Use neural networks to incorporate image processing to improve the labels and recommendations, especially for the art category.
+* Add an element to the recommender that will recommend products that maximize profit for Havenly.
 
 
 ## References
