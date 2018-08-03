@@ -47,7 +47,10 @@ def get_cos_sim_recs(df,row_indices,item_index,index_df,starting_point=1,num=5):
     Output:
         recommendations from the get_recommendations function
     '''
-    tfidf = TfidfVectorizer(analyzer = 'word', lowercase=True, stop_words=stopwords.words('english'))
+    stop_words=set(stopwords.words('english'))
+    for col in df.columns.values:
+        stop_words.add(col)
+    tfidf = TfidfVectorizer(analyzer = 'word', lowercase=True, stop_words=stop_words)
     tfidf_matrix = tfidf.fit_transform(df['combo'].iloc[row_indices])
     cosine_sim = linear_kernel(tfidf_matrix)
     item = df['vendor_variant_id'].iloc[item_index]
@@ -68,8 +71,11 @@ def cluster_text(df,row_indices):
     tfidf_model = fit tfidf model
     kmeans = MiniBatchKMeans model
     '''
+    stop_words=set(stopwords.words('english'))
+    for col in df.columns.values:
+        stop_words.add(col)
     data = df['combo'].iloc[row_indices]
-    vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), tokenizer=WordNetLemmatizer().lemmatize, lowercase=True)
+    vectorizer = TfidfVectorizer(stop_words=stop_words, tokenizer=WordNetLemmatizer().lemmatize, lowercase=True)
     tfidf_model = vectorizer.fit_transform(data)
 
     kmeans = MiniBatchKMeans(n_clusters=50, batch_size = 20).fit(tfidf_model)
@@ -123,15 +129,19 @@ def print_top_words(model, feature_names, n_top_words=10):
         print(message)
     print()
 
-def run_lda(df):
+def run_lda(df,row_indices):
     '''
     Perform LDA on a given dataframe. Returns the fit LDA matrix.
     Input:
-        df = subsetted dataframe
+        df = original dataframe
+        row_indices = indices for subset of the df
     Output:
         lda_matrix = fit LDA matrix'''
-    tf_vectorizer = CountVectorizer(analyzer = 'word', stop_words=stopwords.words('english'))
-    tf = tf_vectorizer.fit_transform(df)
+    stop_words=set(stopwords.words('english'))
+    for col in df.columns.values:
+            stop_words.add(col)
+    tf_vectorizer = CountVectorizer(analyzer = 'word', stop_words=stop_words)
+    tf = tf_vectorizer.fit_transform(df['combo'].iloc[row_indices])
     lda = LatentDirichletAllocation(batch_size=100, n_jobs=-1,max_iter=10, learning_method='online', random_state=0)
     lda_matrix = lda.fit_transform(tf)
     print("\nTopics in LDA model:")
@@ -152,7 +162,7 @@ def get_lda_recs(df,row_indices, item_index,index_df,starting_point=1, num=5):
     Output:
         recommendations from the get_recommendations function
     '''
-    matrix = run_lda(df['combo'].iloc[row_indices])
+    matrix = run_lda(df,row_indices)
     cos_sim = cosine_similarity(matrix)
     item = df['vendor_variant_id'].iloc[item_index]
     print('LDA:\n')
