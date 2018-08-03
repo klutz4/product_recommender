@@ -22,6 +22,7 @@ My first task was seeing how many null values were in the data and figuring out 
 <img src = 'images/nullplot.png' width=1000>
 The yellow represents the null values.  
 
+
  Steps taken to clean the data:
  * Drop any columns comprised entirely of NaNs
  * Drop columns that wouldn't be used for clustering
@@ -141,7 +142,7 @@ It appears that the clustering works well on the non-art categories, but keep in
 
 ### The Improvements?
 
-I played around with some of the KMeans parameters to see if I could improve the recommendations. I added the WordNetLemmatizer and decreased the batch size to 20.
+I played around with some of the KMeans parameters to see if I could improve the recommendations. I added the WordNetLemmatizer, decreased the batch size to 20, and added the column names, art, print, graphic, wall and canvas to the stop words..
 
 Back to our first item...  
 ![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
@@ -170,6 +171,7 @@ Have these adjustments improved the recommender? You tell me.
 
 ### Future Work
 
+* Add to the stop words to see if that improves clustering.
 * Try to cluster and label the 'unmapped - misclassified' products.
 * Obtain a dataset with more of the unrepresented categories.
 * Use neural networks to incorporate image processing to improve the labels and recommendations.

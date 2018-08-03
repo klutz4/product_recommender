@@ -14,6 +14,8 @@ from nltk.stem import WordNetLemmatizer, SnowballStemmer, PorterStemmer
 import autoreload
 import webbrowser
 
+domain_words = ['art', 'canvas', 'print', 'graphic', 'wall']
+
 def get_indices(df,sample_size):
     '''
     Input:
@@ -50,6 +52,8 @@ def get_cos_sim_recs(df,row_indices,item_index,index_df,starting_point=1,num=5):
     stop_words=set(stopwords.words('english'))
     for col in df.columns.values:
         stop_words.add(col)
+    for word in domain_words:
+        stop_words.add(word)
     tfidf = TfidfVectorizer(analyzer = 'word', lowercase=True, stop_words=stop_words)
     tfidf_matrix = tfidf.fit_transform(df['combo'].iloc[row_indices])
     cosine_sim = linear_kernel(tfidf_matrix)

@@ -5,17 +5,8 @@ import webbrowser
 import autoreload
 
 pd.set_option('display.max_columns', 500)
-products = pd.read_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_wo_na.csv')
+products = pd.read_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_art_only.csv')
 products.drop('Unnamed: 0',axis=1, inplace=True)
-products = products[products['category'] == 'art']
-
-def combine_columns(x):
-    '''
-    Combine certain columns with strings into one string for NLP.
-    '''
-    return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['material'])
-
-products['combo'] = products.apply(combine_columns,axis=1)
 
 index_of_our_item = int(input('Please enter the index of your item (up to 236706): '))
 item = products['product_title'].iloc[index_of_our_item]
