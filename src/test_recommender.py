@@ -12,7 +12,7 @@ def combine_columns(x):
     '''
     Combine certain columns with strings into one combined string for NLP.
     '''
-    return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['taxonomy_name']) + ' ' + ''.join(x['material'])
+    return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['material'])
 
 products['combo'] = products.apply(combine_columns,axis=1)
 
