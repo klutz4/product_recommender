@@ -8,20 +8,7 @@
 
 ### The Data and Feature Engineering
 
-For this project, I worked with a sample of the product data from Havenly, which consisted of ~300,000 rows with the following columns:
-
-```python
-['vendor_variant_id', 'vendor_id', 'product_title',
- 'product_description', 'vendor_name', 'taxonomy_name', 'taxonomy_id',
- 'weblink', 'color', 'material', 'pattern', 'is_returnable',
- 'ship_surcharge', 'is_assembly_required', 'is_feed', 'commission_tier',
- 'inventory_type', 'division', 'category', 'price', 'sale_price']
- ```
-My first task was seeing how many null values were in the data and figuring out how I wanted to deal with them.
-
-<img src = 'images/nullplot.png' width=1000>
-The yellow represents the null values.  
-
+For this project, I worked with a sample of the product data from a local company, which consisted of ~300,000 rows with columns such as category, vendor, title, price and description.
 
  Steps taken to clean the data:
  * Drop any columns comprised entirely of NaNs
@@ -29,7 +16,7 @@ The yellow represents the null values.
  * Drop rows without a price or sale price
  * Fill the null values of the sale_price columns with the item's price (i.e. this item is not on sale)
  * Fill any null values with 'other' in categorical columns
- * Drop any remaining columns that still have null values ('brand_id','sku','upc','size','dimensions','image_url')
+ * Drop any remaining columns that still have null values
 
  <img src = 'images/category_prop.png'>
 
@@ -53,10 +40,6 @@ But didn't prove to be much help.
 I decided to limit my clustering comparison to the other three methods.
 
 Once I had my methods, I had to find a way to incorporate the price restraints with my clusters. After all, you wouldn't want to plan on spending $100 on a chair and have a $1000 chair recommended to you. For this, I added a user input to specify the desired price range.
-
-Fun fact: the most expensive product in my sample is a crystal chandelier for a whopping $19,045.00.
-
-![alt text](https://static.havenly.com/product/production/php_5953ec1775e65.jpg)
 
 Parameters used for all:
 * Subset_size = 35,000
@@ -177,13 +160,13 @@ Have these adjustments improved the recommender? You tell me.
 
 ### Future Work
 
-* Add to the stop words to see if that improves clustering.
+* Add to the domain specific stop words to see if that improves clustering.
 * Try to cluster and label the 'unmapped - misclassified' products.
 * Obtain a dataset with more of the unrepresented categories.
 * Use neural networks to incorporate image processing to improve the labels and recommendations, especially for the art category.
-* Add an element to the recommender that will recommend products that maximize profit for Havenly.
+* Add an element to the recommender that will recommend products that maximize profit.
 
 
 ## References
 
-Special thanks to Bill Sherby and the people at Havenly for allowing me to work with their data.
+Special thanks to the local company for allowing me to work with their data.
