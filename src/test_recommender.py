@@ -4,7 +4,7 @@ from src.recommender_functions import get_indices, show_products,cluster_text, g
 import autoreload
 
 pd.set_option('display.max_columns', 500)
-products = pd.read_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_wo_na.csv')
+products = pd.read_csv('../data/products_wo_na.csv')
 products.drop('Unnamed: 0',axis=1, inplace=True)
 products = products[products['category'] == 'art']
 
@@ -12,7 +12,7 @@ def combine_columns(x):
     '''
     Combine certain columns with strings into one combined string for NLP.
     '''
-    return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['taxonomy_name']) + ' ' + ''.join(x['vendor_name']) + ' ' + ''.join(x['category']) + ' ' + ''.join(x['color']) + ' ' + ''.join(x['material']) + ' ' + ''.join(x['pattern'])
+    return ''.join(x['product_title']) + ' ' + ''.join(x['product_description']) + ' ' + ''.join(x['taxonomy_name']) + ' ' + ''.join(x['material'])
 
 products['combo'] = products.apply(combine_columns,axis=1)
 

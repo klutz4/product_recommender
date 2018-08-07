@@ -5,7 +5,7 @@ import webbrowser
 import autoreload
 
 pd.set_option('display.max_columns', 500)
-products = pd.read_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_art_only.csv')
+products = pd.read_csv('../data/products_art_only.csv')
 products.drop('Unnamed: 0',axis=1, inplace=True)
 
 index_of_our_item = int(input('Please enter the index of your item (up to 236706): '))

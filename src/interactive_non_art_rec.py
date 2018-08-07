@@ -7,7 +7,7 @@ import webbrowser
 import autoreload
 
 pd.set_option('display.max_columns', 500)
-products = pd.read_csv('/Users/Kelly/galvanize/capstones/mod2/data/products_wo_na.csv')
+products = pd.read_csv('../data/products_wo_na.csv')
 products.drop('Unnamed: 0',axis=1, inplace=True)
 products = products[products['category'] != 'art']
 
