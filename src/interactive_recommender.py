@@ -1,20 +1,21 @@
 import pandas as pd
 import numpy as np
-from src.recommender_functions import get_indices, get_cos_sim_recs, show_products, get_lda_recs, cluster_text, get_kmeans_rec
 import webbrowser
 import autoreload
+from src.recommender_functions import get_indices, get_cos_sim_recs, show_products, get_lda_recs, cluster_text, get_kmeans_rec
 
 pd.set_option('display.max_columns', 500)
-products = pd.read_csv('../data/products_art_only.csv')
+products = pd.read_csv('s3://capstone-3/data/products_art_only.csv')
 products.drop('Unnamed: 0',axis=1, inplace=True)
 
 index_of_our_item = int(input('Please enter the index of your item (up to 236706): '))
 item = products['product_title'].iloc[index_of_our_item]
 item_id = products['vendor_variant_id'].iloc[index_of_our_item]
 price = products['sale_price'].iloc[index_of_our_item]
+
 print('Your chosen item is {}, which costs ${}'.format(item,price))
 print('\n')
-webbrowser.open(products['weblink'].iloc[index_of_our_item], new=1)
+# webbrowser.open(products['weblink'].iloc[index_of_our_item], new=1)
 
 price_range = input('What is your price range?\n (Please enter your range as min-max): ')
 
@@ -30,19 +31,19 @@ if (price < min) or (price > max):
 df.reset_index(inplace=True,drop=True)
 item_index = df[df['vendor_variant_id'] == item_id].index.item()
 
-if len(df) > 35000:
-    row_indices = np.random.choice(len(df), 35000,replace=False)
-    extra = row_indices[0]
-    row_indices = row_indices[1:]
-    if item_index not in row_indices:
-        row_indices = np.append(row_indices,item_index)
-    else:
-        row_indices = np.append(row_indices, extra)
-    index_df = pd.Series(np.arange(35000), index=df['vendor_variant_id'].iloc[row_indices]).drop_duplicates()
-else:
-    row_indices= np.arange(len(df))
-    index_of_item = np.random.choice(len(df))
-    index_df = pd.Series(df.index, index=df['vendor_variant_id']).drop_duplicates()
+# if len(df) > 35000:
+#     row_indices = np.random.choice(len(df), 35000,replace=False)
+#     extra = row_indices[0]
+#     row_indices = row_indices[1:]
+#     if item_index not in row_indices:
+#         row_indices = np.append(row_indices,item_index)
+#     else:
+#         row_indices = np.append(row_indices, extra)
+#     index_df = pd.Series(np.arange(35000), index=df['vendor_variant_id'].iloc[row_indices]).drop_duplicates()
+# else:
+row_indices= np.arange(len(df))
+index_of_item = np.random.choice(len(df))
+index_df = pd.Series(df.index, index=df['vendor_variant_id']).drop_duplicates()
 
 method = input('Would you like to use Cosine Sim, LDA, or Kmeans? ')
 rec_num = int(input('How many recommendations would you like? '))
@@ -51,14 +52,14 @@ print("This'll take a second...")
 def run_recommendations(method,starting_point=1):
     if method.lower() == 'cosine sim':
         cos_item_indices = get_cos_sim_recs(df, row_indices, item_index, index_df, starting_point, rec_num)
-        show_products(df,item_index,cos_item_indices)
+        # show_products(df,item_index,cos_item_indices)
     elif method.lower() == 'lda':
         lda_item_indices = get_lda_recs(df, row_indices, item_index,index_df, starting_point,rec_num)
-        show_products(df,item_index,lda_item_indices)
+        # show_products(df,item_index,lda_item_indices)
     elif method.lower() == 'kmeans':
         vectorizer, tfidf_model, kmeans = cluster_text(df, row_indices)
         recs = get_kmeans_rec(df,row_indices, item_index, index_df, kmeans, rec_num)
-        show_products(df,item_index,recs)
+        # show_products(df,item_index,recs)
     else:
         print("That's not an option. Goodbye.")
 

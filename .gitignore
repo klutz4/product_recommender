@@ -1,0 +1,5 @@
+.DS_Store
+metastore_db
+.git
+derby.log
+.ipynb_checkpoints
