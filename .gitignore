@@ -3,3 +3,4 @@ metastore_db
 .git
 derby.log
 .ipynb_checkpoints
+ec2_instance.txt
