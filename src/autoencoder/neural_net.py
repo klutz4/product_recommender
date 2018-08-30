@@ -14,15 +14,15 @@ def cnn_autoencoder():
     input_img = Input(shape = (256,256,3))
 
     #encoder
-    encoded1 = Conv2D(64, (3, 3), activation='relu', padding='same')(input_img) #(256, 256, 128)
+    encoded1 = Conv2D(128, (3, 3), activation='relu', padding='same')(input_img) #(256, 256, 128)
     encoded2 = MaxPooling2D((2, 2), padding='same')(encoded1)
-    encoded3 = Conv2D(32, (3, 3), activation='relu', padding='same')(encoded2) # (128, 128, 64)
+    encoded3 = Conv2D(64, (3, 3), activation='relu', padding='same')(encoded2) # (128, 128, 64)
     encoded = MaxPooling2D((2, 2), padding='same')(encoded3)
 
     #decoder
-    decoded1 = Conv2D(32, (3, 3), activation='relu', padding='same')(encoded)  #(64, 64, 64)
+    decoded1 = Conv2D(64, (3, 3), activation='relu', padding='same')(encoded)  #(64, 64, 64)
     decoded2 = UpSampling2D((2, 2))(decoded1)
-    decoded3 = Conv2D(64, (3, 3), activation='relu',padding='same')(decoded2) # (128, 128, 128))
+    decoded3 = Conv2D(128, (3, 3), activation='relu',padding='same')(decoded2) # (128, 128, 128))
     decoded4 = UpSampling2D((2, 2))(decoded3)
     decoded = Conv2D(3, (3, 3), activation='sigmoid', padding='same')(decoded4) #(256, 256, 3))
 
@@ -75,13 +75,13 @@ if __name__ == '__main__':
     X_val = X_val/ np.max(X_val)
 
     autoencoder = cnn_autoencoder()
-    autoencoder.fit(X_train,X_train, epochs=3, validation_data=(X_test, X_test))
+    autoencoder.fit(X_train,X_train, epochs=10, batch_size=100 validation_data=(X_test, X_test))
     restored_imgs = autoencoder.predict(X_val)
-    autoencoder.save('model/autoencoder2.h5')
+    autoencoder.save('model/autoencoder3.h5')
     #
     for i in range(5):
         plt.imshow(X_val[i].reshape(256, 256,3))
-        plt.savefig('images/test{}'.format(i))
+        plt.savefig('images/restored_test3/test{}'.format(i))
 
         plt.imshow(restored_imgs[i].reshape(256, 256,3))
-        plt.savefig('images/restored{}'.format(i))
+        plt.savefig('images/restored_test3/restored{}'.format(i))
