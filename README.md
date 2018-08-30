@@ -18,7 +18,7 @@ For this project, I worked with a sample of the product data from a local compan
  * Fill any null values with 'other' in categorical columns
  * Drop any remaining columns that still have null values
 
- <img src = 'images/category_prop.png'>
+ <img src = 'plots/category_prop.png'>
 
  As shown above, my sample is primarily art, which makes recommending for products outside of that category difficult. I performed the clustering and recommending using all categories to start and then restricted to only those in the 'art' category.
 
@@ -34,7 +34,7 @@ I chose 4 initial clustering methods to try:
 * Hierarchical clustering
 
 The hierarchical clustering made for some cool looking plots...
-<img src = 'images/dendrogram.png' width=1000>
+<img src = 'plots/dendrogram.png' width=1000>
 But didn't prove to be much help.
 
 I decided to limit my clustering comparison to the other three methods.
