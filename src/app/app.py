@@ -5,6 +5,8 @@ import numpy as np
 
 app = Flask(__name__)
 
+
+
 @app.route('/', methods =['GET','POST'])
 def index():
     return render_template('home.html')
@@ -23,10 +25,13 @@ def neural_net():
 
 @app.route('/nlp_recs', methods=['GET','POST'])
 def nlp_recs():
+    item_index= int(request.form['index'])
+    price = str(request.form['price'])
     return render_template('nlp_recs.html')
 
 @app.route('/cnn_recs', methods=['GET','POST'])
 def cnn_recs():
+    item_index= int(request.form['index'])
     return render_template('cnn_recs.html')
 
 if  __name__ == '__main__':

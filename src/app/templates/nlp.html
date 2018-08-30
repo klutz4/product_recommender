@@ -36,7 +36,7 @@
     user-select: none;
     border: 1vw solid transparent;
     padding: 0.375vw 0.75vw;
-    font-size: 1.5vw;
+    font-size: 16px;
     line-height: 1.5vw;
     border-radius: 1.6vw;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -65,11 +65,11 @@ button {
             padding: 1vh 2vw;
             background-color: #0ac17f;
             color: white;
-            border-radius: 1.6vw;
-            border-color: #0ac17f;
-            padding-left: 1.2vw;
-            padding-right: 1.2vw;
-            font-size: 1.6vw;
+            border-radius: 16px;
+            border-color:#0ac17f;
+            padding-left: 12px;
+            padding-right: 12px;
+            font-size: 16px;
             font-weight: bold;
         }
         button:hover {
@@ -100,12 +100,12 @@ body {
     <br>
     <form action='/nlp_recs', method='POST'>
       <div><h4>Please enter an item index.</h4>
-        <input type="number" class="form-control form-control-lg" placeholder="Enter an integer up to 236706...">
+        <input name= "index" type="number" class="form-control form-control-lg" placeholder="Enter an integer up to 236706...">
       </div>
       <br><br>
 
       <div><h4>Please enter your price range.</h4>
-        <input type="number" class="form-control form-control-lg" placeholder="Enter a price range (ex. 100-500 )...">
+        <input name="price" type="text" class="form-control form-control-lg" placeholder="Enter a price range (ex. 100-500 )...">
       </div>
     </div>
 
