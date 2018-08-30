@@ -5,9 +5,6 @@ import autoreload
 import pyspark as ps
 from spark.spark_recommender_functions import tfidf_pipeline, get_kmeans_rec
 from pyspark.sql.types import *
-from pyspark.ml.evaluation import RegressionEvaluator
-from pyspark.ml.recommendation import ALS
-from pyspark.ml.tuning import TrainValidationSplit
 from pyspark.sql.functions import col
 
 spark = (ps.sql.SparkSession.builder

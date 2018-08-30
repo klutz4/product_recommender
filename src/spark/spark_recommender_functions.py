@@ -12,7 +12,7 @@ from pyspark.ml.evaluation import ClusteringEvaluator
 
 def tfidf_pipeline():
     tokenizer = Tokenizer(inputCol="combo", outputCol="words")
-    remover = StopWordsRemover(inputCol="words", outputCol="filtered", stopWords=set(stopwords.words('english')))
+    remover = StopWordsRemover(inputCol="words", outputCol="filtered")
     hashingTF = HashingTF(inputCol='filtered', outputCol="rawFeatures", numFeatures=100)
     idf = IDF(inputCol='rawFeatures', outputCol="features")
     pipeline = Pipeline(stages=[tokenizer, remover, hashingTF, idf])
@@ -47,25 +47,6 @@ def get_kmeans_scores(model):
     print("Silhouette with squared euclidean distance = " + str(silhouette))
 
 
-def lda_recs(dataset):
-    # Trains a LDA model.
-    lda = LDA(k=10, maxIter=10)
-    model = lda.fit(dataset)
-
-    ll = model.logLikelihood(dataset)
-    lp = model.logPerplexity(dataset)
-    print("The lower bound on the log likelihood of the entire corpus: " + str(ll))
-    print("The upper bound on perplexity: " + str(lp))
-
-    # Describe topics.
-    topics = model.describeTopics(3)
-    print("The topics described by their top-weighted terms:")
-    topics.show(truncate=False)
-
-    # Shows the result
-    transformed = model.transform(dataset)
-    transformed.show(truncate=False)
-
 if __name__ == '__main__':
     spark = (ps.sql.SparkSession.builder
             .master("local[3]")
@@ -87,6 +68,6 @@ if __name__ == '__main__':
     pipeline = tfidf_pipeline()
     features_df = pipeline.fit(spark_df).transform(spark_df)
 
-    item_index = np.random.choice(len(df))
-    item_id = df['vendor_variant_id'].iloc[item_index]
-    get_kmeans_rec(features_df,5,item_id)
+    # item_index = np.random.choice(len(df))
+    # item_id = df['vendor_variant_id'].iloc[item_index]
+    # get_kmeans_rec(features_df,5,item_id)
