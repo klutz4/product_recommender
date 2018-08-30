@@ -53,7 +53,7 @@ def cluster_compressed(X_train_compressed):
 def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
     labels = kmeans.labels_
     cluster_label = kmeans.labels_[item_index]
-    cluster_members = X[labels == cluster_label]
+    cluster_members = og_X[labels == cluster_label]
     indices = np.random.choice(len(cluster_members), num_recs)
     recs = cluster_members[indices]
 
@@ -62,7 +62,7 @@ def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
         plt.imshow(rec.reshape(256,256,3))
         if filepath:
             plt.savefig('{}rec{}.png'.format(filepath,i))
-            plt.imshow(X[item_index].reshape(256,256,3))
+            plt.imshow(og_X[item_index].reshape(256,256,3))
             plt.savefig('{}chosen.png'.format(filepath))
 
 def plot_elbow(X_train_compressed,filename=None):
@@ -95,19 +95,23 @@ if __name__ == '__main__':
     X_val = X_val.reshape(-1,256,256,3)
     X_val = X_val/ np.max(X_val)
 
+    # use for fitting new autoencoder
     autoencoder = cnn_autoencoder()
     autoencoder.fit(X_train,X_train, epochs=6, validation_data=(X_test, X_test))
+    autoencoder.save('models/autoencoder5.h5')
+    # use to load previous fit autoencoder
+    autoencoder = load_model('models/autoencode5.h5')
     restored_imgs = autoencoder.predict(X_val)
-    autoencoder.save('models/autoencoder3.h5')
     #
-    for i in range(5):
-        plt.imshow(X_val[i].reshape(256, 256,3))
-        plt.savefig('images/restored_test3/test{}'.format(i))
+    indices = np.random.choice(len(restored_imgs),5)
+    for i in indices:
+        plt.imshow(X_val[-i].reshape(256, 256,3))
+        plt.savefig('images/restored_test5/test{}'.format(i))
 
-        plt.imshow(restored_imgs[i].reshape(256, 256,3))
-        plt.savefig('images/restored_test3/restored{}'.format(i))
+        plt.imshow(restored_imgs[-i].reshape(256, 256,3))
+        plt.savefig('images/restored_test5/restored{}'.format(i))
 
-    X_train_compressed = get_compressed_images(model,X_train)
+    X_train_compressed = get_compressed_images(model,X_train,6)
     kmeans, train_labels = cluster_compressed(X_train_compressed)
     item_index = np.random.choice(len(X_train))
-    get_kmeans_rec(item_index,kmeans,X_train,num_recs=5, 'images/rec_test3/')
+    get_kmeans_rec(item_index,kmeans,X_train,5, 'images/rec_test5/')

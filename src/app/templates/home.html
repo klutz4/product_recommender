@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Art Recommender</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/landing-page.css" rel="stylesheet">
+
+  </head>
+
+  <style>
+  .home-btn {
+    display: content;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  button {
+              padding: 1vh 2vw;
+              background-color: #0ac17f;
+              color: white;
+              border-radius: 16px;
+              border-color: #0ac17f;
+              padding-left: 12px;
+              padding-right: 12px;
+              font-size: 16px;
+              font-weight: bold;
+          }
+          button:hover {
+              background-color: rgba(0,0,0,0);
+              color: #0ac17f;
+              border-color: #0ac17f;
+              border: 2px solid #0ac17f;
+          }
+
+  </style>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a class="navbar-brand" href=https://github.com/klutz4/product_recommender/blob/master/README.md>Art Recommender</a>
+        <form action= '/', method= ['GET,POST']>
+        <button type="submit" class="home-btn">Home</button>
+        </form>
+      </div>
+      <a href=mailto:klutz904@gmail.com>Contact</a>
+    </nav>
+
+    <!-- Masthead -->
+    <header class="masthead text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h1 class="mb-5">Art Recommender!</h1>
+            <h3 class="mb-5">Choose whether you'd like recommendations from NLP or neural net image processing:</h3>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form>
+              <div class="form-row">
+                <div class="col-12 col-md-9 mb-2 mb-md-0">
+                <div class="col-12 col-md-3">
+                  <form action='/nlp', method='POST'>
+                    <button type="submit" class="btn btn-xlg btn-primary" style="
+                    display: block;
+                    background-color: #0ac17f;
+                    border-color: #0ac17f;
+                    white-space: nowrap;
+                    width: 300%;">Get NLP recommendations!</button>
+                  </form>
+
+                  <br><br>
+
+                  <form action='/neural_net', method='POST'>
+                    <button type="submit" class="btn btn-xlg btn-primary" style="
+                    display: block;
+                    background-color: #0ac17f;
+                    border-color: #0ac17f;
+                    white-space: nowrap;
+                    width: 350%;
+                    align-items: right;">Get Neural Net recommendations!</button>
+                  </form>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <p class="text-muted small mb-4 mb-lg-0">&copy; Kelly Lutz 2018. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

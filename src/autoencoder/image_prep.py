@@ -108,10 +108,8 @@ def save_files_after_split(filenames,directory):
 if __name__ == '__main__':
 
     pd.set_option('display.max_columns', 500)
-    products = pd.read_csv('s3a://capstone-3/data/products_w_images.csv')
+    products = pd.read_csv('s3a://capstone-3/data/art_only_images.csv')
     products.drop('Unnamed: 0',axis=1, inplace=True)
-    products = products[products['category'] == 'art']
-    products = products.reset_index(drop=True)
 
     # Prep 1060 images from total df of ~16,000
     save_images_to_local(products.iloc[:1060])
