@@ -52,7 +52,7 @@ def show_image_from_file(filename):
 def resize_and_save_image(filename):
     img = cv2.imread(filename)
     img = cv2.resize(img, (256,256))
-    cv2.imwrite('/Users/Kelly/galvanize/capstones/mod2/havenly/data/resized/{}'.format(filename), img)
+    cv2.imwrite('/data/resized/{}'.format(filename), img)
 
 
 # DO NOT NEED ??

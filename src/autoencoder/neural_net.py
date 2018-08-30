@@ -7,8 +7,10 @@ import glob
 import cv2
 from sklearn.cluster import KMeans
 import matplotlib
-matplotlib.use('Agg')
+# matplotlib.use('Agg') #for AWS only
 import matplotlib.pyplot as plt
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 def cnn_autoencoder():
     input_img = Input(shape = (256,256,3))
@@ -57,9 +59,25 @@ def get_kmeans_rec(item_index, kmeans, X, num_recs,filepath=None):
         plt.imshow(rec.reshape(256,256,3))
         if filepath:
             plt.savefig('{}/rec{}.png'.format(filepath,i))
-            plt.imshow(X[item_index.reshape(256,256,3)])
+            plt.imshow(X[item_index].reshape(256,256,3))
             plt.savefig('{}/chosen.png'.format(filepath))
 
+def plot_elbow(X_train_compressed,filename=None):
+        distortions = []
+        K = range(1,20)
+        for k in K:
+            kmeans = KMeans(n_clusters=k)
+            kmeans.fit(X_train_compressed)
+            distortions.append(kmeans.inertia_)
+
+        # Plot the elbow
+        plt.plot(K, distortions)
+        plt.grid(True)
+        plt.xlabel('k')
+        plt.ylabel('Distortion')
+        plt.title('The Elbow Method showing the optimal k')
+        if filename:
+            plt.savefig(filename)
 
 if __name__ == '__main__':
     X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train/*.png')])
@@ -75,13 +93,13 @@ if __name__ == '__main__':
     X_val = X_val/ np.max(X_val)
 
     autoencoder = cnn_autoencoder()
-    autoencoder.fit(X_train,X_train, epochs=10, batch_size=100, validation_data=(X_test, X_test))
+    autoencoder.fit(X_train,X_train, epochs=10, validation_data=(X_test, X_test))
     restored_imgs = autoencoder.predict(X_val)
-    autoencoder.save('model/autoencoder3.h5')
+    autoencoder.save('models/autoencoder3.h5')
     #
-    for i in range(5):
-        plt.imshow(X_val[i].reshape(256, 256,3))
-        plt.savefig('images/restored_test3/test{}'.format(i))
+        for i in range(5):
+            plt.imshow(X_val[i].reshape(256, 256,3))
+            plt.savefig('images/restored_test3/test{}'.format(i))
 
-        plt.imshow(restored_imgs[i].reshape(256, 256,3))
-        plt.savefig('images/restored_test3/restored{}'.format(i))
+            plt.imshow(restored_imgs[i].reshape(256, 256,3))
+            plt.savefig('images/restored_test3/restored{}'.format(i))
