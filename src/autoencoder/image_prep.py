@@ -65,7 +65,7 @@ def resize_and_save_image(filename):
 #     df.dropna(inplace=True)
 #     return df
 
-## Use this function to save images from image urls and resize
+## Use this function to save images from image urls
 def save_images_to_local(df):
     ''' Save images from image url.'''
     for item_index in range(len(df)):

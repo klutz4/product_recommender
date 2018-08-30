@@ -47,7 +47,7 @@ def cluster_compressed(X_train_compressed):
     labels = kmeans.labels_
     return kmeans, labels
 
-def get_kmeans_rec(item_index, kmeans, X, num_recs,filepath=None):
+def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
     labels = kmeans.labels_
     cluster_label = kmeans.labels_[item_index]
     cluster_members = X[labels == cluster_label]
@@ -58,9 +58,9 @@ def get_kmeans_rec(item_index, kmeans, X, num_recs,filepath=None):
     for rec, i in zip(recs,range(num_recs)):
         plt.imshow(rec.reshape(256,256,3))
         if filepath:
-            plt.savefig('{}/rec{}.png'.format(filepath,i))
+            plt.savefig('{}rec{}.png'.format(filepath,i))
             plt.imshow(X[item_index].reshape(256,256,3))
-            plt.savefig('{}/chosen.png'.format(filepath))
+            plt.savefig('{}chosen.png'.format(filepath))
 
 def plot_elbow(X_train_compressed,filename=None):
         distortions = []
@@ -93,13 +93,18 @@ if __name__ == '__main__':
     X_val = X_val/ np.max(X_val)
 
     autoencoder = cnn_autoencoder()
-    autoencoder.fit(X_train,X_train, epochs=10, validation_data=(X_test, X_test))
+    autoencoder.fit(X_train,X_train, epochs=6, validation_data=(X_test, X_test))
     restored_imgs = autoencoder.predict(X_val)
     autoencoder.save('models/autoencoder3.h5')
     #
-        for i in range(5):
-            plt.imshow(X_val[i].reshape(256, 256,3))
-            plt.savefig('images/restored_test3/test{}'.format(i))
+    for i in range(5):
+        plt.imshow(X_val[i].reshape(256, 256,3))
+        plt.savefig('images/restored_test3/test{}'.format(i))
 
-            plt.imshow(restored_imgs[i].reshape(256, 256,3))
-            plt.savefig('images/restored_test3/restored{}'.format(i))
+        plt.imshow(restored_imgs[i].reshape(256, 256,3))
+        plt.savefig('images/restored_test3/restored{}'.format(i))
+
+    X_train_compressed = get_compressed_images(model,X_train)
+    kmeans, train_labels = cluster_compressed(X_train_compressed)
+    item_index = np.random.choice(len(X_train))
+    get_kmeans_rec(item_index,kmeans,X_train,num_recs=5, 'images/rec_test4/')
