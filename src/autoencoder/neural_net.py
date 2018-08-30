@@ -75,7 +75,7 @@ if __name__ == '__main__':
     X_val = X_val/ np.max(X_val)
 
     autoencoder = cnn_autoencoder()
-    autoencoder.fit(X_train,X_train, epochs=10, batch_size=100 validation_data=(X_test, X_test))
+    autoencoder.fit(X_train,X_train, epochs=10, batch_size=100, validation_data=(X_test, X_test))
     restored_imgs = autoencoder.predict(X_val)
     autoencoder.save('model/autoencoder3.h5')
     #
