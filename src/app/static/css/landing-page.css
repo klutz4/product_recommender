@@ -35,7 +35,7 @@ header.masthead .overlay {
 }
 
 header.masthead h1 {
-  font-size: 2rem;
+  font-size: 2vw;
 }
 
 @media (min-width: 768px) {
@@ -44,7 +44,7 @@ header.masthead h1 {
     padding-bottom: 12rem;
   }
   header.masthead h1 {
-    font-size: 3rem;
+    font-size: 3vw;
   }
 }
 
@@ -73,11 +73,11 @@ header.masthead h1 {
 }
 
 .features-icons .features-icons-item .features-icons-icon i {
-  font-size: 4.5rem;
+  font-size: 4.5vw;
 }
 
 .features-icons .features-icons-item:hover .features-icons-icon i {
-  font-size: 5rem;
+  font-size: 5vw;
 }
 
 footer.footer {
