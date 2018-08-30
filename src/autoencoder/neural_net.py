@@ -7,7 +7,7 @@ import glob
 import cv2
 from sklearn.cluster import KMeans
 import matplotlib
-# matplotlib.use('Agg') #for AWS only
+matplotlib.use('Agg') #for AWS only
 import matplotlib.pyplot as plt
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
@@ -17,24 +17,27 @@ def cnn_autoencoder():
 
     #encoder
     encoded1 = Conv2D(128, (3, 3), activation='relu', padding='same')(input_img) #(256, 256, 128)
-    encoded2 = MaxPooling2D((2, 2), padding='same')(encoded1)
-    encoded3 = Conv2D(64, (3, 3), activation='relu', padding='same')(encoded2) # (128, 128, 64)
+    pool1 = MaxPooling2D((2, 2), padding='same')(encoded1)
+    encoded2 = Conv2D(64, (3, 3), activation='relu', padding='same')(pool1) # (128, 128, 64)
+    pool2 = MaxPooling2D((2, 2), padding='same')(encoded2)
+    encoded3 = Conv2D(32, (3, 3), activation='relu', padding='same')(pool2)
     encoded = MaxPooling2D((2, 2), padding='same')(encoded3)
 
     #decoder
-    decoded1 = Conv2D(64, (3, 3), activation='relu', padding='same')(encoded)  #(64, 64, 64)
-    decoded2 = UpSampling2D((2, 2))(decoded1)
-    decoded3 = Conv2D(128, (3, 3), activation='relu',padding='same')(decoded2) # (128, 128, 128))
-    decoded4 = UpSampling2D((2, 2))(decoded3)
-    decoded = Conv2D(3, (3, 3), activation='sigmoid', padding='same')(decoded4) #(256, 256, 3))
+    decoded1 = Conv2D(32, (3, 3), activation='relu', padding='same')(encoded)  #(64, 64, 64)
+    up1 = UpSampling2D((2, 2))(decoded1)
+    decoded2 = Conv2D(64, (3, 3), activation='relu',padding='same')(up1) # (128, 128, 128))
+    up2 = UpSampling2D((2, 2))(decoded2)
+    decoded3 = Conv2D(128, (3, 3), activation='relu',padding='same')(up2) # (128, 128, 128))
+    up3 = UpSampling2D((2, 2))(decoded3)
+    decoded = Conv2D(3, (3, 3), activation='sigmoid', padding='same')(up3) #(256, 256, 3))
 
     autoencoder = Model(input_img, decoded)
     autoencoder.compile(optimizer='adadelta', loss='mean_squared_error')
     return autoencoder
 
-def get_compressed_images(model,X):
+def get_compressed_images(model,X,compressed_layer):
     '''Returns reshaped array of compressed images in prep for clustering.'''
-    compressed_layer = 6
     get_compressed_output = K.function([model.layers[0].input], [model.layers[compressed_layer].output])
     X_compressed = get_compressed_output([X])[0]
     X_compressed = X_compressed.reshape(X_compressed.shape[0],X_compressed.shape[1]*X_compressed.shape[2]*X_compressed.shape[3])
@@ -66,7 +69,7 @@ def plot_elbow(X_train_compressed,filename=None):
         distortions = []
         K = range(1,20)
         for k in K:
-            kmeans = KMeans(n_clusters=k)
+            kmeans = KMeans(n_clusters=k,max_iter=10, n_jobs=-1)
             kmeans.fit(X_train_compressed)
             distortions.append(kmeans.inertia_)
 
@@ -107,4 +110,4 @@ if __name__ == '__main__':
     X_train_compressed = get_compressed_images(model,X_train)
     kmeans, train_labels = cluster_compressed(X_train_compressed)
     item_index = np.random.choice(len(X_train))
-    get_kmeans_rec(item_index,kmeans,X_train,num_recs=5, 'images/rec_test4/')
+    get_kmeans_rec(item_index,kmeans,X_train,num_recs=5, 'images/rec_test3/')
