@@ -1,14 +1,16 @@
+import numpy as np
+import pandas as pd
+import glob
+import cv2
+import matplotlib
+matplotlib.use('Agg') #for AWS only
+import matplotlib.pyplot as plt
 from keras.layers import Input, Dense, Conv2D, MaxPooling2D, UpSampling2D
 from keras.models import Model
 from keras import backend as K
 from keras.models import load_model
-import numpy as np
-import glob
-import cv2
 from sklearn.cluster import KMeans
-import matplotlib
-matplotlib.use('Agg') #for AWS only
-import matplotlib.pyplot as plt
+
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -84,6 +86,8 @@ def plot_elbow(X_train_compressed,filename=None):
             plt.savefig(filename)
 
 if __name__ == '__main__':
+    df = pd.read_csv('s3a://captsone-3/data/image_subset.csv')
+
     X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train/*.png')])
     X_train = X_train.reshape(-1, 256, 256, 3)
     X_train = X_train / np.max(X_train)
@@ -97,26 +101,25 @@ if __name__ == '__main__':
     X_val = X_val/ np.max(X_val)
 
     # use for fitting new autoencoder
-    autoencoder = cnn_autoencoder()
-    autoencoder.fit(X_train,X_train, epochs=6, validation_data=(X_test, X_test))
-    autoencoder.save('models/autoencoder5.h5')
+    # autoencoder = cnn_autoencoder()
+    # autoencoder.fit(X_train,X_train, epochs=6, validation_data=(X_test, X_test))
+    # autoencoder.save('models/autoencoder5.h5')
     # use to load previous fit autoencoder
     autoencoder = load_model('models/autoencode5.h5')
-    restored_imgs = autoencoder.predict(X_val)
+    # restored_imgs = autoencoder.predict(X_val)
     #
-    indices = np.random.choice(len(restored_imgs),5)
-    for i in indices:
-        plt.imshow(X_val[-i].reshape(256, 256,3))
-        plt.savefig('images/restored_test5/test{}'.format(i))
+    # indices = np.random.choice(len(restored_imgs),5)
+    # for i in indices:
+    #     plt.imshow(X_val[-i].reshape(256, 256,3))
+    #     plt.savefig('images/restored_test5/test{}'.format(i))
+    #
+    #     plt.imshow(restored_imgs[-i].reshape(256, 256,3))
+    #     plt.savefig('images/restored_test5/restored{}'.format(i))
 
-        plt.imshow(restored_imgs[-i].reshape(256, 256,3))
-        plt.savefig('images/restored_test5/restored{}'.format(i))
+    X_train_comp = get_compressed_images(autoencoder,X_train,6)
+    X_test_comp = get_compressed_images(autoencoder,X_test,6)
+    X_val_comp = get_compressed_images(autoencoder,X_val,6)
 
-    X_train_compressed = get_compressed_images(autoencoder,X_train,6)
-    kmeans, train_labels = cluster_compressed(X_train_compressed)
-    item_index = np.random.choice(len(X_train))
-    get_kmeans_rec(item_index,kmeans,X_train,5, 'images/rec_test5/')
-    with open('model.pkl', 'wb') as f:
-    # Write the
-     model to a file.
-    pickle.dump(model, f)
+    # kmeans, labels = cluster_compressed(X_compressed)
+    # item_index = np.random.choice(len(X_train))
+    # recs = get_kmeans_rec(item_index,kmeans,X_train,5, 'images/rec_test5/')

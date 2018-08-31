@@ -68,12 +68,14 @@ def resize_and_save_image(filename):
 ## Use this function to save images from image urls
 def save_images_to_local(df):
     ''' Save images from image url.'''
+    indices = []
     for item_index in range(len(df)):
         try:
             response = requests.get(df.image_url.iloc[item_index])
             img = Image.open(BytesIO(response.content))
             plt.imshow(img)
             plt.savefig('data/og_images/{}.png'.format(item_index))
+            indices.append(item_index)
         except:
             continue
 
@@ -112,7 +114,7 @@ if __name__ == '__main__':
     products.drop('Unnamed: 0',axis=1, inplace=True)
 
     # Prep 1060 images from total df of ~16,000
-    save_images_to_local(products.iloc[:1060])
+    indices = save_images_to_local(products.iloc[:1000])
 
     images = glob.glob('data/og_images/*.png')
     for file in images:
