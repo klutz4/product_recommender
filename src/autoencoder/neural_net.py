@@ -86,7 +86,7 @@ def plot_elbow(X_train_compressed,filename=None):
             plt.savefig(filename)
 
 if __name__ == '__main__':
-    df = pd.read_csv('s3a://captsone-3/data/image_subset.csv')
+    df = pd.read_csv('s3a://capstone-3/data/image_subset.csv')
 
     X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train/*.png')])
     X_train = X_train.reshape(-1, 256, 256, 3)
