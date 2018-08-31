@@ -59,4 +59,4 @@ if  __name__ == '__main__':
     df = pd.read_csv('s3a://capstone-3/data/spark_model.csv')
     images = pd.read_csv('s3a://capstone-3/data/cnn_model_small.csv')
 
-    app.run(host='0.0.0.0',port=80)
+    app.run(host='0.0.0.0',port=8080, debug=True, threaded=True)
