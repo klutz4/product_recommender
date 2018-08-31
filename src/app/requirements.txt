@@ -1,0 +1,6 @@
+Flask
+Pandas
+numpy
+wsgiref
+boto3
+s3fs
