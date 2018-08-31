@@ -128,7 +128,7 @@
       <!-- Here is where the data passed into the template gets inserted -->
       {% for rec in recs %}
         <tr>
-        <td><a href={{ df['weblink'].iloc[item_index] }}>{{df['product_title'].iloc[rec]}}</a></td>
+        <td><a href={{ df['weblink'].iloc[rec] }}>{{df['product_title'].iloc[rec]}}</a></td>
           <td>{{ df['sale_price'].iloc[rec] }}</td>
         </tr>
       {% endfor %}

@@ -1,14 +1,14 @@
 from flask import Flask, request, render_template
-import pickle
 import pandas as pd
 import numpy as np
+import matplotlib
+matplotlib.use('Agg') #for AWS only
+import matplotlib.pyplot as plt
 # from flask.ext.mobility import Mobility
 # from flask.ext.mobility.decorators import mobile_template
 
 app = Flask(__name__)
 # Mobility(app)
-
-df = pd.read_csv('s3a://capstone-3/data/spark_model.csv')
 
 def get_restricted_df(price,item_index,range):
     nums = range.split('-')
@@ -55,7 +55,10 @@ def nlp_recs():
 @app.route('/cnn_recs', methods=['GET','POST'])
 def cnn_recs():
     item_index= int(request.form['index'])
-    return render_template('cnn_recs.html')
+    recs = [3,8,13,45]
+    return render_template('cnn_recs.html',item_index=item_index,recs=recs,images=images)
 
 if  __name__ == '__main__':
+    df = pd.read_csv('s3a://capstone-3/data/spark_model.csv')
+    images = pd.read_csv('s3a://capstone-3/data/art_only_images.csv')
     app.run(host='0.0.0.0', port=8080, debug=True, threaded=True)

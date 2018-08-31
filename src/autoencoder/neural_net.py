@@ -56,6 +56,7 @@ def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
     cluster_members = og_X[labels == cluster_label]
     indices = np.random.choice(len(cluster_members), num_recs)
     recs = cluster_members[indices]
+    return recs
 
     #show recs
     for rec, i in zip(recs,range(num_recs)):
@@ -111,7 +112,11 @@ if __name__ == '__main__':
         plt.imshow(restored_imgs[-i].reshape(256, 256,3))
         plt.savefig('images/restored_test5/restored{}'.format(i))
 
-    X_train_compressed = get_compressed_images(model,X_train,6)
+    X_train_compressed = get_compressed_images(autoencoder,X_train,6)
     kmeans, train_labels = cluster_compressed(X_train_compressed)
     item_index = np.random.choice(len(X_train))
     get_kmeans_rec(item_index,kmeans,X_train,5, 'images/rec_test5/')
+    with open('model.pkl', 'wb') as f:
+    # Write the
+     model to a file.
+    pickle.dump(model, f)
