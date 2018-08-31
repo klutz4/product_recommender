@@ -1,9 +1,6 @@
 from flask import Flask, request, render_template
 import pandas as pd
 import numpy as np
-import matplotlib
-matplotlib.use('Agg') #for AWS only
-import matplotlib.pyplot as plt
 # from flask.ext.mobility import Mobility
 # from flask.ext.mobility.decorators import mobile_template
 
@@ -42,8 +39,6 @@ def nlp_recs():
     item_index= int(request.form['index'])
     range = str(request.form['price'])
     # num_recs = int(request.form['recs'])
-    item = df['product_title'].iloc[item_index]
-    item_id = df['vendor_variant_id'].iloc[item_index]
     price = df['sale_price'].iloc[item_index]
     restricted = get_restricted_df(price,item_index,range)
     cluster_label = restricted['prediction'].iloc[item_index]
@@ -55,10 +50,13 @@ def nlp_recs():
 @app.route('/cnn_recs', methods=['GET','POST'])
 def cnn_recs():
     item_index= int(request.form['index'])
-    recs = [3,8,13,45]
+    cluster_label = images['prediction'].iloc[item_index]
+    cluster_members = images[images['prediction'] == cluster_label]
+    recs = np.random.choice(cluster_members.index, 5, replace = False)
     return render_template('cnn_recs.html',item_index=item_index,recs=recs,images=images)
 
 if  __name__ == '__main__':
     df = pd.read_csv('s3a://capstone-3/data/spark_model.csv')
-    images = pd.read_csv('s3a://capstone-3/data/art_only_images.csv')
+    images = pd.read_csv('s3a://capstone-3/data/cnn_model_small.csv')
+    
     app.run(host='0.0.0.0', port=8080, debug=True, threaded=True)
