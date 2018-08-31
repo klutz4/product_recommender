@@ -41,7 +41,7 @@ header.masthead h1 {
 
 @media (min-width: 7.68vw) {
   header.masthead {
-    background: url("../img/art_background.jpg") no-repeat center center;
+    background-image: url("../img/art_background.jpg") no-repeat center center;
     padding-top: 12vw;
     padding-bottom: 12vw;
   }
