@@ -39,10 +39,9 @@ header.masthead h1 {
   font-size: 2vw;
 }
 
-@media (min-width: 768 px) {
+@media (min-width: 400 px) {
   header.masthead {
     background-image: url("../img/art_background.jpg") no-repeat center center;
-    width: 50%;
     padding-top: 12vw;
     padding-bottom: 12vw;
   }
