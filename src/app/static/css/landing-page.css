@@ -38,8 +38,9 @@ header.masthead h1 {
   font-size: 2vw;
 }
 
-@media (min-width: 768vw) {
+@media (min-width: 7.68vw) {
   header.masthead {
+    background: url("../img/art_background.jpg") no-repeat center center;
     padding-top: 12vw;
     padding-bottom: 12vw;
   }
@@ -57,27 +58,6 @@ header.masthead h1 {
   .showcase .showcase-text {
     padding: 0vw;
   }
-}
-
-.features-icons {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-}
-
-.features-icons .features-icons-item {
-  max-width: 20rem;
-}
-
-.features-icons .features-icons-item .features-icons-icon {
-  height: 7rem;
-}
-
-.features-icons .features-icons-item .features-icons-icon i {
-  font-size: 4.5vw;
-}
-
-.features-icons .features-icons-item:hover .features-icons-icon i {
-  font-size: 5vw;
 }
 
 footer.footer {
