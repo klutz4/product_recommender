@@ -15,13 +15,14 @@ h6 {
 header.masthead {
   position: relative;
   background-color: #343a40;
-  background: url("../img/art_background.jpg") no-repeat center center;
+  background: url("../img/art_background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   padding-top: 8vw;
   padding-bottom: 8vw;
+  overflow: hidden;
 }
 
 header.masthead .overlay {
