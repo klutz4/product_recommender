@@ -46,7 +46,7 @@ def get_compressed_images(model,X,compressed_layer):
     return X_compressed
 
 def cluster_compressed(X_compressed):
-    kmeans = KMeans(n_clusters=20, n_jobs=-1)
+    kmeans = KMeans(n_clusters=50, n_jobs=-1)
     kmeans.fit(X_compressed)
 
     labels = kmeans.labels_
@@ -58,7 +58,7 @@ def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
     cluster_members = og_X[labels == cluster_label]
     indices = np.random.choice(len(cluster_members), num_recs)
     recs = cluster_members[indices]
-    return recs
+    # return recs
 
     #show recs
     for rec, i in zip(recs,range(num_recs)):
@@ -140,4 +140,4 @@ if __name__ == '__main__':
     kmeans, labels = cluster_compressed(X_compressed)
 
     item_index = np.random.choice(len(X_compressed))
-    recs = get_kmeans_rec(item_index,kmeans,X_train,5, 'images/rec_test5/')
+    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test6/')
