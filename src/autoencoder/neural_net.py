@@ -86,23 +86,24 @@ def plot_elbow(X_train_compressed,filename=None):
             plt.savefig(filename)
 
 if __name__ == '__main__':
-    df = pd.read_csv('s3a://capstone-3/data/image_subset.csv')
+    df = pd.read_csv('s3a://capstone-3/data/subset_df2.csv')
+    df.drop('Unnamed: 0',axis=1, inplace=True)
 
     #for training and testing the autoencoder
-    X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train/*.png')])
-    X_train_vals = X_train.reshape(-1, 256, 256, 3)
-    X_train_vals = X_train / np.max(X_train)
+    X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train2/*.png')])
+    X_train = X_train.reshape(-1, 256, 256, 3)
+    X_train = X_train / np.max(X_train)
 
-    X_test = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/test/*.png')])
+    X_test = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/test2/*.png')])
     X_test = X_test.reshape(-1,256,256,3)
     X_test = X_test/ np.max(X_test)
 
-    X_val = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/val/*.png')])
+    X_val = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/val2/*.png')])
     X_val = X_val.reshape(-1,256,256,3)
     X_val = X_val/ np.max(X_val)
 
     #for clustering and finding indices of recs
-    X_total = [(file,cv2.imread('{}'.format(file))) for file in glob.glob('resized/*.png')]
+    X_total = [(file,cv2.imread('{}'.format(file))) for file in glob.glob('total/*.png')]
     indices_and_arrays = []
     for i in range(len(X_total)):
         split = X_total[i][0].split('/')
@@ -113,33 +114,41 @@ if __name__ == '__main__':
     X_total_arrays = []
     indices = []
     for i in range(len(indices_and_arrays)):
-        indices.append[indices_and_arrays[i][0]]
+        indices.append(indices_and_arrays[i][0])
         X_total_arrays.append(indices_and_arrays[i][1])
     X_total_arrays = np.array(X_total_arrays)
     X_total_arrays = X_total_arrays.reshape(-1,256,256,3)
     X_total_arrays = X_total_arrays/ np.max(X_total_arrays)
 
     # use for fitting new autoencoder
-    # autoencoder = cnn_autoencoder()
-    # autoencoder.fit(X_train,X_train, epochs=6, validation_data=(X_test, X_test))
-    # autoencoder.save('models/autoencoder5.h5')
+    autoencoder = cnn_autoencoder()
+    autoencoder.fit(X_train,X_train, epochs=6, validation_data=(X_test, X_test))
+    autoencoder.save('models/autoencoder6.h5')
     # use to load previous fit autoencoder
-    autoencoder = load_model('models/autoencode5.h5')
+    # autoencoder = load_model('models/autoencoder6.h5')
     restored_imgs = autoencoder.predict(X_val)
 
     indices = np.random.choice(len(restored_imgs),5)
     for i in indices:
         plt.imshow(X_val[-i].reshape(256, 256,3))
-        plt.savefig('images/restored_test5/test{}'.format(i))
+        plt.savefig('images/restored_test6/test{}'.format(i))
 
         plt.imshow(restored_imgs[-i].reshape(256, 256,3))
-        plt.savefig('images/restored_test5/restored{}'.format(i))
+        plt.savefig('images/restored_test6/restored{}'.format(i))
 
-    X_compressed1 = get_compressed_images(autoencoder,X_total_arrays[:550],6)
-    X_compressed2 = get_compressed_images(autoencoder,X_total_arrays[550:],6)
+    one = int(np.floor(len(X_total)/3))
+    two = 2 * one
+    X_compressed1 = get_compressed_images(autoencoder,X_total_arrays[:one],6)
+    X_compressed2 = get_compressed_images(autoencoder,X_total_arrays[one:two],6)
+    X_compressed3 = get_compressed_images(autoencoder,X_total_arrays[two:],6)
     X_compressed = np.append(X_compressed1, X_compressed2, axis=0)
+    X_compressed = np.append(X_compressed, X_compressed3, axis=0)
 
     kmeans, labels = cluster_compressed(X_compressed)
 
+    labels_df = pd.DataFrame(labels, columns=['label'])
+    images_and_labels = pd.concat([df,labels_df], axis=1)
+    images_and_labels.to_csv('images_and_labels2.csv')
+
     item_index = np.random.choice(len(X_compressed))
-    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test6/')
+    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test10/')

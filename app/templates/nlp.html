@@ -41,6 +41,43 @@
     border-radius: 1.6vw;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
+  .move-button {
+    display: flex;
+    justify-content: center;
+    margin-top: .7vw;
+  }
+  button {
+              padding: 1vh 2vw;
+              background-color: #0ac17f;
+              color: white;
+              border-radius: 16px;
+              border-color:#0ac17f;
+              padding-left: 12px;
+              padding-right: 12px;
+              font-size: 16px;
+              font-weight: bold;
+          }
+          button:hover {
+              background-color: rgba(0,0,0,0);
+              color: #0ac17f;
+              border-color: #0ac17f;
+              border: .2vw solid #0ac17f;
+          }
+  body {
+    position: relative;
+    background-color: #343a40;
+    background: url("static/img/foggy.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0.9;
+  }
+  @media only screen and (max-width: 500px) {
+      body {
+          background-size: auto;
+      }
+  }
   </style>
   <body>
 
@@ -55,58 +92,21 @@
       <a href=mailto:klutz904@gmail.com>Contact</a>
     </nav>
 
-<style>
-.move-button {
-  display: flex;
-  justify-content: center;
-  margin-top: .7vw;
-}
-button {
-            padding: 1vh 2vw;
-            background-color: #0ac17f;
-            color: white;
-            border-radius: 16px;
-            border-color:#0ac17f;
-            padding-left: 12px;
-            padding-right: 12px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        button:hover {
-            background-color: rgba(0,0,0,0);
-            color: #0ac17f;
-            border-color: #0ac17f;
-            border: .2vw solid #0ac17f;
-        }
-body {
-  position: relative;
-  background-color: #343a40;
-  background: url("static/img/art_background.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  opacity: 0.9;
-}
-@media only screen and (max-width: 600%) {
-    body {
-        background-size: auto;
-    }
-}
-</style>
-
-<div class="main" style="padding: 20vw 25% 20vw 25%;color:white;">
-  <br>
-  <br>
-  <h2>Get recommendations for an art piece using Neural Nets:</h2>
+<div class="main" style="padding: 5vw 25% 5vw 25%;color:white;">
+  <h2>Get recommendations for an art piece using NLP:</h2>
     <br>
-    <br>
-    <br>
-    <form action='/cnn_recs', method='POST'>
+    <form action='/nlp_recs', method='POST'>
       <div><h4>Please enter an item index.</h4>
-        <input name="index" type="number" class="form-control form-control-lg" placeholder="Enter an integer up to 1055...">
+        <input name= "index" type="number" class="form-control form-control-lg" placeholder="Enter an integer up to 236706...">
+      </div>
+      <br><br>
+
+      <div><h4>Please enter your price range.</h4>
+        <input name="price" type="text" class="form-control form-control-lg" placeholder="Enter a price range (ex. 100-500 )...">
       </div>
     </div>
+
+    <br>
     <div class='move-button'>
     <button type="submit">Recommend</button>
     </div>
@@ -136,10 +136,10 @@ transform: translateX(-25%) translateY(-25%);' src='../static/img/me.jpg'>
   </div>
 </footer>
 
-
 <!-- Bootstrap core JavaScript -->
 <script src="static/vendor/jquery/jquery.min.js"></script>
 <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

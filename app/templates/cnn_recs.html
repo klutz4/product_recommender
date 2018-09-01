@@ -11,7 +11,7 @@
     <title>Art Recommender</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
     <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -50,7 +50,12 @@
   text-align: center;
   color:white;
   }
-
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
   .move-button {
     display: flex;
     justify-content: center;
@@ -76,14 +81,14 @@
   body {
     position: relative;
     background-color: #b1b7bd;
-    background: url("static/img/art_background.jpg") no-repeat center center;
+    background: url("static/img/foggy.jpg") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     opacity: 0.9;
   }
-  @media only screen and (max-width: 600%){
+  @media only screen and (max-width: 500px){
         .table {
           color:white
   }
@@ -105,14 +110,11 @@
 
   <h2 class='title'>Your Product</h2>
   <table class='table'>
-    <tr>
-      <th>Product Title</th>
-      <th>Price</th>
-    </tr>
     <tbody>
       <tr>
-        <td><a href={{ df['weblink'].iloc[item_index] }}>{{df['product_title'].iloc[item_index]}}</a></td>
-        <td>{{ df['sale_price'].iloc[item_index] }}</td>
+        <td>
+            <img class="center" style='width:15vw;' src = {{images['image_url'].iloc[item_index]}}>
+          </img>
       </tr>
     </tbody>
   </table>
@@ -120,18 +122,18 @@
 
   <h2 class='title'>Your Recommendations</h2>
   <table class="table">
-    <thead>
-      <th>Product Title</th>
-      <th>Price</th>
-    </thead>
     <tbody>
       <!-- Here is where the data passed into the template gets inserted -->
-      {% for rec in recs %}
-        <tr>
-        <td><a href={{ df['weblink'].iloc[rec] }}>{{df['product_title'].iloc[rec]}}</a></td>
-          <td>{{ df['sale_price'].iloc[rec] }}</td>
-        </tr>
-      {% endfor %}
+      <tr>
+        {% for rec in recs[:3] %}
+        <th><img class="center" style='width:15vw;' src= {{images['image_url'].iloc[rec]}}></th>
+        {% endfor %}
+      </tr>
+      <tr>
+        {% for rec in recs[3:] %}
+        <th><img class="center" style='width:15vw;' src= {{images['image_url'].iloc[rec]}}></th>
+        {% endfor %}
+      </tr>
     </tbody>
   </table>
 

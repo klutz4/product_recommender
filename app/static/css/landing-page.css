@@ -15,7 +15,7 @@ h6 {
 header.masthead {
   position: relative;
   background-color: #343a40;
-  background: url("../img/art_background.jpg") no-repeat center center fixed;
+  background: url("../img/foggy.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -41,7 +41,7 @@ header.masthead h1 {
 
 @media (min-width: 768 px) {
   header.masthead {
-    background-image: url("../img/art_background.jpg") no-repeat center center;
+    background-image: url("../img/foggy.jpg") no-repeat center center;
     padding-top: 12vw;
     padding-bottom: 12vw;
   }

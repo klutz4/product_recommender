@@ -81,35 +81,32 @@ button {
 body {
   position: relative;
   background-color: #343a40;
-  background: url("static/img/art_background.jpg") no-repeat center center;
+  background: url("static/img/foggy.jpg") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   opacity: 0.9;
 }
-@media only screen and (max-width: 60vw) {
+@media only screen and (max-width: 500px) {
     body {
         background-size: auto;
     }
 }
 </style>
 
-<div class="main" style="padding: 20vw 25% 20vw 25%;color:white;">
-  <h2>Get recommendations for an art piece using NLP:</h2>
+<div class="main" style="padding: 5vw 25% 5vw 25%;color:white;">
+  <br>
+  <br>
+  <h2>Get recommendations for an art piece using Neural Nets:</h2>
     <br>
-    <form action='/nlp_recs', method='POST'>
+    <br>
+    <br>
+    <form action='/cnn_recs', method='POST'>
       <div><h4>Please enter an item index.</h4>
-        <input name= "index" type="number" class="form-control form-control-lg" placeholder="Enter an integer up to 236706...">
-      </div>
-      <br><br>
-
-      <div><h4>Please enter your price range.</h4>
-        <input name="price" type="text" class="form-control form-control-lg" placeholder="Enter a price range (ex. 100-500 )...">
+        <input name="index" type="number" class="form-control form-control-lg" placeholder="Enter an integer up to 1996...">
       </div>
     </div>
-
-    <br>
     <div class='move-button'>
     <button type="submit">Recommend</button>
     </div>
@@ -139,10 +136,10 @@ transform: translateX(-25%) translateY(-25%);' src='../static/img/me.jpg'>
   </div>
 </footer>
 
+
 <!-- Bootstrap core JavaScript -->
 <script src="static/vendor/jquery/jquery.min.js"></script>
 <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>

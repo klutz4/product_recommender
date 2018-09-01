@@ -1,6 +1,7 @@
 // Mixins
 // Background Cover Mixin
 @mixin background-cover {
+  background: url('../img/foggy.jpg') no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

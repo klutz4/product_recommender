@@ -38,14 +38,17 @@ def neural_net():
 def nlp_recs():
     item_index= int(request.form['index'])
     range = str(request.form['price'])
-    # num_recs = int(request.form['recs'])
-    price = df['sale_price'].iloc[item_index]
-    restricted = get_restricted_df(price,item_index,range)
-    cluster_label = restricted['prediction'].iloc[item_index]
-    cluster_members = restricted[restricted['prediction'] == cluster_label]
-    recs = np.random.choice(cluster_members.index, 5, replace = False)
+    if range == '':
+        return 'You must enter a price range.'
+    else:
+        # num_recs = int(request.form['recs'])
+        price = df['sale_price'].iloc[item_index]
+        restricted = get_restricted_df(price,item_index,range)
+        cluster_label = restricted['prediction'].iloc[item_index]
+        cluster_members = restricted[restricted['prediction'] == cluster_label]
+        recs = np.random.choice(cluster_members.index, 5, replace = False)
 
-    return render_template('nlp_recs.html',recs=recs,df=df,item_index=item_index)
+        return render_template('nlp_recs.html',recs=recs,df=df,item_index=item_index)
 
 @app.route('/cnn_recs', methods=['GET','POST'])
 def cnn_recs():
@@ -57,6 +60,6 @@ def cnn_recs():
 
 if  __name__ == '__main__':
     df = pd.read_csv('s3a://capstone-3/data/spark_model.csv')
-    images = pd.read_csv('s3a://capstone-3/data/images_and_labels.csv')
+    images = pd.read_csv('s3a://capstone-3/data/images_and_labels2.csv')
 
     app.run(host='0.0.0.0',port=8080, debug=True, threaded=True)
