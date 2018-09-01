@@ -6,6 +6,16 @@
 
 * Build a recommender that will take one product and recommend similar products, in type, style and price.
 
+## Table of Contents
+1. [Data and Feature Engineering](#data-and-feature-engineering)
+2. [NLP Recommender](#the-text-method)
+3. [NLP Results](#the-text-results)
+4. [Neural Net Recommender](#the-image-method)
+5. [Neural Net Results](#the-image-results)
+6. [Web application](#the-app)
+7. [Future Steps](#future-work)
+8. [References](#references)
+
 ### The Data and Feature Engineering
 
 For this project, I worked with a sample of the product data from a local company, which consisted of ~300,000 rows with columns such as category, vendor, title, price and description.
@@ -22,7 +32,7 @@ For this project, I worked with a sample of the product data from a local compan
 
  As shown above, my sample is primarily art, which makes recommending for products outside of that category difficult. I performed the clustering and recommending using all categories to start and then restricted to only those in the 'art' category.
 
-### The Clustering
+### The Text Method
 
 Since my data contains product titles, product descriptions and certain product features, I combined all columns with string values into one column, named 'combo', in order to use NLP for clustering.
 
@@ -58,8 +68,7 @@ Parameters used for MiniBatchKMeans:
 * n_clusters = 50
 * batch_size = 100 (default)
 
-
-### The Results
+### The Text Results
 
 Comparing the three methods with the dataset restricted to the 'art' category:
 
@@ -158,12 +167,18 @@ KMeans Recommendations Run #4:
 
 Have these adjustments improved the recommender? You tell me.
 
-### Future Work
+## The Images Method
+
+## The Images Results
+
+## The App
+
+## Future Work
 
 * Add to the domain specific stop words to see if that improves clustering.
 * Try to cluster and label the 'unmapped - misclassified' products.
 * Obtain a dataset with more of the unrepresented categories.
-* Use neural networks to incorporate image processing to improve the labels and recommendations, especially for the art category.
+* Train the autoencoder on more art images.
 * Add an element to the recommender that will recommend products that maximize profit.
 
 
