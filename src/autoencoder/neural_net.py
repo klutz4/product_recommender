@@ -46,7 +46,7 @@ def get_compressed_images(model,X,compressed_layer):
     return X_compressed
 
 def cluster_compressed(X_compressed):
-    kmeans = KMeans(n_clusters=10, n_jobs=-1)
+    kmeans = KMeans(n_clusters=20, n_jobs=-1)
     kmeans.fit(X_compressed)
 
     labels = kmeans.labels_
@@ -70,7 +70,7 @@ def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
 
 def plot_elbow(X_train_compressed,filename=None):
         distortions = []
-        K = range(1,20)
+        K = range(1,100)
         for k in K:
             kmeans = KMeans(n_clusters=k,max_iter=10, n_jobs=-1)
             kmeans.fit(X_train_compressed)
@@ -89,9 +89,9 @@ if __name__ == '__main__':
     df = pd.read_csv('s3a://capstone-3/data/image_subset.csv')
 
     #for training and testing the autoencoder
-    X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train/*.png')])
-    X_train_vals = X_train.reshape(-1, 256, 256, 3)
-    X_train_vals = X_train / np.max(X_train)
+        X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train/*.png')])
+        X_train_vals = X_train.reshape(-1, 256, 256, 3)
+        X_train_vals = X_train / np.max(X_train)
 
     X_test = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/test/*.png')])
     X_test = X_test.reshape(-1,256,256,3)
@@ -138,6 +138,6 @@ if __name__ == '__main__':
     X_compressed = np.append(X_compressed1, X_compressed2, axis=0)
 
     kmeans, labels = cluster_compressed(X_compressed)
-    
+
     item_index = np.random.choice(len(X_compressed))
     recs = get_kmeans_rec(item_index,kmeans,X_train,5, 'images/rec_test5/')
