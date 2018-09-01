@@ -39,7 +39,7 @@ header.masthead h1 {
   font-size: 2vw;
 }
 
-@media (min-width: 400 px) {
+@media (min-width: 768 px) {
   header.masthead {
     background-image: url("../img/art_background.jpg") no-repeat center center;
     padding-top: 12vw;
@@ -62,6 +62,6 @@ header.masthead h1 {
 }
 
 footer.footer {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 4vw;
+  padding-bottom: 4vw;
 }
