@@ -30,24 +30,17 @@ For this project, I worked with a sample of the product data from a local compan
 
  <img src = 'plots/category_prop.png'>
 
- As shown above, my sample is primarily art, which makes recommending for products outside of that category difficult. I performed the clustering and recommending using all categories to start and then restricted to only those in the 'art' category.
+ As shown above, my sample is primarily art, which makes recommending for products outside of that category difficult. I restricted to only those in the 'art' category for both recommenders.
 
 ### The Text Method
 
 Since my data contains product titles, product descriptions and certain product features, I combined all columns with string values into one column, named 'combo', in order to use NLP for clustering.
 
-I chose 4 initial clustering methods to try:
+I chose 3 initial clustering methods to try:
 
 * NLP (TfIdfVectorizer) + cosine similarity
 * Latent Dirichlet Allocation + cosine similarity
 * MiniBatchKMeans
-* Hierarchical clustering
-
-The hierarchical clustering made for some cool looking plots...
-<img src = 'plots/dendrogram.png' width=1000>
-But didn't prove to be much help.
-
-I decided to limit my clustering comparison to the other three methods.
 
 Once I had my methods, I had to find a way to incorporate the price restraints with my clusters. After all, you wouldn't want to plan on spending $100 on a chair and have a $1000 chair recommended to you. For this, I added a user input to specify the desired price range.
 
@@ -115,28 +108,6 @@ KMeans Recommendations:
 <img src = 'https://secure.img1-fg.wfcdn.com/im/14340569/resize-h400-w400%5Ecompr-r85/5494/54947146/%27Meditation+and+Calming+%2864%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/17280529/resize-h400-w400%5Ecompr-r85/5540/55405975/%27Portrait+Style+Photography+%28599%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/44105171/resize-h400-w400%5Ecompr-r85/5779/57799777/%27Abstract+Point+of+View+%28127%29%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
-
-
-Testing on the other categories:  
-Chosen item:  
-<img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0537/img82c.jpg' width=275>
-
-Cosine Sim Recommendations:  
-<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0305/img60c.jpg' width=275>
-<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0653/img27c.jpg' width=275>
-<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0316/img69c.jpg' width=275>
-
-LDA Recommendations:  
-<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0493/img56c.jpg' width=275>
-<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0438/img99c.jpg' width=275>
-<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0492/img85c.jpg' width=275>
-
-KMeans Recommendations:  
-<img src = 'https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0416/img3c.jpg' width=275>
-<img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0458/img98c.jpg' width=275>
-<img src ='https://www.williams-sonoma.com/wsimgs/rk/images/dp/wcm/201824/0656/img41c.jpg' width=275>
-
-It appears that the clustering works well on the non-art categories, but keep in mind that our dataframe was reduced to 55,519 samples, and then further reduced with the specified price range.
 
 ### The Improvements?
 
