@@ -50,8 +50,8 @@ def nlp_recs():
 @app.route('/cnn_recs', methods=['GET','POST'])
 def cnn_recs():
     item_index= int(request.form['index'])
-    cluster_label = images['prediction'].iloc[item_index]
-    cluster_members = images[images['prediction'] == cluster_label]
+    cluster_label = images['label'].iloc[item_index]
+    cluster_members = images[images['label'] == cluster_label]
     recs = np.random.choice(cluster_members.index, 5, replace = False)
     return render_template('cnn_recs.html',item_index=item_index,recs=recs,images=images)
 

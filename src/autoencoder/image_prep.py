@@ -52,7 +52,7 @@ def show_image_from_file(filename):
 def resize_and_save_image(filename):
     img = cv2.imread(filename)
     img = cv2.resize(img, (256,256))
-    cv2.imwrite('/data/resized/{}'.format(filename), img)
+    cv2.imwrite('/Users/Kelly/galvanize/capstones/mod2/recommender/data/resized2/{}'.format(filename), img)
 
 
 # DO NOT NEED ??
@@ -66,14 +66,14 @@ def resize_and_save_image(filename):
 #     return df
 
 ## Use this function to save images from image urls
-def save_images_to_local(df):
+def save_images_to_local(subset):
     ''' Save images from image url.'''
-    for item_index in df.index:
+    for item_index in range(subset.index[0],(subset.index[0]+len(subset.index))):
         try:
-            response = requests.get(df.image_url.iloc[item_index])
+            response = requests.get(products.image_url.iloc[item_index])
             img = Image.open(BytesIO(response.content))
             plt.imshow(img)
-            plt.savefig('data/og_images/{}.png'.format(item_index))
+            plt.savefig('/data/og_images2/{}.png'.format(item_index))
         except:
             continue
 
@@ -111,20 +111,21 @@ if __name__ == '__main__':
     products = pd.read_csv('s3a://capstone-3/data/art_only_images.csv')
     products.drop('Unnamed: 0',axis=1, inplace=True)
 
-    # Prep 1060 images from total df of ~16,000
-    indices = save_images_to_local(products.iloc[1160:2000])
+    # Prep subset of images from total df of ~16,000
+    subset = products.iloc[1160:2000]
+    save_images_to_local(subset)
 
-    images = glob.glob('data/og_images/*.png')
+    images = glob.glob('*.png')
     for file in images:
         resize_and_save_image(file)
 
-    save_folder_to_s3('resized/*.png')
+    save_folder_to_s3('resized2/*.png')
 
     train_filenames, val_filenames, test_filenames = split_images('*.png')
-    save_files_after_split(train_filenames,'train')
-    save_files_after_split(test_filenames,'test')
-    save_files_after_split(val_filenames,'val')
+    save_files_after_split(train_filenames,'train2')
+    save_files_after_split(test_filenames,'test2')
+    save_files_after_split(val_filenames,'val2')
 
-    save_folder_to_s3('train/*.png')
-    save_folder_to_s3('test/*.png')
-    save_folder_to_s3('val/*.png')
+    save_folder_to_s3('train2/*.png')
+    save_folder_to_s3('test2/*.png')
+    save_folder_to_s3('val2/*.png')
