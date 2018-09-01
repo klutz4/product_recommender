@@ -4,3 +4,4 @@ metastore_db
 derby.log
 .ipynb_checkpoints
 ec2_instance.txt
+4.17.5
