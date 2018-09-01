@@ -7,11 +7,11 @@
 * Build a recommender that will take one product and recommend similar products, in type, style and price.
 
 ## Table of Contents
-1. [Data and Feature Engineering](#data-and-feature-engineering)
+1. [Data and Feature Engineering](#the-data-and-feature-engineering)
 2. [NLP Recommender](#the-text-method)
 3. [NLP Results](#the-text-results)
-4. [Neural Net Recommender](#the-image-method)
-5. [Neural Net Results](#the-image-results)
+4. [Neural Net Recommender](#the-images-method)
+5. [Neural Net Results](#the-images-results)
 6. [Web application](#the-app)
 7. [Future Steps](#future-work)
 8. [References](#references)
@@ -169,6 +169,10 @@ Have these adjustments improved the recommender? You tell me.
 
 ## The Images Method
 
+<img src = 'plots/lossplot.png'>
+
+<img src = 'plots/elbow2.png'>
+ 
 ## The Images Results
 
 ## The App
