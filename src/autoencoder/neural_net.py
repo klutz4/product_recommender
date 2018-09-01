@@ -89,9 +89,9 @@ if __name__ == '__main__':
     df = pd.read_csv('s3a://capstone-3/data/image_subset.csv')
 
     #for training and testing the autoencoder
-        X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train/*.png')])
-        X_train_vals = X_train.reshape(-1, 256, 256, 3)
-        X_train_vals = X_train / np.max(X_train)
+    X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train/*.png')])
+    X_train_vals = X_train.reshape(-1, 256, 256, 3)
+    X_train_vals = X_train / np.max(X_train)
 
     X_test = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/test/*.png')])
     X_test = X_test.reshape(-1,256,256,3)
@@ -111,7 +111,9 @@ if __name__ == '__main__':
 
     indices_and_arrays = sorted(indices_and_arrays)
     X_total_arrays = []
+    indices = []
     for i in range(len(indices_and_arrays)):
+        indices.append[indices_and_arrays[i][0]]
         X_total_arrays.append(indices_and_arrays[i][1])
     X_total_arrays = np.array(X_total_arrays)
     X_total_arrays = X_total_arrays.reshape(-1,256,256,3)
