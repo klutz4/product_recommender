@@ -143,7 +143,7 @@ Have these adjustments improved the recommender? You tell me.
 
 Since some of my dataset had image URLs, I wanted to cluster art pieces using image processing through a CNN Autoencoder, then clustering with KMeans on the compressed images.
 
-First, I saved a subet of 1996 of the total ~16,000 images from the image URLs to my local computer and converted them to arrays using CV2. I split up these images into train, test and val with 80%, 10% and 10% in each, respectively.
+First, I saved a subset of 1996 of the total ~16,000 images from the image URLs to my local computer, resized them to be 256x256, and converted them to arrays using CV2. I split up these images into train, test and val with 80%, 10% and 10% in each, respectively.
 
 The Autoencoder:
 
@@ -186,8 +186,9 @@ Before | After:
 
 
 ## The App
-
-<img src = 'images/app/home.png' width=1000>  
+On the home page, you can choose whether you would like to get recommendations using NLP + clustering or the autoencoder + clustering:  
+<img src = 'images/app/home.png' width=1000> 
+From there, you enter a random number, which pulls an art piece out of the data set for which to gather recommendations. For NLP, you can also enter a price range.  
 <img src = 'images/app/nlp.png' width=1000>  
 <img src = 'images/app/nlp_recs.png' width=1000>  
 <img src = 'images/app/neural_net.png' width=1000>  
@@ -203,6 +204,6 @@ Before | After:
 * Add functionality to the app that allows users to click on a recommended art piece and get recommendations based on that.
 
 
-## References
+## Reference
 
-Special thanks to the local company for allowing me to work with their data.|
+Special thanks to the local company for allowing me to work with their data, and to <a href=https://github.com/michellesklee/wedfuly_recommender>Michelle Lee</a> for her inspirational code and project.
