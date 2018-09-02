@@ -18,19 +18,19 @@ def cnn_autoencoder():
     input_img = Input(shape = (256,256,3))
 
     #encoder
-    encoded1 = Conv2D(128, (3, 3), activation='relu', padding='same')(input_img) #(256, 256, 128)
+    encoded1 = Conv2D(32, (3, 3), activation='relu', padding='same')(input_img) #(256, 256, 128)
     pool1 = MaxPooling2D((2, 2), padding='same')(encoded1)
     encoded2 = Conv2D(64, (3, 3), activation='relu', padding='same')(pool1) # (128, 128, 64)
     pool2 = MaxPooling2D((2, 2), padding='same')(encoded2)
-    encoded3 = Conv2D(32, (3, 3), activation='relu', padding='same')(pool2)
+    encoded3 = Conv2D(128, (3, 3), activation='relu', padding='same')(pool2)
     encoded = MaxPooling2D((2, 2), padding='same')(encoded3)
 
     #decoder
-    decoded1 = Conv2D(32, (3, 3), activation='relu', padding='same')(encoded)  #(64, 64, 64)
+    decoded1 = Conv2D(128, (3, 3), activation='relu', padding='same')(encoded)  #(64, 64, 64)
     up1 = UpSampling2D((2, 2))(decoded1)
     decoded2 = Conv2D(64, (3, 3), activation='relu',padding='same')(up1) # (128, 128, 128))
     up2 = UpSampling2D((2, 2))(decoded2)
-    decoded3 = Conv2D(128, (3, 3), activation='relu',padding='same')(up2) # (128, 128, 128))
+    decoded3 = Conv2D(32, (3, 3), activation='relu',padding='same')(up2) # (128, 128, 128))
     up3 = UpSampling2D((2, 2))(decoded3)
     decoded = Conv2D(3, (3, 3), activation='sigmoid', padding='same')(up3) #(256, 256, 3))
 
@@ -112,9 +112,9 @@ if __name__ == '__main__':
 
     indices_and_arrays = sorted(indices_and_arrays)
     X_total_arrays = []
-    indices = []
+    # indices = []
     for i in range(len(indices_and_arrays)):
-        indices.append(indices_and_arrays[i][0])
+        # indices.append(indices_and_arrays[i][0])
         X_total_arrays.append(indices_and_arrays[i][1])
     X_total_arrays = np.array(X_total_arrays)
     X_total_arrays = X_total_arrays.reshape(-1,256,256,3)
@@ -122,25 +122,25 @@ if __name__ == '__main__':
 
     # use for fitting new autoencoder
     autoencoder = cnn_autoencoder()
-    autoencoder.fit(X_train,X_train, epochs=6, validation_data=(X_test, X_test))
-    autoencoder.save('models/autoencoder6.h5')
+    autoencoder.fit(X_train,X_train, epochs=10, validation_data=(X_test, X_test))
+    autoencoder.save('models/autoencoder7.h5')
     # use to load previous fit autoencoder
     # autoencoder = load_model('models/autoencoder6.h5')
     restored_imgs = autoencoder.predict(X_val)
 
-    indices = np.random.choice(len(restored_imgs),5)
+    indices = np.random.choice(len(restored_imgs),10)
     for i in indices:
-        plt.imshow(X_val[-i].reshape(256, 256,3))
-        plt.savefig('images/restored_test6/test{}'.format(i))
+        plt.imshow(X_val[i].reshape(256, 256,3))
+        plt.savefig('images/restored_test7/test{}'.format(i))
 
-        plt.imshow(restored_imgs[-i].reshape(256, 256,3))
-        plt.savefig('images/restored_test6/restored{}'.format(i))
+        plt.imshow(restored_imgs[i].reshape(256, 256,3))
+        plt.savefig('images/restored_test7/restored{}'.format(i))
 
     one = int(np.floor(len(X_total)/3))
     two = 2 * one
-    X_compressed1 = get_compressed_images(autoencoder,X_total_arrays[:one],6)
-    X_compressed2 = get_compressed_images(autoencoder,X_total_arrays[one:two],6)
-    X_compressed3 = get_compressed_images(autoencoder,X_total_arrays[two:],6)
+    X_compressed1 = get_compressed_images(autoencoder,X_total_arrays[:one],5)
+    X_compressed2 = get_compressed_images(autoencoder,X_total_arrays[one:two],5)
+    X_compressed3 = get_compressed_images(autoencoder,X_total_arrays[two:],5)
     X_compressed = np.append(X_compressed1, X_compressed2, axis=0)
     X_compressed = np.append(X_compressed, X_compressed3, axis=0)
 
@@ -151,4 +151,4 @@ if __name__ == '__main__':
     images_and_labels.to_csv('images_and_labels2.csv')
 
     item_index = np.random.choice(len(X_compressed))
-    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test10/')
+    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test/')
