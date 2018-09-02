@@ -44,7 +44,6 @@
   }
   .table {
   color:white;
-  background-color: #8de6c6;
   opacity: .9;
   }
   .title {
@@ -112,7 +111,7 @@
     </tr>
     <tbody>
       <tr>
-        <td><a href={{ df['weblink'].iloc[item_index] }}>{{df['product_title'].iloc[item_index]}}</a></td>
+        <td><a href={{ df['weblink'].iloc[item_index] }} style="color:white">{{df['product_title'].iloc[item_index]}}</a></td>
         <td>{{ df['sale_price'].iloc[item_index] }}</td>
       </tr>
     </tbody>
