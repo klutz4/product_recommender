@@ -47,6 +47,12 @@
     justify-content: center;
     margin-top: .7vw;
   }
+  .buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  }
+
   button {
               padding: 1vh 2vw;
               background-color: #0ac17f;
@@ -55,7 +61,7 @@
               border-color:#0ac17f;
               padding-left: 12px;
               padding-right: 12px;
-              font-size: 16px;
+              font-size: 2vw;
               font-weight: bold;
           }
           button:hover {
@@ -108,12 +114,14 @@
               <div class="form-row">
                 <div class="col-12 col-md-9 mb-2 mb-md-0">
                 <div class="col-12 col-md-3">
-                  <form action='/nlp', method='POST'>
-                    <button type="submit" class="move-button">Get NLP recommendations!</button>
-                  </form>
-                  <form action='/neural_net', method='POST'>
-                    <button type="submit" class="move-button" style="width: 35pw;">Get Neural Net recommendations!</button>
-                  </form>
+                  <div class= "buttons">
+                    <form action='/nlp', method='POST'>
+                    <button type="submit" class="move-button" style= "widht:32vw;">Get NLP recommendations!</button>
+                    </form>
+                    <form action='/neural_net', method='POST'>
+                    <button type="submit" class="move-button" style="width: 40pw;">Get Neural Net recommendations!</button>
+                    </form>
+                  </div>
                 </div>
               </div>
           </div>
