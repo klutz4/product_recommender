@@ -4,7 +4,8 @@
 
 ### The Goal
 
-* Build a recommender that will take one product and recommend similar products, in type, style and price.
+* Initially: build a recommender that will take one product and recommend similar products, in type, style and price.
+* Transformed into: build a recommender that will take one art piece and recommend similar art pieces.
 
 ## Table of Contents
 1. [Data and Feature Engineering](#the-data-and-feature-engineering)
@@ -148,6 +149,12 @@ Have these adjustments improved the recommender? You tell me.
 
 ## The App
 
+<img src = 'images/app/home.png' width=1000>  
+<img src = 'images/app/nlp.png' width=1000>  
+<img src = 'images/app/nlp_recs.png' width=1000>  
+<img src = 'images/app/neural_net.png' width=1000>  
+<img src = 'images/app/neural_net_recs.png' width=1000>  
+
 ## Future Work
 
 * Add to the domain specific stop words to see if that improves clustering.
@@ -155,6 +162,7 @@ Have these adjustments improved the recommender? You tell me.
 * Obtain a dataset with more of the unrepresented categories.
 * Train the autoencoder on more art images.
 * Add an element to the recommender that will recommend products that maximize profit.
+* Add functionality to the app that allows users to click on a recommended art piece and get recommendations based on that.
 
 
 ## References
