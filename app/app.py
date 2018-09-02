@@ -39,8 +39,11 @@ def nlp_recs():
     item_index= int(request.form['index'])
     range = str(request.form['price'])
     if range == '':
-        return 'You must enter a price range.'
-    else:
+        cluster_label = df['prediction'].iloc[item_index]
+        cluster_members = df[df['prediction'] == cluster_label]
+        recs = np.random.choice(cluster_members.index, 5, replace = False)
+        return render_template('nlp_recs.html',recs=recs,df=df,item_index=item_index)
+    if range != '':
         # num_recs = int(request.form['recs'])
         price = df['sale_price'].iloc[item_index]
         restricted = get_restricted_df(price,item_index,range)
