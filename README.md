@@ -141,11 +141,49 @@ Have these adjustments improved the recommender? You tell me.
 
 ## The Images Method
 
+Since some of my dataset had image URLs, I wanted to cluster art pieces using image processing through a CNN Autoencoder, then clustering with KMeans on the compressed images.
+
+First, I saved a subet of 1996 of the total ~16,000 images from the image URLs to my local computer and converted them to arrays using CV2. I split up these images into train, test and val with 80%, 10% and 10% in each, respectively.
+
+The Autoencoder:
+
+|Layer (type)|Output Shape|Param #
+|------------|------------|--------|
+|input_1 (InputLayer) |(None, 256, 256, 3) |       0
+|conv2d_1 (Conv2D)     |        (None, 256, 256, 128)  |    3584
+|max_pooling2d_1 (MaxPooling2 |(None, 128, 128, 128)    |  0
+|conv2d_2 (Conv2D)  |           (None, 128, 128, 64)     |  73792
+|max_pooling2d_2 (MaxPooling2| (None, 64, 64, 64)|         0
+|conv2d_3 (Conv2D)  |           (None, 64, 64, 32)  |       18464
+|max_pooling2d_3 (MaxPooling2 |(None, 32, 32, 32)    |     0
+|conv2d_4 (Conv2D)   |          (None, 32, 32, 32)      |   9248
+|up_sampling2d_1 (UpSampling2 |(None, 64, 64, 32)  |       0
+|conv2d_5 (Conv2D)   |          (None, 64, 64, 64)    |     18496
+|up_sampling2d_2 (UpSampling2 |(None, 128, 128, 64)  |     0
+|conv2d_6 (Conv2D)    |         (None, 128, 128, 128)   |   73856
+|up_sampling2d_3 (UpSampling2 |(None, 256, 256, 128)  |    0
+|conv2d_7 (Conv2D)    |         (None, 256, 256, 3)    |    3459
+
 <img src = 'plots/lossplot.png'>
 
+Based on the above loss plot, I trained my autoencoder on 1597 images in X_train with 6 epochs on 200 images in X_test.
+
+Using the image arrays from the encoded layer of the autoencoder, I applied KMeans to all 1996 images.
+
 <img src = 'plots/elbow2.png'>
+
+Based on the elbow plot and to be consistent with the NLP model, I chose to use 50 clusters for this model.  
  
 ## The Images Results
+
+Examples of restored images from the autoencoder:
+Before | After:  
+<img src = 'images/restored_test/test22.png' width=500> <img src = 'images/restored_test/restored22.png' width=300> 
+<img src = 'images/restored_test/test36.png' width=500> <img src = 'images/restored_test/restored36.png' width=300> 
+<img src = 'images/restored_test/test71.png' width=500> <img src = 'images/restored_test/restored71.png' width=300> 
+<img src = 'images/restored_test/test82.png' width=500> <img src = 'images/restored_test/restored82.png' width=300> 
+<img src = 'images/restored_test/test87.png' width=500> <img src = 'images/restored_test/restored87.png' width=300> 
+
 
 ## The App
 
@@ -167,4 +205,4 @@ Have these adjustments improved the recommender? You tell me.
 
 ## References
 
-Special thanks to the local company for allowing me to work with their data.
+Special thanks to the local company for allowing me to work with their data.|
