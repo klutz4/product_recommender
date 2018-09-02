@@ -52,7 +52,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   }
-
   button {
               padding: 1vh 2vw;
               background-color: #0ac17f;
@@ -86,6 +85,12 @@
       background-size: cover;
       opacity: 0.9;
     }
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
   </style>
 
   <body>
@@ -114,13 +119,13 @@
               <div class="form-row">
                 <div class="col-12 col-md-9 mb-2 mb-md-0">
                 <div class="col-12 col-md-3">
-                  <div class= "buttons">
+                  <div class= "buttons center">
                     <form action='/nlp', method='POST'>
                     <button type="submit" class="move-button" style= "width: 32vw;">Get NLP recommendations!</button>
                     </form>
                     <br>
                     <form action='/neural_net', method='POST'>
-                    <button type="submit" class="move-button" style="width 40pw;">Get Neural Net recommendations!</button>
+                    <button type="submit" class="move-button" style="width: 40pw;" >Get Neural Net recommendations!</button>
                     </form>
                   </div>
                 </div>
