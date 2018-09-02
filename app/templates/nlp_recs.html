@@ -44,7 +44,6 @@
   }
   .table {
   color:white;
-  opacity: .9;
   }
   .title {
   text-align: center;
@@ -128,7 +127,7 @@
       <!-- Here is where the data passed into the template gets inserted -->
       {% for rec in recs %}
         <tr>
-        <td><a href={{ df['weblink'].iloc[rec] }}>{{df['product_title'].iloc[rec]}}</a></td>
+        <td><a href={{ df['weblink'].iloc[rec] }} style="color:white">{{df['product_title'].iloc[rec]}}</a></td>
           <td>{{ df['sale_price'].iloc[rec] }}</td>
         </tr>
       {% endfor %}
