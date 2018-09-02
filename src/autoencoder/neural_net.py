@@ -56,7 +56,7 @@ def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
     labels = kmeans.labels_
     cluster_label = kmeans.labels_[item_index]
     cluster_members = og_X[labels == cluster_label]
-    indices = np.random.choice(len(cluster_members), num_recs)
+    indices = np.random.choice(len(cluster_members), num_recs, replace=False)
     recs = cluster_members[indices]
     # return recs
 
@@ -131,10 +131,10 @@ if __name__ == '__main__':
     indices = np.random.choice(len(restored_imgs),10)
     for i in indices:
         plt.imshow(X_val[i].reshape(256, 256,3))
-        plt.savefig('images/restored_test7/test{}'.format(i))
+        plt.savefig('images/restored_test/test{}'.format(i))
 
         plt.imshow(restored_imgs[i].reshape(256, 256,3))
-        plt.savefig('images/restored_test7/restored{}'.format(i))
+        plt.savefig('images/restored_test/restored{}'.format(i))
 
     one = int(np.floor(len(X_total)/3))
     two = 2 * one
@@ -148,7 +148,7 @@ if __name__ == '__main__':
 
     labels_df = pd.DataFrame(labels, columns=['label'])
     images_and_labels = pd.concat([df,labels_df], axis=1)
-    images_and_labels.to_csv('images_and_labels2.csv')
+    images_and_labels.to_csv('images_and_labels3.csv')
 
     item_index = np.random.choice(len(X_compressed))
-    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test/')
+    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test2/')
