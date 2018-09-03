@@ -14,8 +14,6 @@ def get_restricted_df(price,item_index,range):
     restricted = df.copy()
     restricted = restricted[restricted['sale_price'] >= min]
     restricted = restricted[restricted['sale_price'] < max]
-    if (price < min) or (price > max):
-        restricted = restricted.append(df.iloc[item_index],ignore_index=True)
     return restricted
 
 @app.route('/', methods =['GET','POST'])
@@ -28,11 +26,13 @@ def home():
 
 @app.route('/nlp', methods=['GET','POST'])
 def nlp():
-    return render_template('nlp.html')
+    choices = np.random.choice(df.index,5,replace=False)
+    return render_template('nlp.html',df=df,choices=choices)
 
 @app.route('/neural_net', methods=['GET','POST'])
 def neural_net():
-    return render_template('neural_net.html')
+    choices = np.random.choice(images.index,5,replace=False)
+    return render_template('neural_net.html',images=images,choices=choices)
 
 @app.route('/nlp_recs', methods=['GET','POST'])
 def nlp_recs():
@@ -47,7 +47,7 @@ def nlp_recs():
         # num_recs = int(request.form['recs'])
         price = df['sale_price'].iloc[item_index]
         restricted = get_restricted_df(price,item_index,range)
-        cluster_label = restricted['prediction'].iloc[item_index]
+        cluster_label = df['prediction'].iloc[item_index]
         cluster_members = restricted[restricted['prediction'] == cluster_label]
         recs = np.random.choice(cluster_members.index, 5, replace = False)
 
@@ -55,7 +55,7 @@ def nlp_recs():
 
 @app.route('/cnn_recs', methods=['GET','POST'])
 def cnn_recs():
-    item_index= int(request.form['index'])
+    item_index= int(request.form['image'])
     cluster_label = images['label'].iloc[item_index]
     cluster_members = images[images['label'] == cluster_label]
     recs = np.random.choice(cluster_members.index, 5, replace = False)

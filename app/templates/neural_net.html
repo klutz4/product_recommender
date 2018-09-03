@@ -97,22 +97,27 @@ body {
 }
 </style>
 
-<div class="main" style="padding: 5vw 10% 5vw 10%;color:white;">
+<div class="main center" style="padding: 5vw 10% 5vw 10%;color:white;">
   <br>
   <br>
-  <h2>Get recommendations for an art piece using image processing:</h2>
-    <br>
-    <br>
+  <h2>Select the image that you like the most:</h2>
     <br>
     <form action='/cnn_recs', method='POST'>
-      <div><h4>Please enter an item index (up to 1996). This will choose an art piece for which to gather recommendations.</h4>
-        <input name="index" type="number" class="form-control form-control-lg" placeholder="Enter number here.">
-      </div>
+      <table class="table">
+        <tbody>
+          <!-- Here is where the data passed into the template gets inserted -->
+          <tr>
+            {% for choice in choices %}
+            <th><input name="image" type="radio" value= {{choice}}>
+                  <label for={{choice}}> <img  class="center" style='width:15vw;' src={{images['image_url'].iloc[choice]}}></label></th>
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class='move-button'>
     <button type="submit">Recommend</button>
     </div>
-
   </form>
   <br>
   <br>
