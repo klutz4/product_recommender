@@ -121,24 +121,30 @@
 
 
   <h2 class='title'>Your Recommendations</h2>
+  <h4 class='title'> Select any image to get more recommendations.</h4>
+  <form action='/cnn_recs', method= ['GET','POST']>
   <table class="table">
     <tbody>
       <!-- Here is where the data passed into the template gets inserted -->
       <tr>
         {% for rec in recs[:3] %}
-        <th><img class="center" style='width:15vw;' src= {{images['image_url'].iloc[rec]}}></th>
+        <th><input name="image" type="radio" value= {{rec}}>
+              <label for={{rec}}><img class="center" style='width:15vw;' src= {{images['image_url'].iloc[rec]}}></label></th>
         {% endfor %}
       </tr>
       <tr>
         {% for rec in recs[3:] %}
-        <th><img class="center" style='width:15vw;' src= {{images['image_url'].iloc[rec]}}></th>
+        <th><input name="image" type="radio" value= {{rec}}>
+              <label for={{rec}}><img class="center" style='width:15vw;' src= {{images['image_url'].iloc[rec]}}></label></th>
         {% endfor %}
       </tr>
     </tbody>
   </table>
-  <form action= '/neural_net', method= ['GET,POST']>
-  <button type="submit" class="move-button center">Go back</button>
+  <button type="submit" class="move-button center" style= 'width:15vw;'>Get more recs!</button>
   </form>
+<form action= '/neural_net', method= ['GET,POST']>
+<button type="submit" class="move-button center" style= 'width:15vw;'>Get a new image.</button>
+</form>
 
   <!-- Footer -->
   <footer class="footer bg-light">

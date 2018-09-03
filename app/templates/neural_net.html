@@ -109,7 +109,7 @@ body {
           <tr>
             {% for choice in choices %}
             <th><input name="image" type="radio" value= {{choice}}>
-                  <label for={{choice}}> <img  class="center" style='width:15vw;' src={{images['image_url'].iloc[choice]}}></label></th>
+                  <label for={{choice}}> <img class="center" style='width:15vw;' src={{images['image_url'].iloc[choice]}}></label></th>
             {% endfor %}
           </tr>
         </tbody>

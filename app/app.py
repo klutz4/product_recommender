@@ -36,8 +36,12 @@ def neural_net():
 
 @app.route('/nlp_recs', methods=['GET','POST'])
 def nlp_recs():
-    item_index= int(request.form['index'])
-    range = str(request.form['price'])
+    try:
+        item_index= int(request.form['index'])
+        range = str(request.form['price'])
+    except:
+        item_index= int(request.args.get('index'))
+        range = ''
     if range == '':
         cluster_label = df['prediction'].iloc[item_index]
         cluster_members = df[df['prediction'] == cluster_label]
@@ -50,12 +54,14 @@ def nlp_recs():
         cluster_label = df['prediction'].iloc[item_index]
         cluster_members = restricted[restricted['prediction'] == cluster_label]
         recs = np.random.choice(cluster_members.index, 5, replace = False)
-
         return render_template('nlp_recs.html',recs=recs,df=df,item_index=item_index)
 
 @app.route('/cnn_recs', methods=['GET','POST'])
 def cnn_recs():
-    item_index= int(request.form['image'])
+    try:
+        item_index= int(request.form['image'])
+    except:
+        item_index= int(request.args.get('image'))
     cluster_label = images['label'].iloc[item_index]
     cluster_members = images[images['label'] == cluster_label]
     recs = np.random.choice(cluster_members.index, 5, replace = False)
