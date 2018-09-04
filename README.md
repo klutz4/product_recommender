@@ -112,7 +112,7 @@ KMeans Recommendations:
 
 ### The Improvements?
 
-KMeans clustering seemed to produce the "best" recommendations over cosine similarity and LDA, so I played around with some of the KMeans parameters to see if I could improve the recommendations. Since all of the art pieces had the same category, taxonomy name and color (other), I only used product title, product description and material in the combo column. I also added the WordNetLemmatizer, decreased the batch size to 20, and added the column names, art, print, graphic, wall and canvas to the stop words.
+KMeans clustering seemed to produce the "best" recommendations over cosine similarity and LDA, so I played around with some of the KMeans parameters to see if I could improve the recommendations. Since all of the art pieces had the same category, taxonomy name and color (other), I only used product title, product description and material in the combo column. I also converted the recomemnder to Spark so that the whole dataset is used for recommendations, rather than just a 35,000 subset.
 
 Back to our first item...  
 ![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
@@ -136,8 +136,6 @@ KMeans Recommendations Run #4:
 <img src = 'https://secure.img1-fg.wfcdn.com/im/08212142/resize-h490-w490%5Ecompr-r85/5494/54945705/%27Foggy+Days+%28116%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/70143729/resize-h400-w400%5Ecompr-r85/5540/55403953/%27Portrait+Style+Photography+%28163%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/16622218/resize-h400-w400%5Ecompr-r85/5249/52490069/%27Appetizing+Food+%2899%29%27+Photographic+Print+on+Canvas.jpg' width=275>
-
-Have these adjustments improved the recommender? You tell me.
 
 ## The Images Method
 
@@ -189,10 +187,11 @@ Before | After:
 [Art Recommender]
 On the home page, you can choose whether you would like to get recommendations using NLP + clustering or the autoencoder + clustering:  
 <img src = 'images/app/home.png' width=1000> 
-From there, you enter a random number, which pulls an art piece out of the data set for which to gather recommendations. For NLP, you can also enter a price range.  
-<img src = 'images/app/nlp.png' width=1000>  
-<img src = 'images/app/nlp_recs.png' width=1000>  
+From there, you choose either a title that you like the most (for NLP) or an image that you like the most (for neural net). For NLP, you can also enter a price range.  
+<img src = 'images/app/nlp.png' width=1000>    
 <img src = 'images/app/neural_net.png' width=1000>  
+Once you get your recommendations, you have the option to get more recommendations based off any of the titles or images that popped out.
+<img src = 'images/app/nlp_recs.png' width=1000>
 <img src = 'images/app/neural_net_recs.png' width=1000>  
 
 ## Future Work
@@ -200,6 +199,7 @@ From there, you enter a random number, which pulls an art piece out of the data 
 * Add to the domain specific stop words to see if that improves clustering.
 * Try to cluster and label the 'unmapped - misclassified' products.
 * Obtain a dataset with more of the unrepresented categories.
+* Tune the autoencoder more.
 * Train the autoencoder on more art images.
 * Add an element to the recommender that will recommend products that maximize profit.
 * Add functionality to the app that allows users to click on a recommended art piece and get recommendations based on that.
