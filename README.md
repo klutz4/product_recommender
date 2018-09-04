@@ -15,7 +15,7 @@
 5. [Neural Net Results](#the-images-results)
 6. [Web application](#the-app)
 7. [Future Steps](#future-work)
-8. [References](#references)
+8. [Acknowledgments](#acknowledgments)
 
 ### The Data and Feature Engineering
 
@@ -221,6 +221,6 @@ Once you get your recommendations, you have the option to get more recommendatio
 * Add functionality to the app that allows users to click on a recommended art piece and get recommendations based on that.
 
 
-## Reference
+## Acknowledgments
 
 Special thanks to the local company for allowing me to work with their data, and to <a href=https://github.com/michellesklee/wedfuly_recommender>Michelle Lee</a> for her inspirational code and project.
