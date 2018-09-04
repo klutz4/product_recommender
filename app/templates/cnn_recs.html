@@ -127,13 +127,7 @@
     <tbody>
       <!-- Here is where the data passed into the template gets inserted -->
       <tr>
-        {% for rec in recs[:3] %}
-        <th><input name="image" type="radio" value= {{rec}}>
-              <label for={{rec}}><img class="center" style='width:15vw;' src= {{images['image_url'].iloc[rec]}}></label></th>
-        {% endfor %}
-      </tr>
-      <tr>
-        {% for rec in recs[3:] %}
+        {% for rec in recs %}
         <th><input name="image" type="radio" value= {{rec}}>
               <label for={{rec}}><img class="center" style='width:15vw;' src= {{images['image_url'].iloc[rec]}}></label></th>
         {% endfor %}
