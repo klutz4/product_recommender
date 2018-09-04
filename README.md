@@ -186,6 +186,7 @@ Before | After:
 
 
 ## The App
+[Art Recommender]
 On the home page, you can choose whether you would like to get recommendations using NLP + clustering or the autoencoder + clustering:  
 <img src = 'images/app/home.png' width=1000> 
 From there, you enter a random number, which pulls an art piece out of the data set for which to gather recommendations. For NLP, you can also enter a price range.  
