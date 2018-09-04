@@ -100,7 +100,6 @@
   <br>
   <br>
   <h2 class="title">Select the art title you like the most:</h2>
-    <h6 class="title">Disclaimer: You can click on the title to see the art piece, HOWEVER some links are broken, as this is not an updated dataset.</h6>
     <br>
     <form action='/nlp_recs', method='POST'>
       <table class="table">
@@ -117,8 +116,9 @@
           {% endfor %}
         </tbody>
       </table>
-
-
+      <h8 class="title">Disclaimer: You can click on the title to see the art piece, HOWEVER some links are old, as this is not an updated dataset.</h8>
+      <br>
+      <br>
       <div><h4>OPTIONAL: Please enter a price range (ex. 100-500).</h4>
         <input name="price" type="text" class="form-control form-control-lg" placeholder="Enter range here.">
       </div>
