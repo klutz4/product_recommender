@@ -198,8 +198,7 @@ Before | After:
 <img src = 'images/restored_test/test87.png' width=500> <img src = 'images/restored_test/restored87.png' width=300> 
 
 
-## The App
-[Art Recommender](http://www.artrecommender.com)  
+## The App 
 
 On the home page, you can choose whether you would like to get recommendations using NLP + clustering or the autoencoder + clustering:  
 <img src = 'images/app/home.png' width=1000> 
