@@ -199,7 +199,8 @@ Before | After:
 
 
 ## The App
-[Art Recommender]
+[Art Recommender](http://www.artrecommender.com)  
+
 On the home page, you can choose whether you would like to get recommendations using NLP + clustering or the autoencoder + clustering:  
 <img src = 'images/app/home.png' width=1000> 
 From there, you choose either a title that you like the most (for NLP) or an image that you like the most (for neural net). For NLP, you can also enter a price range.  
