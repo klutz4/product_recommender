@@ -35,6 +35,8 @@ For this project, I worked with a sample of the product data from a local compan
 
 ### The Text Method
 
+#### The original method
+
 Since my data contains product titles, product descriptions and certain product features, I combined all columns with string values into one column, named 'combo', in order to use NLP for clustering.
 
 I chose 3 initial clustering methods to try:
@@ -61,6 +63,19 @@ Parameters used for MiniBatchKMeans:
 * TfIdfVectorizer
 * n_clusters = 50
 * batch_size = 100 (default)
+
+#### The updated method
+
+Once I successfully built the NLP recommender with a subset of the data, I converted the code to Spark to use the entire dataset using the following pipeline and Spark KMeans clustering. This is the recommender used in the app.
+
+``` python
+    tokenizer = Tokenizer(inputCol="combo", outputCol="words")
+    remover = StopWordsRemover(inputCol="words", outputCol="filtered")
+    hashingTF = HashingTF(inputCol='filtered', outputCol="rawFeatures", numFeatures=100)
+    idf = IDF(inputCol='rawFeatures', outputCol="features")
+    pipeline = Pipeline(stages=[tokenizer, remover, hashingTF, idf])
+```
+The following sections correspond to the NLP recommender without using Spark.
 
 ### The Text Results
 
@@ -112,7 +127,7 @@ KMeans Recommendations:
 
 ### The Improvements?
 
-KMeans clustering seemed to produce the "best" recommendations over cosine similarity and LDA, so I played around with some of the KMeans parameters to see if I could improve the recommendations. Since all of the art pieces had the same category, taxonomy name and color (other), I only used product title, product description and material in the combo column. I also converted the recomemnder to Spark so that the whole dataset is used for recommendations, rather than just a 35,000 subset.
+KMeans clustering seemed to produce the "best" recommendations over cosine similarity and LDA, so I played around with some of the KMeans parameters to see if I could improve the recommendations. Since all of the art pieces had the same category, taxonomy name and color (other), I only used product title, product description and material in the combo column. I also added a WordLemmatizer, updated batch size to 20, and added domain specific words to my stop words.
 
 Back to our first item...  
 ![alt text](https://secure.img1-fg.wfcdn.com/im/75284972/resize-h400-w400%5Ecompr-r85/5248/52488516/%27Blury+Style%27+Graphic+Art+Print+on+Wrapped+Canvas.jpg)
