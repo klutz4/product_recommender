@@ -95,7 +95,7 @@ def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
 
 def plot_elbow(X_train_compressed,filename=None):
     ''' Plots the # of k clusters vs. inertia.'''
-    
+
         distortions = []
         K = range(1,100)
         for k in K:
@@ -117,15 +117,15 @@ if __name__ == '__main__':
     df.drop('Unnamed: 0',axis=1, inplace=True)
 
     #for training and testing the autoencoder
-    X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train2/*.png')])
+    X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train3/*.png')])
     X_train = X_train.reshape(-1, 256, 256, 3)
     X_train = X_train / np.max(X_train)
 
-    X_test = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/test2/*.png')])
+    X_test = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/test3/*.png')])
     X_test = X_test.reshape(-1,256,256,3)
     X_test = X_test/ np.max(X_test)
 
-    X_val = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/val2/*.png')])
+    X_val = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/val3/*.png')])
     X_val = X_val.reshape(-1,256,256,3)
     X_val = X_val/ np.max(X_val)
 

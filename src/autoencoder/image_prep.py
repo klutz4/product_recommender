@@ -41,7 +41,8 @@ def resize_and_save_image(filename):
     '''Resize image to 256x256 and save.'''
     img = cv2.imread(filename)
     img = cv2.resize(img, (256,256))
-    cv2.imwrite('data/resized2/{}'.format(filename), img)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    cv2.imwrite('/home/ubuntu/product_recommender/product_recommender/data/recolored/{}'.format(filename), img)
 
 def save_to_s3(filename):
     '''Send images to s3 bucket.'''
@@ -104,9 +105,9 @@ if __name__ == '__main__':
     save_folder_to_s3('resized2/*.png')
 
     train_filenames, val_filenames, test_filenames = split_images('*.png')
-    save_files_after_split(train_filenames,'train2')
-    save_files_after_split(test_filenames,'test2')
-    save_files_after_split(val_filenames,'val2')
+    save_files_after_split(train_filenames,'train3')
+    save_files_after_split(test_filenames,'test3')
+    save_files_after_split(val_filenames,'val3')
 
     save_folder_to_s3('train2/*.png')
     save_folder_to_s3('test2/*.png')
