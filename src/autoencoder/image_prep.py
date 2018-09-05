@@ -12,62 +12,15 @@ import glob
 import cv2
 import random
 
-##Use these functions for use with image urls
-def show_image_from_url(item_index):
-    response = requests.get(products.image_url.iloc[item_index])
-    img = Image.open(BytesIO(response.content))
-    plt.imshow(img)
-    plt.show()
-
-def convert_image_to_matrix(item_index):
-    try:
-        response = requests.get(products.image_url.iloc[item_index])
-        img = Image.open(BytesIO(response.content))
-        arr = np.array(img.getdata(),np.uint8).reshape(img.size[1], img.size[0], 3)
-    except:
-        arr = np.NaN
-    return arr
-
-def get_image_arrays_from_url(df):
-    image_arrays = []
-    for idx in range(0,len(df)): #change to len(products) once on AWS
-        image_arrays.append(convert_image_to_matrix(idx))
-    df = pd.DataFrame(np.array(image_arrays), columns = ['image_array'])
-    df.dropna(inplace=True)
-    return df
-
-def save_images(df):
-    for idx in range(len(df)):
-        try:
-            urllib.request.urlretrieve(df.image_url.iloc[idx],'images/{}'.format(idx))
-        except:
-            continue
-
-##Use these functions for use with saved images
-def show_image_from_file(filename):
-    img = Image.open(filename)
-    plt.imshow(img)
-    plt.show()
-
-def resize_and_save_image(filename):
-    img = cv2.imread(filename)
-    img = cv2.resize(img, (256,256))
-    cv2.imwrite('/Users/Kelly/galvanize/capstones/mod2/recommender/data/resized2/{}'.format(filename), img)
-
-
-# DO NOT NEED ??
-# def get_image_arrays_from_file(filepath):
-#     image_arrays = []
-#     images = glob.glob(filepath)
-#     for file in images:
-#         image_arrays.append(load_and_resize_image(file))
-#     df = pd.DataFrame(np.array(image_arrays), columns = ['image_array'])
-#     df.dropna(inplace=True)
-#     return df
-
 ## Use this function to save images from image urls
 def save_images_to_local(subset):
-    ''' Save images from image url.'''
+    ''' Save images from image url.
+    Input:
+    subset = subset of original dataset of images to save
+
+    Output:
+    images saved to local machine
+    '''
     for item_index in range(subset.index[0],(subset.index[0]+len(subset.index))):
         try:
             response = requests.get(products.image_url.iloc[item_index])
@@ -77,8 +30,21 @@ def save_images_to_local(subset):
         except:
             continue
 
-## Use these functions to send images to s3 bucket
+##Use these functions for use with saved images
+def show_image_from_file(filename):
+    '''Show one image.'''
+    img = Image.open(filename)
+    plt.imshow(img)
+    plt.show()
+
+def resize_and_save_image(filename):
+    '''Resize image to 256x256 and save.'''
+    img = cv2.imread(filename)
+    img = cv2.resize(img, (256,256))
+    cv2.imwrite('data/resized2/{}'.format(filename), img)
+
 def save_to_s3(filename):
+    '''Send images to s3 bucket.'''
     s3 = boto3.resource('s3')
     s3.Bucket('capstone-3').upload_file(filename, 'images/{}'.format(filename))
 
@@ -87,8 +53,16 @@ def save_folder_to_s3(folder_path):
     for file in images:
         save_to_s3(file)
 
-#Split images into train, val and test
 def split_images(filepath):
+    '''Split images in to train, test, val for autoencoder training.
+    Input:
+    filepath = where all images are
+
+    Output:
+    train_filenames = filenames to go into the train set, list of strings
+    test_filenames= filenames to go into the test set, list of strings
+    val_filenames = filenames to go into the val set, list of strings
+    '''
     filenames = glob.glob(filepath)
     filenames.sort()
     random.shuffle(filenames)
@@ -101,6 +75,14 @@ def split_images(filepath):
     return train_filenames, val_filenames, test_filenames
 
 def save_files_after_split(filenames,directory):
+    '''Save corresponding files to the corresponding folder (train, test or val).
+    Input:
+    filenames = list of strings of filenames
+    directory = folder to save files to
+
+    Output:
+    None
+    '''
     for file in filenames:
         img = cv2.imread(file)
         cv2.imwrite('../{}/{}'.format(directory,file),img)
@@ -112,7 +94,7 @@ if __name__ == '__main__':
     products.drop('Unnamed: 0',axis=1, inplace=True)
 
     # Prep subset of images from total df of ~16,000
-    subset = products.iloc[1160:2000]
+    subset = products.iloc[:2000]
     save_images_to_local(subset)
 
     images = glob.glob('*.png')

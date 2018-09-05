@@ -15,6 +15,8 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 def cnn_autoencoder():
+    '''Returns CNN autoencoder.'''
+
     input_img = Input(shape = (256,256,3))
 
     #encoder
@@ -39,13 +41,24 @@ def cnn_autoencoder():
     return autoencoder
 
 def get_compressed_images(model,X,compressed_layer):
-    '''Returns reshaped array of compressed images in prep for clustering.'''
+    '''Returns reshaped array of compressed images in prep for clustering.
+
+    Input:
+    model = autoencoder model
+    X = 4D array of images to compress
+    compressed_layer = integer of compressed layer
+
+    Output:
+    2D array of compressed images
+    '''
     get_compressed_output = K.function([model.layers[0].input], [model.layers[compressed_layer].output])
     X_compressed = get_compressed_output([X])[0]
     X_compressed = X_compressed.reshape(X_compressed.shape[0],X_compressed.shape[1]*X_compressed.shape[2]*X_compressed.shape[3])
     return X_compressed
 
 def cluster_compressed(X_compressed):
+    '''Fits KMeans model to the compressed images and returns kmeans model and image labels.'''
+
     kmeans = KMeans(n_clusters=50, n_jobs=-1)
     kmeans.fit(X_compressed)
 
@@ -53,12 +66,22 @@ def cluster_compressed(X_compressed):
     return kmeans, labels
 
 def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
+    '''Input:
+    item_index = integer, index of item for which to get recs
+    kmeans = kmeans model
+    og_X = original image arrays
+    num_recs = number of recommendations
+
+    Output:
+    recs = indices of recommendations if no filepath specified
+    saved images if filepath
+    '''
+
     labels = kmeans.labels_
     cluster_label = kmeans.labels_[item_index]
     cluster_members = og_X[labels == cluster_label]
     indices = np.random.choice(len(cluster_members), num_recs, replace=False)
     recs = cluster_members[indices]
-    # return recs
 
     #show recs
     for rec, i in zip(recs,range(num_recs)):
@@ -67,8 +90,12 @@ def get_kmeans_rec(item_index, kmeans, og_X, num_recs,filepath=None):
             plt.savefig('{}rec{}.png'.format(filepath,i))
             plt.imshow(og_X[item_index].reshape(256,256,3))
             plt.savefig('{}chosen.png'.format(filepath))
+        else:
+            return recs
 
 def plot_elbow(X_train_compressed,filename=None):
+    ''' Plots the # of k clusters vs. inertia.'''
+    
         distortions = []
         K = range(1,100)
         for k in K:
@@ -124,8 +151,10 @@ if __name__ == '__main__':
     autoencoder = cnn_autoencoder()
     autoencoder.fit(X_train,X_train, epochs=10, validation_data=(X_test, X_test))
     autoencoder.save('models/autoencoder7.h5')
+
     # use to load previous fit autoencoder
     # autoencoder = load_model('models/autoencoder6.h5')
+
     restored_imgs = autoencoder.predict(X_val)
 
     indices = np.random.choice(len(restored_imgs),10)
@@ -136,6 +165,7 @@ if __name__ == '__main__':
         plt.imshow(restored_imgs[i].reshape(256, 256,3))
         plt.savefig('images/restored_test/restored{}'.format(i))
 
+    #Cluster on all of train, val, test images
     one = int(np.floor(len(X_total)/3))
     two = 2 * one
     X_compressed1 = get_compressed_images(autoencoder,X_total_arrays[:one],5)
