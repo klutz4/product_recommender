@@ -130,7 +130,7 @@ if __name__ == '__main__':
     X_val = X_val/ np.max(X_val)
 
     #for clustering and finding indices of recs
-    X_total = [(file,cv2.imread('{}'.format(file))) for file in glob.glob('total/*.png')]
+    X_total = [(file,cv2.imread('{}'.format(file))) for file in glob.glob('recolored/*.png')]
     indices_and_arrays = []
     for i in range(len(X_total)):
         split = X_total[i][0].split('/')
@@ -149,8 +149,8 @@ if __name__ == '__main__':
 
     # use for fitting new autoencoder
     autoencoder = cnn_autoencoder()
-    autoencoder.fit(X_train,X_train, epochs=10, validation_data=(X_test, X_test))
-    autoencoder.save('models/autoencoder7.h5')
+    autoencoder.fit(X_train,X_train, epochs=6, validation_data=(X_test, X_test))
+    autoencoder.save('models/autoencoder8.h5')
 
     # use to load previous fit autoencoder
     # autoencoder = load_model('models/autoencoder6.h5')
@@ -160,10 +160,10 @@ if __name__ == '__main__':
     indices = np.random.choice(len(restored_imgs),10)
     for i in indices:
         plt.imshow(X_val[i].reshape(256, 256,3))
-        plt.savefig('images/restored_test/test{}'.format(i))
+        plt.savefig('images/restored_color/test{}'.format(i))
 
         plt.imshow(restored_imgs[i].reshape(256, 256,3))
-        plt.savefig('images/restored_test/restored{}'.format(i))
+        plt.savefig('images/restored_color/restored{}'.format(i))
 
     #Cluster on all of train, val, test images
     one = int(np.floor(len(X_total)/3))
@@ -178,7 +178,7 @@ if __name__ == '__main__':
 
     labels_df = pd.DataFrame(labels, columns=['label'])
     images_and_labels = pd.concat([df,labels_df], axis=1)
-    images_and_labels.to_csv('images_and_labels3.csv')
+    images_and_labels.to_csv('images_and_labels4.csv')
 
     item_index = np.random.choice(len(X_compressed))
-    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test2/')
+    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test3/')
