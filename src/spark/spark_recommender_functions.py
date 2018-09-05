@@ -29,7 +29,7 @@ def get_kmeans_rec(dataset,item_id,num_recs=5):
     return cluster_members.select('product_title').show(num_recs)
 
 
-def get_kmeans_scores(model):
+def get_kmeans_scores(model,dataset):
     # Evaluate clustering by computing Within Set Sum of Squared Errors.
     wssse = model.computeCost(dataset)
     print("Within Set Sum of Squared Errors = " + str(wssse))
@@ -42,10 +42,21 @@ def get_kmeans_scores(model):
 
     # Evaluate clustering by computing Silhouette score
     evaluator = ClusteringEvaluator()
-
+    predictions = model.transform(dataset)
     silhouette = evaluator.evaluate(predictions)
     print("Silhouette with squared euclidean distance = " + str(silhouette))
 
+def plot_silhouette(data):
+    evaluator = ClusteringEvaluator()
+    scores = []
+    for k in range(2,50):
+        kmeans = KMeans(k=k)
+        model = kmeans.fit(data)
+        predictions = model.transform(data)
+        scores.append(evaluator.evaluate(predictions))
+
+    plt.plot(k,scores)
+    plt.show()
 
 if __name__ == '__main__':
     spark = (ps.sql.SparkSession.builder
