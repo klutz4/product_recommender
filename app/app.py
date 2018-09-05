@@ -51,16 +51,15 @@ def nlp_recs():
         # num_recs = int(request.form['recs'])
         price = df['sale_price'].iloc[item_index]
         restricted = get_restricted_df(price,item_index,range)
-        if len(restricted) == 0:
-            return "There are no recommendations in this price range!"
+        cluster_label = df['prediction'].iloc[item_index]
+        cluster_members = restricted[restricted['prediction'] == cluster_label]
+        if len(cluster_members) >= 5:
+            recs = np.random.choice(cluster_members.index, 5, replace = False)
+        elif len(cluster_members) != 0:
+            recs = np.random.choice(cluster_members.index, len(cluster_members), replace = False)
         else:
-            cluster_label = df['prediction'].iloc[item_index]
-            cluster_members = restricted[restricted['prediction'] == cluster_label]
-            try:
-                recs = np.random.choice(cluster_members.index, 5, replace = False)
-            except:
-                recs = np.random.choice(cluster_members.index, len(cluster_members), replace = False)
-            return render_template('nlp_recs.html',recs=recs,df=df,item_index=item_index)
+            recs = []
+        return render_template('nlp_recs.html',recs=recs,df=df,item_index=item_index)
 
 @app.route('/cnn_recs', methods=['GET','POST'])
 def cnn_recs():
