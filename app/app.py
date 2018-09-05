@@ -1,11 +1,8 @@
 from flask import Flask, request, render_template
 import pandas as pd
 import numpy as np
-# from flask.ext.mobility import Mobility
-# from flask.ext.mobility.decorators import mobile_template
 
 app = Flask(__name__)
-# Mobility(app)
 
 def get_restricted_df(price,item_index,range):
     nums = range.split('-')
@@ -48,7 +45,6 @@ def nlp_recs():
         recs = np.random.choice(cluster_members.index, 5, replace = False)
         return render_template('nlp_recs.html',recs=recs,df=df,item_index=item_index)
     if range != '':
-        # num_recs = int(request.form['recs'])
         price = df['sale_price'].iloc[item_index]
         restricted = get_restricted_df(price,item_index,range)
         cluster_label = df['prediction'].iloc[item_index]
@@ -69,6 +65,7 @@ def cnn_recs():
         item_index= int(request.args.get('image'))
     cluster_label = images['label'].iloc[item_index]
     cluster_members = images[images['label'] == cluster_label]
+    cluster_members.drop(item_index,axis=0,inplace=True)
     recs = np.random.choice(cluster_members.index, 5, replace = False)
     return render_template('cnn_recs.html',item_index=item_index,recs=recs,images=images)
 
