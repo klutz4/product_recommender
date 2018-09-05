@@ -53,7 +53,10 @@ def nlp_recs():
         restricted = get_restricted_df(price,item_index,range)
         cluster_label = df['prediction'].iloc[item_index]
         cluster_members = restricted[restricted['prediction'] == cluster_label]
-        recs = np.random.choice(cluster_members.index, 5, replace = False)
+        try:
+            recs = np.random.choice(cluster_members.index, 5, replace = False)
+        except:
+            recs = np.random.choice(cluster_members.index, len(cluster_members), replace = False)
         return render_template('nlp_recs.html',recs=recs,df=df,item_index=item_index)
 
 @app.route('/cnn_recs', methods=['GET','POST'])
