@@ -138,16 +138,11 @@ KMeans Recommendations Run #1:
 <img src ='https://secure.img1-fg.wfcdn.com/im/80519151/resize-h400-w400%5Ecompr-r85/5767/57671240/%27Blurred+out+%287%29%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
 
 KMeans Recommendations Run #2:  
-<img src = 'https://secure.img1-fg.wfcdn.com/im/26447087/resize-h400-w400%5Ecompr-r85/5743/57435620/%27Sharp+Colors+%28192%29%27+Photographic+Print+on+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/01669271/resize-h400-w400%5Ecompr-r85/5540/55409335/%27Waterfall+%2820%29%27+Photographic+Print+on+Canvas.jpg' width=275>
-<img src ='https://secure.img1-fg.wfcdn.com/im/34254387/resize-h400-w400%5Ecompr-r85/5917/59176471/%27Neon+%28122%29%27+Graphic+Art+Print+on+Canvas.jpg' width=275>
-
-KMeans Recommendations Run #3:  
 <img src = 'https://secure.img1-fg.wfcdn.com/im/17935221/resize-h400-w400%5Ecompr-r85/5867/58672222/%27Sharp+Colors+%28181%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/52986386/resize-h400-w400%5Ecompr-r85/5540/55403404/%27Portrait+Style+53%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/85121847/resize-h400-w400%5Ecompr-r85/5185/51851839/%27Blury+Style%27+Photographic+Print+on+Wrapped+Canvas.jpg' width=275>
 
-KMeans Recommendations Run #4:  
+KMeans Recommendations Run #3:  
 <img src = 'https://secure.img1-fg.wfcdn.com/im/08212142/resize-h490-w490%5Ecompr-r85/5494/54945705/%27Foggy+Days+%28116%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/70143729/resize-h400-w400%5Ecompr-r85/5540/55403953/%27Portrait+Style+Photography+%28163%29%27+Photographic+Print+on+Canvas.jpg' width=275>
 <img src ='https://secure.img1-fg.wfcdn.com/im/16622218/resize-h400-w400%5Ecompr-r85/5249/52490069/%27Appetizing+Food+%2899%29%27+Photographic+Print+on+Canvas.jpg' width=275>
