@@ -151,7 +151,7 @@ KMeans Recommendations Run #3:
 
 Since some of my dataset had image URLs, I wanted to cluster art pieces using image processing through a CNN Autoencoder, then clustering with KMeans on the compressed images.
 
-First, I saved a subset of 1996 of the total ~16,000 images from the image URLs to my local computer, resized them to be 256x256, and converted them to arrays using CV2. I split up these images into train, test and val with 80%, 10% and 10% in each, respectively.
+First, I saved a subset of 1996 of the total ~16,000 images from the image URLs to my local computer, resized them to be 256x256, and converted them to arrays and RGB using CV2. I split up these images into train, test and val with 80%, 10% and 10% in each, respectively.
 
 The Autoencoder:
 
