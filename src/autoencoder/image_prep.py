@@ -102,13 +102,13 @@ if __name__ == '__main__':
     for file in images:
         resize_and_save_image(file)
 
-    save_folder_to_s3('resized2/*.png')
+    save_folder_to_s3('resized/*.png')
 
     train_filenames, val_filenames, test_filenames = split_images('*.png')
-    save_files_after_split(train_filenames,'train3')
-    save_files_after_split(test_filenames,'test3')
-    save_files_after_split(val_filenames,'val3')
+    save_files_after_split(train_filenames,'train')
+    save_files_after_split(test_filenames,'test')
+    save_files_after_split(val_filenames,'val')
 
-    save_folder_to_s3('train2/*.png')
-    save_folder_to_s3('test2/*.png')
-    save_folder_to_s3('val2/*.png')
+    save_folder_to_s3('train/*.png')
+    save_folder_to_s3('test/*.png')
+    save_folder_to_s3('val/*.png')

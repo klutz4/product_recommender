@@ -20,19 +20,19 @@ def cnn_autoencoder():
     input_img = Input(shape = (256,256,3))
 
     #encoder
-    encoded1 = Conv2D(32, (3, 3), activation='relu', padding='same')(input_img) #(256, 256, 128)
+    encoded1 = Conv2D(128, (3, 3), activation='relu', padding='same')(input_img) #(256, 256, 128)
     pool1 = MaxPooling2D((2, 2), padding='same')(encoded1)
     encoded2 = Conv2D(64, (3, 3), activation='relu', padding='same')(pool1) # (128, 128, 64)
     pool2 = MaxPooling2D((2, 2), padding='same')(encoded2)
-    encoded3 = Conv2D(128, (3, 3), activation='relu', padding='same')(pool2)
-    encoded = MaxPooling2D((2, 2), padding='same')(encoded3)
+    encoded3 = Conv2D(32, (3, 3), activation='relu', padding='same')(pool2) # (64,64,32)
+    encoded = MaxPooling2D((2, 2), padding='same')(encoded3) # (32,32,32)
 
     #decoder
-    decoded1 = Conv2D(128, (3, 3), activation='relu', padding='same')(encoded)  #(64, 64, 64)
+    decoded1 = Conv2D(32, (3, 3), activation='relu', padding='same')(encoded)  #(32,32,32)
     up1 = UpSampling2D((2, 2))(decoded1)
-    decoded2 = Conv2D(64, (3, 3), activation='relu',padding='same')(up1) # (128, 128, 128))
+    decoded2 = Conv2D(64, (3, 3), activation='relu',padding='same')(up1) # (64,64,64)
     up2 = UpSampling2D((2, 2))(decoded2)
-    decoded3 = Conv2D(32, (3, 3), activation='relu',padding='same')(up2) # (128, 128, 128))
+    decoded3 = Conv2D(128, (3, 3), activation='relu',padding='same')(up2) # (128, 128, 128)
     up3 = UpSampling2D((2, 2))(decoded3)
     decoded = Conv2D(3, (3, 3), activation='sigmoid', padding='same')(up3) #(256, 256, 3))
 
@@ -117,15 +117,15 @@ if __name__ == '__main__':
     df.drop('Unnamed: 0',axis=1, inplace=True)
 
     #for training and testing the autoencoder
-    X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train3/*.png')])
+    X_train = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/train/*.png')])
     X_train = X_train.reshape(-1, 256, 256, 3)
     X_train = X_train / np.max(X_train)
 
-    X_test = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/test3/*.png')])
+    X_test = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/test/*.png')])
     X_test = X_test.reshape(-1,256,256,3)
     X_test = X_test/ np.max(X_test)
 
-    X_val = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/val3/*.png')])
+    X_val = np.array([cv2.imread('{}'.format(file)) for file in glob.glob('data/val/*.png')])
     X_val = X_val.reshape(-1,256,256,3)
     X_val = X_val/ np.max(X_val)
 
@@ -150,7 +150,7 @@ if __name__ == '__main__':
     # use for fitting new autoencoder
     autoencoder = cnn_autoencoder()
     autoencoder.fit(X_train,X_train, epochs=6, validation_data=(X_test, X_test))
-    autoencoder.save('models/autoencoder8.h5')
+    autoencoder.save('models/autoencoder.h5')
 
     # use to load previous fit autoencoder
     # autoencoder = load_model('models/autoencoder6.h5')
@@ -168,9 +168,9 @@ if __name__ == '__main__':
     #Cluster on all of train, val, test images
     one = int(np.floor(len(X_total)/3))
     two = 2 * one
-    X_compressed1 = get_compressed_images(autoencoder,X_total_arrays[:one],5)
-    X_compressed2 = get_compressed_images(autoencoder,X_total_arrays[one:two],5)
-    X_compressed3 = get_compressed_images(autoencoder,X_total_arrays[two:],5)
+    X_compressed1 = get_compressed_images(autoencoder,X_total_arrays[:one],7)
+    X_compressed2 = get_compressed_images(autoencoder,X_total_arrays[one:two],7)
+    X_compressed3 = get_compressed_images(autoencoder,X_total_arrays[two:],7)
     X_compressed = np.append(X_compressed1, X_compressed2, axis=0)
     X_compressed = np.append(X_compressed, X_compressed3, axis=0)
 
@@ -178,7 +178,7 @@ if __name__ == '__main__':
 
     labels_df = pd.DataFrame(labels, columns=['label'])
     images_and_labels = pd.concat([df,labels_df], axis=1)
-    images_and_labels.to_csv('images_and_labels4.csv')
+    images_and_labels.to_csv('images_and_labels.csv')
 
     item_index = np.random.choice(len(X_compressed))
-    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test3/')
+    recs = get_kmeans_rec(item_index,kmeans,X_total_arrays,5, 'images/rec_test/')
