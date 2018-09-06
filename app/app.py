@@ -5,9 +5,13 @@ import numpy as np
 app = Flask(__name__)
 
 def get_restricted_df(price,item_index,range):
-    nums = range.split('-')
-    min = int(nums[0])
-    max = int(nums[1])
+    try:
+        nums = range.split('-')
+        min = int(nums[0])
+        max = int(nums[1])
+    except:
+        min = int(range) -50
+        max = min + 50
     restricted = df.copy()
     restricted = restricted[restricted['sale_price'] >= min]
     restricted = restricted[restricted['sale_price'] < max]
