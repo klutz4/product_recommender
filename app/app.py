@@ -70,7 +70,8 @@ def cnn_recs():
     cluster_label = images['label'].iloc[item_index]
     cluster_members = images[images['label'] == cluster_label]
     cluster_members.drop(item_index,axis=0,inplace=True)
-    recs = np.random.choice(cluster_members.index, 5, replace = False)
+    recs = np.random.choice(cluster_members.index, 4, replace = False)
+    recs.append(np.random.choice(images.index))
     return render_template('cnn_recs.html',item_index=item_index,recs=recs,images=images)
 
 if  __name__ == '__main__':
